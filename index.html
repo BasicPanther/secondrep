@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Band Entry Management System</title>
+    <title>MFN 2026 Band Management</title>
     <style>
         :root {
             --color-white: #ffffff;
@@ -54,9 +54,9 @@
 
         /* Components */
         .card { background: white; border-radius: var(--radius-lg); padding: 24px; border: 1px solid var(--color-border); box-shadow: var(--shadow-sm); margin-bottom: 24px; }
-        .form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-bottom: 20px; }
+        .form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-bottom: 20px; }
         .form-group { display: flex; flex-direction: column; gap: 8px; }
-        .form-label { font-size: 14px; font-weight: 600; color: var(--color-slate-500); }
+        .form-label { font-size: 13px; font-weight: 700; color: var(--color-slate-500); text-transform: uppercase; letter-spacing: 0.02em; }
         .form-control { padding: 12px; border: 1px solid var(--color-border); border-radius: var(--radius-base); font-size: 15px; outline: none; transition: border 0.2s; }
         .form-control:focus { border-color: var(--color-teal-500); box-shadow: 0 0 0 3px rgba(33, 128, 141, 0.1); }
         
@@ -65,23 +65,23 @@
         .btn-primary:hover { background: var(--color-teal-600); }
         .btn-secondary { background: var(--color-gray-200); color: var(--color-slate-900); }
         .btn-danger { background: var(--color-red-500); color: white; }
-        .btn-sm { padding: 6px 12px; font-size: 12px; border-radius: 6px; }
+        .btn-sm { padding: 6px 12px; font-size: 11px; border-radius: 6px; }
 
         /* Tables */
         .table-container { background: white; border-radius: var(--radius-lg); overflow-x: auto; border: 1px solid var(--color-border); box-shadow: var(--shadow-sm); }
-        table { width: 100%; border-collapse: collapse; text-align: left; min-width: 900px; }
-        th { background: #f8f9fa; padding: 16px; font-size: 12px; text-transform: uppercase; color: var(--color-slate-500); font-weight: 700; letter-spacing: 0.05em; }
-        td { padding: 16px; border-bottom: 1px solid #f0f0f0; font-size: 14px; }
+        table { width: 100%; border-collapse: collapse; text-align: left; min-width: 1000px; }
+        th { background: #f8f9fa; padding: 16px; font-size: 11px; text-transform: uppercase; color: var(--color-slate-500); font-weight: 800; letter-spacing: 0.05em; border-bottom: 2px solid #eee; }
+        td { padding: 16px; border-bottom: 1px solid #f0f0f0; font-size: 13px; }
         tr:hover { background: #fcfcfc; }
 
         /* Summary Stats */
         .summary-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; margin-bottom: 24px; }
         .stat-card { background: white; padding: 24px; border-radius: var(--radius-lg); border: 1px solid var(--color-border); text-align: center; border-top: 4px solid var(--color-teal-500); }
         .stat-value { font-size: 32px; font-weight: 800; color: var(--color-teal-500); margin-bottom: 4px; }
-        .stat-label { font-size: 12px; font-weight: 700; color: var(--color-slate-500); text-transform: uppercase; }
+        .stat-label { font-size: 11px; font-weight: 700; color: var(--color-slate-500); text-transform: uppercase; }
 
         /* Band Visualization */
-        .bands-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 12px; margin: 24px 0; }
+        .bands-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 12px; margin: 24px 0; }
         .band-block { border: 2px solid var(--color-teal-500); border-radius: 10px; padding: 16px; text-align: center; background: white; box-shadow: var(--shadow-sm); }
         .band-num { font-size: 20px; font-weight: 800; color: var(--color-teal-500); }
 
@@ -89,25 +89,26 @@
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(19, 52, 59, 0.8); z-index: 1000; align-items: center; justify-content: center; backdrop-filter: blur(4px); }
         .modal.active { display: flex; }
         .modal-content { background: white; border-radius: var(--radius-lg); padding: 32px; width: 95%; max-width: 550px; position: relative; }
-        .modal-close { position: absolute; top: 16px; right: 16px; cursor: pointer; font-size: 24px; }
 
-        .toast { position: fixed; bottom: 30px; right: 30px; background: #13343b; color: white; padding: 16px 32px; border-radius: 10px; z-index: 2000; box-shadow: 0 10px 15px rgba(0,0,0,0.2); font-weight: 600; display: none; animation: slideUp 0.3s ease; }
-        @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        /* Toast Popup */
+        .toast { position: fixed; bottom: 30px; right: 30px; background: #13343b; color: white; padding: 16px 32px; border-radius: 10px; z-index: 2000; box-shadow: 0 10px 15px rgba(0,0,0,0.2); font-weight: 600; display: none; transition: 0.3s; }
+        .toast.error { background: var(--color-red-500); }
+        .toast.success { background: var(--color-teal-500); }
 
-        .action-btns { display: flex; gap: 8px; }
+        .admin-filter-badge { background: #e0f2f1; color: #00796b; padding: 2px 8px; border-radius: 4px; font-size: 10px; font-weight: 700; text-transform: uppercase; margin-bottom: 4px; display: inline-block; }
     </style>
 </head>
 <body>
 
     <div id="loginScreen" class="container">
-        <h1 style="text-align: center; margin-top: 60px; color: var(--color-teal-500);">St. Thomas Band Management</h1>
+        <h1 style="text-align: center; margin-top: 60px; color: var(--color-teal-500);">MFN 2026 Band Management</h1>
         <p id="selectionPath" style="text-align: center; font-weight: 700; font-size: 18px; margin-bottom: 40px; color: var(--color-slate-500);"></p>
         <div id="userSelectionGrid" class="user-selection"></div>
     </div>
 
     <div id="mainApp" style="display: none;">
         <div class="header">
-            <h1 class="header-title">Band Entry System</h1>
+            <h1 class="header-title">MFN 2026</h1>
             <div style="display: flex; gap: 20px; align-items: center;">
                 <span id="currentUserDisplay" class="user-indicator"></span>
                 <button class="btn btn-secondary btn-sm" onclick="logout()">Logout</button>
@@ -116,8 +117,8 @@
 
         <div class="tabs-container">
             <div class="tabs">
-                <button class="tab active" id="tab-entry" onclick="showPage('entryPage')">📝 Allocation</button>
-                <button class="tab" id="tab-data" onclick="showPage('dataPage')">📊 View Data</button>
+                <button class="tab active" id="tab-entry" onclick="showPage('entryPage')">📝 Entry Form</button>
+                <button class="tab" id="tab-data" onclick="showPage('dataPage')">📊 Data Explorer</button>
                 <button class="tab" id="adminTab" style="display: none;" onclick="showPage('adminPage')">⚙️ Settings</button>
             </div>
         </div>
@@ -125,7 +126,7 @@
         <div class="container">
             <div id="entryPage" class="page active">
                 <div class="card">
-                    <h2 style="margin-top:0; color: var(--color-teal-500);">New Band Allocation</h2>
+                    <h2 style="margin-top:0; color: var(--color-teal-500);">Record New Entry</h2>
                     <div class="form-grid">
                         <div class="form-group">
                             <label class="form-label">Starting Band Number</label>
@@ -154,7 +155,7 @@
                             </div>
                             <div class="form-group">
                                 <label class="form-label">Number of Bands</label>
-                                <input type="number" id="qty" class="form-control" min="1" value="1" oninput="updateBandPreview()">
+                                <input type="number" id="qty" class="form-control" min="1" placeholder="Enter quantity" oninput="updateBandPreview()">
                             </div>
                         </div>
                         
@@ -162,13 +163,13 @@
 
                         <div style="background: var(--color-slate-900); color: white; padding: 20px; border-radius: 12px; margin: 30px 0; display: flex; justify-content: space-between; align-items: center;">
                             <div>
-                                <div style="font-size: 12px; opacity: 0.7; font-weight: 700; text-transform: uppercase;">Total Collection Due</div>
+                                <div style="font-size: 11px; opacity: 0.7; font-weight: 800; text-transform: uppercase;">Total Collection Due</div>
                                 <div style="font-size: 14px;" id="qtyDisplay">0 bands × ₹50</div>
                             </div>
                             <div style="font-size: 32px; font-weight: 800; color: var(--color-teal-300);">₹<span id="calcTotal">0</span></div>
                         </div>
 
-                        <button type="submit" class="btn btn-primary" style="width: 100%;">Process and Save Allocation</button>
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">Save Entry</button>
                     </form>
                 </div>
             </div>
@@ -177,39 +178,49 @@
                 <div class="summary-cards">
                     <div class="stat-card">
                         <div class="stat-value" id="totalEntriesDisplay">0</div>
-                        <div class="stat-label">Total Entries</div>
+                        <div class="stat-label">Total Entries Found</div>
                     </div>
                     <div class="stat-card">
                         <div class="stat-value">₹<span id="totalRevenueDisplay">0</span></div>
-                        <div class="stat-label">Revenue Collected</div>
+                        <div class="stat-label">Calculated Revenue</div>
                     </div>
                 </div>
 
                 <div class="card">
+                    <h3 style="margin-top:0; font-size: 14px; color: var(--color-teal-500);">🔍 SEARCH & FILTERS</h3>
                     <div class="form-grid">
-                        <div class="form-group"><label class="form-label">Search Name</label><input type="text" id="search" class="form-control" placeholder="Type to search..." onkeyup="filterTable()"></div>
-                        <div class="form-group"><label class="form-label">Filter Date</label><input type="date" id="dateFilter" class="form-control" onchange="filterTable()"></div>
+                        <div class="form-group"><label class="form-label">Search Name/Band</label><input type="text" id="search" class="form-control" onkeyup="filterTable()"></div>
+                        <div class="form-group"><label class="form-label">Allocation Date</label><input type="date" id="dateFilter" class="form-control" onchange="filterTable()"></div>
                         <div class="form-group">
-                            <label class="form-label">Sort By</label>
+                            <label class="form-label">Sorting</label>
                             <select id="sortBy" class="form-control" onchange="filterTable()">
                                 <option value="date-desc">Newest First</option>
-                                <option value="band-asc">Band # (Ascending)</option>
-                                <option value="band-desc">Band # (Descending)</option>
+                                <option value="band-asc">Band # (1 → 999)</option>
+                                <option value="band-desc">Band # (999 → 1)</option>
                                 <option value="name-asc">Name (A-Z)</option>
                             </select>
                         </div>
                     </div>
-                    <div style="display: flex; gap: 12px; margin-bottom: 20px;">
-                        <button class="btn btn-secondary btn-sm" onclick="exportCSV()">📥 Download CSV Report</button>
-                        <button class="btn btn-secondary btn-sm" onclick="loadEntries()">🔄 Refresh Data</button>
+
+                    <div id="adminFilterContainer" style="display: none; border-top: 1px dashed var(--color-border); padding-top: 20px; margin-top: 10px;">
+                        <div class="form-grid">
+                            <div class="form-group"><label class="form-label">Filter by Category</label><select id="filterCategory" class="form-control" onchange="handleAdminFilterChange()"><option value="all">All Categories</option><option value="Zone">Zone</option><option value="Desk">Desk</option><option value="Church Office">Church Office</option></select></div>
+                            <div class="form-group"><label class="form-label">Filter by Zone</label><select id="filterZone" class="form-control" onchange="handleAdminFilterZoneChange()"><option value="all">All Zones</option><option value="1">Zone 1</option><option value="2">Zone 2</option><option value="3A">Zone 3A</option><option value="3B">Zone 3B</option><option value="4A">Zone 4A</option><option value="4B">Zone 4B</option><option value="Other">Other</option></select></div>
+                            <div class="form-group"><label class="form-label">Filter by Community</label><select id="filterCommunity" class="form-control" onchange="filterTable()"><option value="all">All Communities</option></select></div>
+                            <div class="form-group"><label class="form-label">Filter by Operator</label><select id="filterOperator" class="form-control" onchange="filterTable()"><option value="all">All Operators</option></select></div>
+                        </div>
                     </div>
 
-                    <div class="table-container">
+                    <div style="display: flex; gap: 12px; margin-top: 20px;">
+                        <button class="btn btn-secondary btn-sm" onclick="exportCSV()">📥 Export CSV</button>
+                        <button class="btn btn-secondary btn-sm" onclick="loadEntries()">🔄 Sync</button>
+                        <button class="btn btn-secondary btn-sm" onclick="resetAllFilters()">✕ Reset Filters</button>
+                    </div>
+
+                    <div class="table-container" style="margin-top: 24px;">
                         <table id="entryTable">
                             <thead>
-                                <tr>
-                                    <th>Band #</th><th>Recipient Name</th><th>Zone</th><th>Community</th><th>Amount</th><th>Date & Time</th><th id="adminCol" style="display:none">Operator</th><th>Actions</th>
-                                </tr>
+                                <tr><th>Band #</th><th>Recipient</th><th>Zone</th><th>Community</th><th>Amount</th><th>Timestamp</th><th id="adminCol" style="display:none">Operator</th><th>Actions</th></tr>
                             </thead>
                             <tbody id="tableBody"></tbody>
                         </table>
@@ -219,130 +230,32 @@
 
             <div id="adminPage" class="page">
                 <div class="card">
-                    <h2 style="margin-top:0">System Administration</h2>
+                    <h2 style="margin-top:0">Administration</h2>
                     <div style="background: #f8f9fa; padding: 20px; border-radius: 12px; border-left: 5px solid var(--color-teal-500); margin-bottom: 24px;">
-                        <h3 style="margin-top:0">User Account Management</h3>
-                        <p style="font-size: 14px; color: var(--color-slate-500);">Create and manage profiles for Zones, Desk users, and Church Office.</p>
+                        <h3>Account Management</h3>
                         <div style="display: flex; gap: 12px; margin-top: 15px;">
-                            <button class="btn btn-primary" onclick="openModal('addUserModal')">➕ Create New Profile</button>
-                            <button class="btn btn-secondary" onclick="renderManageUsersList()">📋 Manage Existing Profiles</button>
+                            <button class="btn btn-primary" onclick="openModal('addUserModal')">➕ Create Profile</button>
+                            <button class="btn btn-secondary" onclick="renderManageUsersList()">📋 Manage Profiles</button>
                         </div>
                     </div>
-
                     <div style="background: #fff5f5; padding: 20px; border-radius: 12px; border-left: 5px solid var(--color-red-500);">
-                        <h3 style="margin-top:0; color: var(--color-red-500);">Danger Zone</h3>
-                        <p style="font-size: 14px; color: var(--color-slate-500);">These actions are irreversible. Export your data before clearing.</p>
-                        <button class="btn btn-danger" style="margin-top: 10px;" onclick="clearDatabase()">⚠️ Clear All Entry Records</button>
+                        <h3 style="color: var(--color-red-500);">Danger Zone</h3>
+                        <button class="btn btn-danger" onclick="clearDatabase()">⚠️ Wipe Records</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <div id="passwordModal" class="modal">
-        <div class="modal-content">
-            <h2 id="loginTitle" style="color: var(--color-teal-500); margin-top:0;">Login Verification</h2>
-            <div class="form-group">
-                <label class="form-label">Password</label>
-                <input type="password" id="loginPass" class="form-control" placeholder="Enter password">
-            </div>
-            <div class="modal-buttons" style="margin-top: 24px; display: flex; gap: 12px;">
-                <button class="btn btn-primary" style="flex: 1" onclick="processLogin()">Authenticate</button>
-                <button class="btn btn-secondary" style="flex: 1" onclick="closeModal('passwordModal')">Cancel</button>
-            </div>
-        </div>
-    </div>
+    <div id="passwordModal" class="modal"><div class="modal-content"><h2 id="loginTitle" style="color: var(--color-teal-500);">Authenticate</h2><div class="form-group"><label class="form-label">Password</label><input type="password" id="loginPass" class="form-control"></div><div class="modal-buttons" style="margin-top: 24px; display: flex; gap: 12px;"><button class="btn btn-primary" style="flex: 1" onclick="processLogin()">Login</button><button class="btn btn-secondary" style="flex: 1" onclick="closeModal('passwordModal')">Cancel</button></div></div></div>
 
-    <div id="addUserModal" class="modal">
-        <div class="modal-content">
-            <h2 style="color: var(--color-teal-500); margin-top:0;">New User Profile</h2>
-            <div class="form-group" style="margin-bottom: 15px;">
-                <label class="form-label">Category</label>
-                <select id="newRole" class="form-control" onchange="handleRoleChange(this.value)">
-                    <option value="Desk">Desk</option>
-                    <option value="Church Office">Church Office</option>
-                    <option value="Zone">Zone</option>
-                </select>
-            </div>
-            <div id="zoneSubField" class="form-group" style="display:none; margin-bottom: 15px;">
-                <label class="form-label">Assign to Zone</label>
-                <select id="newUserZone" class="form-control" onchange="populateCommunityUsernames(this.value)"></select>
-            </div>
-            <div class="form-group">
-                <label class="form-label">Username (Community Name)</label>
-                <select id="newUsername" class="form-control"></select>
-            </div>
-            <p style="font-size: 12px; color: var(--color-slate-500); margin-top: 15px; font-weight: 600;">
-                💡 Default login password is: <span style="color: var(--color-teal-500);">olep@2026</span>
-            </p>
-            <div class="modal-buttons" style="margin-top: 24px; display: flex; gap: 12px;">
-                <button class="btn btn-primary" onclick="submitNewUser()">Create Profile</button>
-                <button class="btn btn-secondary" onclick="closeModal('addUserModal')">Close</button>
-            </div>
-        </div>
-    </div>
+    <div id="addUserModal" class="modal"><div class="modal-content"><h2 style="color: var(--color-teal-500);">New Profile</h2><div class="form-group" style="margin-bottom: 15px;"><label class="form-label">Role Category</label><select id="newRole" class="form-control" onchange="handleRoleChange(this.value)"><option value="Desk">Desk</option><option value="Church Office">Church Office</option><option value="Zone">Zone</option></select></div><div id="zoneSubField" class="form-group" style="display:none; margin-bottom: 15px;"><label class="form-label">Select Zone</label><select id="newUserZone" class="form-control" onchange="populateCommunityUsernames(this.value)"></select></div><div class="form-group"><label class="form-label">Username (Profile Name)</label><select id="newUsername" class="form-control"></select></div><p style="font-size: 11px; color: var(--color-slate-500); margin-top: 15px;">* Default password: <strong>olep@2026</strong></p><div class="modal-buttons" style="margin-top: 24px; display: flex; gap: 12px;"><button class="btn btn-primary" onclick="submitNewUser()">Save</button><button class="btn btn-secondary" onclick="closeModal('addUserModal')">Cancel</button></div></div></div>
 
-    <div id="userManageModal" class="modal">
-        <div class="modal-content" style="max-width: 600px;">
-            <h2 style="color: var(--color-teal-500); margin-top:0;">Manage User Profiles</h2>
-            <div id="userListBody" style="max-height: 400px; overflow-y: auto; border: 1px solid var(--color-border); border-radius: 8px;"></div>
-            <div class="modal-buttons" style="margin-top: 24px;">
-                <button class="btn btn-secondary" onclick="closeModal('userManageModal')">Close Panel</button>
-            </div>
-        </div>
-    </div>
+    <div id="userManageModal" class="modal"><div class="modal-content" style="max-width: 600px;"><h2>Existing Profiles</h2><div id="userListBody" style="max-height: 400px; overflow-y: auto;"></div><button class="btn btn-secondary" style="margin-top:20px; width: 100%;" onclick="closeModal('userManageModal')">Close</button></div></div>
 
-    <div id="editProfileModal" class="modal">
-        <div class="modal-content">
-            <h2 style="color: var(--color-teal-500); margin-top:0;">Update User Profile</h2>
-            <input type="hidden" id="editUserId">
-            <div class="form-group" style="margin-bottom: 15px;">
-                <label class="form-label">Username</label>
-                <input type="text" id="editProfileName" class="form-control">
-            </div>
-            <div class="form-group" style="margin-bottom: 15px;">
-                <label class="form-label">Update Password</label>
-                <input type="text" id="editProfilePass" class="form-control" placeholder="Change password">
-            </div>
-            <div class="form-group">
-                <label class="form-label">Role Category</label>
-                <select id="editProfileRole" class="form-control">
-                    <option value="Zone">Zone</option>
-                    <option value="Desk">Desk</option>
-                    <option value="Church Office">Church Office</option>
-                </select>
-            </div>
-            <div class="modal-buttons" style="margin-top: 24px; display: flex; gap: 12px;">
-                <button class="btn btn-primary" onclick="saveUserProfile()">Save Changes</button>
-                <button class="btn btn-secondary" onclick="closeModal('editProfileModal')">Cancel</button>
-            </div>
-        </div>
-    </div>
+    <div id="editProfileModal" class="modal"><div class="modal-content"><h2>Edit Profile</h2><input type="hidden" id="editUserId"><div class="form-group"><label class="form-label">Username</label><input type="text" id="editProfileName" class="form-control"></div><div class="form-group"><label class="form-label">Password</label><input type="text" id="editProfilePass" class="form-control"></div><div class="modal-buttons"><button class="btn btn-primary" onclick="saveUserProfile()">Save</button><button class="btn btn-secondary" onclick="closeModal('editProfileModal')">Cancel</button></div></div></div>
 
-    <div id="editEntryModal" class="modal">
-        <div class="modal-content edit-modal-content">
-            <h2 style="color: var(--color-teal-500); margin-top:0;">Edit Allocation Record</h2>
-            <input type="hidden" id="editEntryId">
-            <div class="form-grid">
-                <div class="form-group"><label class="form-label">Band #</label><input type="number" id="eBand" class="form-control"></div>
-                <div class="form-group"><label class="form-label">Name</label><input type="text" id="eName" class="form-control"></div>
-                <div class="form-group">
-                    <label class="form-label">Zone</label>
-                    <select id="eZone" class="form-control" onchange="populateCommunities('eComm', this.value)">
-                        <option value="1">Zone 1</option><option value="2">Zone 2</option>
-                        <option value="3A">Zone 3A</option><option value="3B">Zone 3B</option>
-                        <option value="4A">Zone 4A</option><option value="4B">Zone 4B</option>
-                        <option value="Other">Other</option>
-                    </select>
-                </div>
-                <div class="form-group"><label class="form-label">Community</label><select id="eComm" class="form-control"></select></div>
-            </div>
-            <div class="modal-buttons" style="margin-top: 24px; display: flex; gap: 12px;">
-                <button class="btn btn-primary" onclick="submitEntryUpdate()">Apply Changes</button>
-                <button class="btn btn-secondary" onclick="closeModal('editEntryModal')">Cancel</button>
-            </div>
-        </div>
-    </div>
+    <div id="editEntryModal" class="modal"><div class="modal-content"><h2>Edit Entry</h2><input type="hidden" id="editEntryId"><div class="form-grid"><div class="form-group"><label class="form-label">Band #</label><input type="number" id="eBand" class="form-control"></div><div class="form-group"><label class="form-label">Recipient</label><input type="text" id="eName" class="form-control"></div><div class="form-group"><label class="form-label">Zone</label><select id="eZone" class="form-control" onchange="populateCommunities('eComm', this.value)"><option value="1">1</option><option value="2">2</option><option value="3A">3A</option><option value="3B">3B</option><option value="4A">4A</option><option value="4B">4B</option><option value="Other">Other</option></select></div><div class="form-group"><label class="form-label">Community</label><select id="eComm" class="form-control"></select></div></div><div class="modal-buttons"><button class="btn btn-primary" onclick="submitEntryUpdate()">Update</button><button class="btn btn-secondary" onclick="closeModal('editEntryModal')">Cancel</button></div></div></div>
 
     <div id="toast" class="toast"></div>
 
@@ -358,16 +271,8 @@
             'Other': ['General', 'Office', 'Other']
         };
 
-        let appState = {
-            currentUser: null,
-            isAdmin: false,
-            users: {},
-            entries: [],
-            loginCat: null,
-            loginZone: null
-        };
+        let appState = { currentUser: null, isAdmin: false, users: {}, entries: [], loginCat: null, loginZone: null };
 
-        // --- Core Startup ---
         async function init() {
             try {
                 const res = await fetch(`${API_URL}/manage-users`);
@@ -375,10 +280,7 @@
                 appState.users = {};
                 data.data.forEach(u => appState.users[u.username] = u);
                 renderSelectionScreen();
-            } catch (err) {
-                console.error("Initialization Failed", err);
-                showToast("Connection Error. Please refresh.");
-            }
+            } catch (err) { console.error(err); }
         }
 
         function renderSelectionScreen() {
@@ -387,18 +289,12 @@
             grid.innerHTML = '';
 
             if (!appState.loginCat) {
-                path.textContent = "Welcome! Please Select Category";
-                const rootCats = [
-                    {id: 'Zone', icon: '📍'}, {id: 'Desk', icon: '🖥️'}, 
-                    {id: 'Church Office', icon: '⛪'}, {id: 'Admin', icon: '🔐'}
-                ];
+                path.textContent = "Select Category";
+                const rootCats = [{id: 'Zone', icon: '📍'}, {id: 'Desk', icon: '🖥️'}, {id: 'Church Office', icon: '⛪'}, {id: 'Admin', icon: '🔐'}];
                 rootCats.forEach(cat => {
                     const card = document.createElement('div');
                     card.className = 'user-card';
-                    card.onclick = () => {
-                        if(cat.id === 'Admin') triggerLogin('admin');
-                        else { appState.loginCat = cat.id; renderSelectionScreen(); }
-                    };
+                    card.onclick = () => { if(cat.id === 'Admin') triggerLogin('admin'); else { appState.loginCat = cat.id; renderSelectionScreen(); } };
                     card.innerHTML = `<div class="user-card-icon">${cat.icon}</div><div class="user-card-name">${cat.id}</div>`;
                     grid.appendChild(card);
                 });
@@ -413,21 +309,15 @@
                 });
                 addBackNav();
             } else {
-                path.textContent = `Select ${appState.loginZone ? 'Zone '+appState.loginZone : appState.loginCat} Profile`;
-                Object.keys(appState.users).forEach(uname => {
-                    const user = appState.users[uname];
-                    let match = false;
-                    if (appState.loginCat === 'Zone') {
-                        match = (user.role === 'Zone' && user.userZone === appState.loginZone);
-                    } else {
-                        match = (user.role === appState.loginCat);
-                    }
-                    
+                path.textContent = `Select ${appState.loginZone || appState.loginCat} Profile`;
+                Object.keys(appState.users).forEach(u => {
+                    const user = appState.users[u];
+                    const match = appState.loginCat === 'Zone' ? (user.role === 'Zone' && user.userZone === appState.loginZone) : (user.role === appState.loginCat);
                     if (match && !user.isAdmin) {
                         const card = document.createElement('div');
                         card.className = 'user-card';
-                        card.onclick = () => triggerLogin(uname);
-                        card.innerHTML = `<div class="user-card-icon">👤</div><div class="user-card-name">${uname}</div>`;
+                        card.onclick = () => triggerLogin(u);
+                        card.innerHTML = `<div class="user-card-icon">👤</div><div class="user-card-name">${u}</div>`;
                         grid.appendChild(card);
                     }
                 });
@@ -436,297 +326,43 @@
         }
 
         function addBackNav() {
-            const btn = document.createElement('button');
-            btn.className = 'btn btn-secondary';
-            btn.style.marginTop = '30px';
-            btn.textContent = '← Go Back';
-            btn.onclick = () => {
-                if (appState.loginZone) appState.loginZone = null;
-                else appState.loginCat = null;
-                renderSelectionScreen();
-            };
+            const btn = document.createElement('button'); btn.className = 'btn btn-secondary'; btn.style.marginTop = '30px'; btn.textContent = '← Back';
+            btn.onclick = () => { if (appState.loginZone) appState.loginZone = null; else appState.loginCat = null; renderSelectionScreen(); };
             document.getElementById('userSelectionGrid').appendChild(btn);
         }
 
-        // --- Authentication ---
-        function triggerLogin(uname) {
-            document.getElementById('loginTitle').textContent = `Login: ${uname}`;
-            document.getElementById('loginPass').dataset.targetUser = uname;
-            document.getElementById('loginPass').value = '';
+        function triggerLogin(u) {
+            document.getElementById('loginTitle').textContent = `Login: ${u}`;
+            document.getElementById('loginPass').dataset.targetUser = u;
             openModal('passwordModal');
         }
 
         async function processLogin() {
             const target = document.getElementById('loginPass').dataset.targetUser;
             const pass = document.getElementById('loginPass').value;
-            const adminSecret = 'admin123';
-
-            if (target === 'admin') {
-                if (pass === adminSecret) {
-                    appState.currentUser = 'admin';
-                    appState.isAdmin = true;
-                    enterApp();
-                } else alert("Invalid Admin Password");
-            } else {
-                if (appState.users[target].password === pass) {
-                    appState.currentUser = target;
-                    appState.isAdmin = false;
-                    enterApp();
-                } else alert("Invalid Password");
-            }
-        }
-
-        function enterApp() {
-            closeModal('passwordModal');
-            document.getElementById('loginScreen').style.display = 'none';
-            document.getElementById('mainApp').style.display = 'block';
-            document.getElementById('currentUserDisplay').textContent = appState.currentUser;
-            document.getElementById('adminTab').style.display = appState.isAdmin ? 'block' : 'none';
-            
-            // If admin, show table by default; if user, show allocation
-            if(appState.isAdmin) showPage('dataPage');
-            else showPage('entryPage');
-            
-            loadEntries();
+            if (target === 'admin' ? pass === 'admin123' : appState.users[target].password === pass) {
+                appState.currentUser = target; appState.isAdmin = (target === 'admin');
+                closeModal('passwordModal');
+                document.getElementById('loginScreen').style.display = 'none';
+                document.getElementById('mainApp').style.display = 'block';
+                document.getElementById('currentUserDisplay').textContent = target;
+                document.getElementById('adminTab').style.display = appState.isAdmin ? 'block' : 'none';
+                document.getElementById('adminFilterContainer').style.display = appState.isAdmin ? 'block' : 'none';
+                if(appState.isAdmin) populateOperatorFilter();
+                else showPage('entryPage');
+                loadEntries();
+            } else showToast("Invalid Password", true);
         }
 
         function logout() { location.reload(); }
 
-        // --- Entry Handling ---
+        // --- Data Logic ---
         async function loadEntries() {
             const scope = appState.isAdmin ? 'all' : appState.currentUser;
             const res = await fetch(`${API_URL}/get-entries?userId=${scope}`);
             const data = await res.json();
             appState.entries = data.data || [];
             updateDataTable(appState.entries);
-        }
-
-        function updateDataTable(data) {
-            const tbody = document.getElementById('tableBody');
-            document.getElementById('adminCol').style.display = appState.isAdmin ? 'table-cell' : 'none';
-            
-            if(data.length === 0) {
-                tbody.innerHTML = '<tr><td colspan="8" style="text-align:center; padding:50px;">No allocation records found.</td></tr>';
-                updateCounters(0, 0);
-                return;
-            }
-
-            // Sort logic
-            const sortType = document.getElementById('sortBy').value;
-            let sorted = [...data];
-            if(sortType === 'date-desc') sorted.sort((a,b) => new Date(b.createdAt) - new Date(a.createdAt));
-            if(sortType === 'band-asc') sorted.sort((a,b) => a.bandNo - b.bandNo);
-            if(sortType === 'band-desc') sorted.sort((a,b) => b.bandNo - a.bandNo);
-            if(sortType === 'name-asc') sorted.sort((a,b) => a.name.localeCompare(b.name));
-
-            tbody.innerHTML = sorted.map(e => {
-                const dt = new Date(e.createdAt);
-                const dtStr = `${dt.toLocaleDateString()} <span style="font-size:10px; opacity:0.6;">${dt.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</span>`;
-                return `
-                <tr>
-                    <td><strong>#${e.bandNo}</strong></td>
-                    <td>${e.name}</td>
-                    <td>${e.zone}</td>
-                    <td>${e.community}</td>
-                    <td>₹${e.amount}</td>
-                    <td>${dtStr}</td>
-                    ${appState.isAdmin ? `<td style="color:var(--color-teal-500); font-weight:700;">${e.userId}</td>` : ''}
-                    <td>
-                        <div class="action-btns">
-                            <button class="btn btn-sm btn-secondary" onclick="openEditEntry('${e._id}','${e.bandNo}','${e.name}','${e.zone}','${e.community}')">Edit</button>
-                            <button class="btn btn-sm btn-danger" onclick="deleteEntry('${e._id}')">Del</button>
-                        </div>
-                    </td>
-                </tr>`;
-            }).join('');
-
-            const totalRev = sorted.reduce((sum, item) => sum + (item.amount || 0), 0);
-            updateCounters(sorted.length, totalRev);
-        }
-
-        function updateCounters(count, rev) {
-            document.getElementById('totalEntriesDisplay').textContent = count;
-            document.getElementById('totalRevenueDisplay').textContent = rev.toLocaleString();
-        }
-
-        function updateBandPreview() {
-            const startNum = parseInt(document.getElementById('startBand').value) || 0;
-            const count = parseInt(document.getElementById('qty').value) || 0;
-            const container = document.getElementById('bandsPreview');
-            container.innerHTML = '';
-            for (let i = 0; i < count; i++) {
-                container.innerHTML += `<div class="band-block"><div class="band-num">${startNum + i}</div><div style="font-size:10px; font-weight:700;">BAND #</div></div>`;
-            }
-            document.getElementById('calcTotal').textContent = (count * 50).toLocaleString();
-            document.getElementById('qtyDisplay').textContent = `${count} bands × ₹50`;
-        }
-
-        document.getElementById('entryForm').onsubmit = async (e) => {
-            e.preventDefault();
-            const start = parseInt(document.getElementById('startBand').value);
-            const count = parseInt(document.getElementById('qty').value);
-            
-            if(!start || !count) return alert("Please specify Band Number and Quantity");
-
-            const bandsArr = [];
-            for(let i=0; i < count; i++) bandsArr.push(start + i);
-
-            const payload = {
-                userId: appState.currentUser,
-                name: document.getElementById('recName').value.trim(),
-                zone: document.getElementById('recZone').value,
-                community: document.getElementById('recComm').value,
-                bands: bandsArr,
-                amountPerBand: 50
-            };
-
-            try {
-                const res = await fetch(`${API_URL}/save-entry`, { 
-                    method: 'POST', 
-                    headers: {'Content-Type': 'application/json'},
-                    body: JSON.stringify(payload) 
-                });
-                const result = await res.json();
-                if(result.success) {
-                    showToast(`Successfully saved ${count} allocations`);
-                    document.getElementById('entryForm').reset();
-                    document.getElementById('startBand').value = start + count;
-                    updateBandPreview();
-                    loadEntries();
-                } else {
-                    alert(result.error || "Failed to save data");
-                }
-            } catch (err) { alert("Network Error"); }
-        };
-
-        // --- Admin/Management Logic ---
-        function handleRoleChange(role) {
-            const zoneField = document.getElementById('zoneSubField');
-            const userSelect = document.getElementById('newUsername');
-            const zoneSelect = document.getElementById('newUserZone');
-            
-            if (role === 'Zone') {
-                zoneField.style.display = 'block';
-                zoneSelect.innerHTML = '<option value="">Select Zone</option>' + ['1','2','3A','3B','4A','4B'].map(z => `<option value="${z}">${z}</option>`).join('');
-                userSelect.innerHTML = '<option value="">Select Zone Group first</option>';
-            } else {
-                zoneField.style.display = 'none';
-                userSelect.innerHTML = `<option value="${role} Admin">Primary ${role}</option><option value="${role} Staff">Secondary ${role}</option>`;
-            }
-        }
-
-        function populateCommunityUsernames(zone) {
-            const select = document.getElementById('newUsername');
-            select.innerHTML = '<option value="">Select ID/Community</option>';
-            if(communitiesMap[zone]) {
-                communitiesMap[zone].forEach(c => {
-                    select.innerHTML += `<option value="${c}">${c}</option>`;
-                });
-            }
-        }
-
-        async function submitNewUser() {
-            const payload = {
-                username: document.getElementById('newUsername').value,
-                role: document.getElementById('newRole').value,
-                userZone: document.getElementById('newUserZone').value || null,
-                password: 'olep@2026'
-            };
-            if(!payload.username) return alert("Select a username/community");
-
-            const res = await fetch(`${API_URL}/manage-users`, { 
-                method: 'POST', 
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify(payload) 
-            });
-            if(res.ok) {
-                showToast("Profile Created Successfully");
-                closeModal('addUserModal');
-                init(); // Refresh users
-            } else alert("Creation failed. ID might already exist.");
-        }
-
-        async function renderManageUsersList() {
-            const res = await fetch(`${API_URL}/manage-users`);
-            const d = await res.json();
-            const list = document.getElementById('userListBody');
-            list.innerHTML = d.data.map(u => u.isAdmin ? '' : `
-                <div style="display:flex; justify-content:space-between; align-items:center; padding:15px; border-bottom:1px solid #f0f0f0;">
-                    <div>
-                        <div style="font-weight:700;">${u.username}</div>
-                        <div style="font-size:11px; color:#999;">${u.role} ${u.userZone ? '| Zone '+u.userZone : ''} | Pass: ${u.password}</div>
-                    </div>
-                    <div class="action-btns">
-                        <button class="btn btn-sm btn-secondary" onclick="openProfileEdit('${u._id}','${u.username}','${u.password}','${u.role}')">Edit</button>
-                        <button class="btn btn-sm btn-danger" onclick="deleteUser('${u.username}')">Remove</button>
-                    </div>
-                </div>
-            `).join('');
-            openModal('userManageModal');
-        }
-
-        function openProfileEdit(id, name, pass, role) {
-            document.getElementById('editUserId').value = id;
-            document.getElementById('editProfileName').value = name;
-            document.getElementById('editProfilePass').value = pass;
-            document.getElementById('editProfileRole').value = role;
-            openModal('editProfileModal');
-        }
-
-        async function saveUserProfile() {
-            const payload = {
-                id: document.getElementById('editUserId').value,
-                username: document.getElementById('editProfileName').value,
-                password: document.getElementById('editProfilePass').value,
-                role: document.getElementById('editProfileRole').value
-            };
-            const res = await fetch(`${API_URL}/manage-users`, { 
-                method: 'PUT', 
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify(payload) 
-            });
-            if(res.ok) {
-                showToast("Profile Updated");
-                closeModal('editProfileModal');
-                renderManageUsersList();
-                init();
-            }
-        }
-
-        async function deleteUser(uname) {
-            if(!confirm(`Delete profile for ${uname}? This will also remove their entry history.`)) return;
-            await fetch(`${API_URL}/manage-users?username=${uname}`, { method: 'DELETE' });
-            renderManageUsersList();
-            init();
-        }
-
-        // --- Global Helpers ---
-        function openModal(id) { document.getElementById(id).classList.add('active'); }
-        function closeModal(id) { document.getElementById(id).classList.remove('active'); }
-        
-        function showPage(pageId) {
-            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-            document.getElementById(pageId).classList.add('active');
-            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-            document.getElementById('tab-' + pageId.replace('Page', '')).classList.add('active');
-            if(pageId === 'dataPage') loadEntries();
-        }
-
-        function showToast(msg) {
-            const t = document.getElementById('toast');
-            t.textContent = msg;
-            t.style.display = 'block';
-            setTimeout(() => t.style.display = 'none', 3000);
-        }
-
-        function populateCommunities(targetId, zone) {
-            const select = document.getElementById(targetId);
-            select.innerHTML = '<option value="">Select Community</option>';
-            if(communitiesMap[zone]) {
-                communitiesMap[zone].forEach(c => {
-                    select.innerHTML += `<option value="${c}">${c}</option>`;
-                });
-            }
         }
 
         function filterTable() {
@@ -736,92 +372,155 @@
             const filtered = appState.entries.filter(e => {
                 const matchSearch = e.name.toLowerCase().includes(search) || e.bandNo.toString().includes(search);
                 const matchDate = !dateVal || new Date(e.createdAt).toLocaleDateString('en-CA') === dateVal;
+                
+                if (appState.isAdmin) {
+                    const cat = document.getElementById('filterCategory').value;
+                    const zone = document.getElementById('filterZone').value;
+                    const comm = document.getElementById('filterCommunity').value;
+                    const oper = document.getElementById('filterOperator').value;
+
+                    const userObj = appState.users[e.userId] || { role: 'N/A' };
+                    if (cat !== 'all' && userObj.role !== cat) return false;
+                    if (zone !== 'all' && e.zone !== zone) return false;
+                    if (comm !== 'all' && e.community !== comm) return false;
+                    if (oper !== 'all' && e.userId !== oper) return false;
+                }
                 return matchSearch && matchDate;
             });
             updateDataTable(filtered);
         }
 
-        function exportCSV() {
-            const headers = ["Band #", "Recipient Name", "Zone", "Community", "Amount", "Date", "Time", "Operator"];
-            let csvContent = "data:text/csv;charset=utf-8," + headers.join(",") + "\n";
+        function updateDataTable(data) {
+            const tbody = document.getElementById('tableBody');
+            document.getElementById('adminCol').style.display = appState.isAdmin ? 'table-cell' : 'none';
+            const sortType = document.getElementById('sortBy').value;
+            let sorted = [...data];
+            if(sortType === 'date-desc') sorted.sort((a,b) => new Date(b.createdAt) - new Date(a.createdAt));
+            if(sortType === 'band-asc') sorted.sort((a,b) => a.bandNo - b.bandNo);
+            if(sortType === 'band-desc') sorted.sort((a,b) => b.bandNo - a.bandNo);
+            if(sortType === 'name-asc') sorted.sort((a,b) => a.name.localeCompare(b.name));
+
+            tbody.innerHTML = sorted.map(e => {
+                const dt = new Date(e.createdAt);
+                const operatorHTML = appState.isAdmin ? `<td><span class="admin-filter-badge">${appState.users[e.userId]?.role || 'N/A'}</span><br>${e.userId}</td>` : '';
+                return `<tr><td><strong>#${e.bandNo}</strong></td><td>${e.name}</td><td>${e.zone}</td><td>${e.community}</td><td>₹${e.amount}</td><td>${dt.toLocaleDateString()} <span style="font-size:10px; opacity:0.6;">${dt.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'})}</span></td>${operatorHTML}<td><div class="action-btns"><button class="btn btn-sm btn-secondary" onclick="openEditEntry('${e._id}','${e.bandNo}','${e.name}','${e.zone}','${e.community}')">Edit</button><button class="btn btn-sm btn-danger" onclick="deleteEntry('${e._id}')">Del</button></div></td></tr>`;
+            }).join('');
+            document.getElementById('totalEntriesDisplay').textContent = sorted.length;
+            document.getElementById('totalRevenueDisplay').textContent = sorted.reduce((s,i) => s+(i.amount||0), 0).toLocaleString();
+        }
+
+        function populateOperatorFilter() {
+            const select = document.getElementById('filterOperator');
+            select.innerHTML = '<option value="all">All Operators</option>';
+            Object.keys(appState.users).forEach(u => { if(!appState.users[u].isAdmin) select.innerHTML += `<option value="${u}">${u}</option>`; });
+        }
+
+        function handleAdminFilterChange() {
+            const cat = document.getElementById('filterCategory').value;
+            const operSelect = document.getElementById('filterOperator');
+            operSelect.innerHTML = '<option value="all">All Operators</option>';
+            Object.keys(appState.users).forEach(u => { if (!appState.users[u].isAdmin && (cat === 'all' || appState.users[u].role === cat)) operSelect.innerHTML += `<option value="${u}">${u}</option>`; });
+            filterTable();
+        }
+
+        function handleAdminFilterZoneChange() {
+            const zone = document.getElementById('filterZone').value;
+            const commSelect = document.getElementById('filterCommunity');
+            commSelect.innerHTML = '<option value="all">All Communities</option>';
+            if (communitiesMap[zone]) communitiesMap[zone].forEach(c => commSelect.innerHTML += `<option value="${c}">${c}</option>`);
+            filterTable();
+        }
+
+        function resetAllFilters() {
+            document.getElementById('search').value = ''; document.getElementById('dateFilter').value = '';
+            if (appState.isAdmin) { document.getElementById('filterCategory').value = 'all'; document.getElementById('filterZone').value = 'all'; document.getElementById('filterCommunity').innerHTML = '<option value="all">All Communities</option>'; document.getElementById('filterOperator').value = 'all'; }
+            filterTable();
+        }
+
+        // --- Entry Flow ---
+        function updateBandPreview() {
+            const start = parseInt(document.getElementById('startBand').value) || 0;
+            const count = parseInt(document.getElementById('qty').value) || 0;
+            const container = document.getElementById('bandsPreview'); container.innerHTML = '';
+            for (let i = 0; i < count; i++) container.innerHTML += `<div class="band-block"><div class="band-num">${start + i}</div><div style="font-size:10px; font-weight:700;">BAND #</div></div>`;
+            document.getElementById('calcTotal').textContent = (count * 50).toLocaleString();
+            document.getElementById('qtyDisplay').textContent = `${count} bands × ₹50`;
+        }
+
+        document.getElementById('entryForm').onsubmit = async (e) => {
+            e.preventDefault();
+            const start = parseInt(document.getElementById('startBand').value);
+            const count = parseInt(document.getElementById('qty').value);
+            if (!count) return showToast("Please enter quantity", true);
             
+            const bands = []; for(let i=0; i<count; i++) bands.push(start+i);
+            const payload = { userId: appState.currentUser, name: document.getElementById('recName').value, zone: document.getElementById('recZone').value, community: document.getElementById('recComm').value, bands, amountPerBand: 50 };
+            
+            const res = await fetch(`${API_URL}/save-entry`, { method: 'POST', body: JSON.stringify(payload) });
+            const result = await res.json();
+            
+            if(res.status === 409) {
+                showToast(`DUPLICATE DETECTED: Band(s) ${result.duplicateBands.map(d=>d.bandNo).join(', ')} already entered!`, true);
+            } else if(result.success) {
+                showToast("Entry Saved Successfully", false);
+                document.getElementById('entryForm').reset();
+                document.getElementById('startBand').value = start + count;
+                updateBandPreview();
+                loadEntries();
+            } else {
+                showToast(result.error || "Save Failed", true);
+            }
+        };
+
+        // --- Admin UI Logic ---
+        function handleRoleChange(role) {
+            const zF = document.getElementById('zoneSubField'); const uS = document.getElementById('newUsername'); const zS = document.getElementById('newUserZone');
+            if (role === 'Zone') { zF.style.display = 'block'; zS.innerHTML = '<option value="">Select Zone</option>' + ['1','2','3A','3B','4A','4B'].map(z => `<option value="${z}">${z}</option>`).join(''); uS.innerHTML = '<option value="">Select Zone Group</option>'; }
+            else { zF.style.display = 'none'; uS.innerHTML = `<option value="${role} ID 1">${role} ID 1</option><option value="${role} ID 2">${role} ID 2</option>`; }
+        }
+
+        function populateCommunityUsernames(z) { const s = document.getElementById('newUsername'); s.innerHTML = '<option value="">Select Profile</option>'; if(communitiesMap[z]) communitiesMap[z].forEach(c => s.innerHTML += `<option value="${c}">${c}</option>`); }
+
+        async function submitNewUser() { const payload = { username: document.getElementById('newUsername').value, role: document.getElementById('newRole').value, userZone: document.getElementById('newUserZone').value || null, password: 'olep@2026' }; if(await fetch(`${API_URL}/manage-users`, { method: 'POST', body: JSON.stringify(payload) })) { showToast("Profile Created"); closeModal('addUserModal'); init(); } }
+
+        async function renderManageUsersList() {
+            const res = await fetch(`${API_URL}/manage-users`); const d = await res.json();
+            document.getElementById('userListBody').innerHTML = d.data.map(u => u.isAdmin ? '' : `<div style="display:flex; justify-content:space-between; padding:15px; border-bottom:1px solid #f0f0f0;"><div><strong>${u.username}</strong><br><span style="font-size:10px; color:#999;">${u.role} | ${u.userZone || ''} | Pass: ${u.password}</span></div><div class="action-btns"><button class="btn btn-sm btn-secondary" onclick="openProfileEdit('${u._id}','${u.username}','${u.password}','${u.role}')">Edit</button><button class="btn btn-sm btn-danger" onclick="deleteUser('${u.username}')">Del</button></div></div>`).join('');
+            openModal('userManageModal');
+        }
+
+        function openProfileEdit(id, n, p, r) { document.getElementById('editUserId').value = id; document.getElementById('editProfileName').value = n; document.getElementById('editProfilePass').value = p; document.getElementById('editProfileRole').value = r; openModal('editProfileModal'); }
+        async function saveUserProfile() { const payload = { id: document.getElementById('editUserId').value, username: document.getElementById('editProfileName').value, password: document.getElementById('editProfilePass').value, role: document.getElementById('editProfileRole').value }; await fetch(`${API_URL}/manage-users`, { method: 'PUT', body: JSON.stringify(payload) }); closeModal('editProfileModal'); renderManageUsersList(); init(); }
+        async function deleteUser(u) { if(confirm(`Delete ${u}?`)) { await fetch(`${API_URL}/manage-users?username=${u}`, { method: 'DELETE' }); renderManageUsersList(); init(); } }
+
+        // --- Shared Helpers ---
+        function openModal(id) { document.getElementById(id).classList.add('active'); }
+        function closeModal(id) { document.getElementById(id).classList.remove('active'); }
+        function showPage(pId) { document.querySelectorAll('.page').forEach(p => p.classList.remove('active')); document.getElementById(pId).classList.add('active'); document.querySelectorAll('.tab').forEach(t => t.classList.remove('active')); document.getElementById('tab-'+pId.replace('Page','')).classList.add('active'); if(pId === 'dataPage') loadEntries(); }
+        
+        function showToast(m, isError = false) { 
+            const t = document.getElementById('toast'); 
+            t.textContent = m; 
+            t.className = `toast ${isError ? 'error' : 'success'}`;
+            t.style.display = 'block'; 
+            setTimeout(() => t.style.display = 'none', 4000); 
+        }
+
+        function populateCommunities(tId, z) { const s = document.getElementById(tId); s.innerHTML = '<option value="">Select Community</option>'; if(communitiesMap[z]) communitiesMap[z].forEach(c => s.innerHTML += `<option value="${c}">${c}</option>`); }
+        function openEditEntry(id, b, n, z, c) { document.getElementById('editEntryId').value = id; document.getElementById('eBand').value = b; document.getElementById('eName').value = n; document.getElementById('eZone').value = z; populateCommunities('eComm', z); setTimeout(() => document.getElementById('eComm').value = c, 100); openModal('editEntryModal'); }
+        async function submitEntryUpdate() { const payload = { id: document.getElementById('editEntryId').value, newBandNo: parseInt(document.getElementById('eBand').value), name: document.getElementById('eName').value, zone: document.getElementById('eZone').value, community: document.getElementById('eComm').value, amount: 50 }; if(await fetch(`${API_URL}/update-entry`, { method: 'PUT', body: JSON.stringify(payload), headers: {'Content-Type': 'application/json'} })) { closeModal('editEntryModal'); loadEntries(); showToast("Record Updated"); } }
+        async function deleteEntry(id) { if(confirm("Delete this record?")) { await fetch(`${API_URL}/delete-entry?id=${id}`, { method: 'DELETE' }); loadEntries(); showToast("Deleted"); } }
+        async function clearDatabase() { if(prompt("Type 'admin123' to confirm wipe:") === 'admin123') { await fetch(`${API_URL}/delete-entry?userId=all`, { method: 'DELETE' }); loadEntries(); showToast("All Records Wiped"); } }
+        
+        function exportCSV() {
+            let csv = "Band #,Recipient,Zone,Community,Amount,Date,Time,Operator\n";
             appState.entries.forEach(e => {
                 const dt = new Date(e.createdAt);
-                const row = [
-                    e.bandNo,
-                    `"${e.name}"`,
-                    e.zone,
-                    `"${e.community}"`,
-                    e.amount,
-                    dt.toLocaleDateString(),
-                    dt.toLocaleTimeString(),
-                    e.userId
-                ];
-                csvContent += row.join(",") + "\n";
+                csv += `${e.bandNo},"${e.name}",${e.zone},"${e.community}",${e.amount},${dt.toLocaleDateString()},${dt.toLocaleTimeString()},${e.userId}\n`;
             });
-
-            const encodedUri = encodeURI(csvContent);
-            const link = document.createElement("a");
-            link.setAttribute("href", encodedUri);
-            link.setAttribute("download", `bands_report_${new Date().toISOString().slice(0,10)}.csv`);
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
+            const link = document.createElement("a"); link.setAttribute("href", encodeURI("data:text/csv;charset=utf-8," + csv)); link.setAttribute("download", `MFN2026_Report.csv`); document.body.appendChild(link); link.click(); document.body.removeChild(link);
         }
 
-        function openEditEntry(id, b, n, z, c) {
-            document.getElementById('editEntryId').value = id;
-            document.getElementById('eBand').value = b;
-            document.getElementById('eName').value = n;
-            document.getElementById('eZone').value = z;
-            populateCommunities('eComm', z);
-            setTimeout(() => document.getElementById('eComm').value = c, 100);
-            openModal('editEntryModal');
-        }
-
-        async function submitEntryUpdate() {
-            const payload = {
-                id: document.getElementById('editEntryId').value,
-                newBandNo: parseInt(document.getElementById('eBand').value),
-                name: document.getElementById('eName').value,
-                zone: document.getElementById('eZone').value,
-                community: document.getElementById('eComm').value,
-                amount: 50
-            };
-            const res = await fetch(`${API_URL}/update-entry`, { 
-                method: 'PUT', 
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify(payload) 
-            });
-            if(res.ok) {
-                closeModal('editEntryModal');
-                loadEntries();
-                showToast("Allocation Updated");
-            } else {
-                const err = await res.json();
-                alert(err.error || "Update Failed");
-            }
-        }
-
-        async function deleteEntry(id) {
-            if(!confirm("Delete this entry?")) return;
-            await fetch(`${API_URL}/delete-entry?id=${id}`, { method: 'DELETE' });
-            loadEntries();
-            showToast("Record Deleted");
-        }
-
-        async function clearDatabase() {
-            const pin = prompt("DANGER: Enter Admin Password to delete ALL data:");
-            if(pin !== 'admin123') return alert("Incorrect Password. Action cancelled.");
-            
-            if(!confirm("ARE YOU ABSOLUTELY SURE? This will delete thousands of records.")) return;
-            
-            await fetch(`${API_URL}/delete-entry?userId=all`, { method: 'DELETE' });
-            loadEntries();
-            showToast("DATABASE WIPED");
-        }
-
-        // Start
         init();
     </script>
 </body>
