@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Band Entry Management System</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #4f46e5, #7c3aed);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .header-info {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .header-role {
+            display: inline-block;
+            margin-top: 10px;
+            background: rgba(255,255,255,0.2);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .login-screen {
+            padding: 40px;
+            text-align: center;
+        }
+
+        .login-screen h2 {
+            margin-bottom: 30px;
+            color: #333;
+            font-size: 24px;
+        }
+
+        .role-selector {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .role-card {
+            background: white;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 24px;
+            cursor: pointer;
+            transition: all 250ms;
+            text-align: center;
+        }
+
+        .role-card:hover {
+            border-color: #667eea;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .role-card.selected {
+            border-color: #667eea;
+            background: #f0f4ff;
+        }
+
+        .role-icon {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .role-name {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .role-desc {
+            font-size: 12px;
+            color: #666;
+        }
+
+        .login-form {
+            max-width: 400px;
+            margin: 0 auto;
+            display: none;
+        }
+
+        .login-form.active {
+            display: block;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: border-color 250ms;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 250ms;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+        }
+
+        .btn-secondary {
+            background: #f3f4f6;
+            color: #333;
+            width: 100%;
+        }
+
+        .btn-secondary:hover {
+            background: #e5e7eb;
+        }
+
+        .btn-sm {
+            padding: 8px 16px;
+            font-size: 12px;
+        }
+
+        .btn-danger {
+            background: #ef4444;
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background: #dc2626;
+        }
+
+        .tabs {
+            display: flex;
+            border-bottom: 2px solid #e5e7eb;
+            background: #f9fafb;
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 20px;
+            border: none;
+            background: none;
+            cursor: pointer;
+            font-weight: 600;
+            color: #666;
+            border-bottom: 3px solid transparent;
+            transition: all 250ms;
+            font-size: 14px;
+        }
+
+        .tab-btn.active {
+            color: #667eea;
+            border-bottom-color: #667eea;
+        }
+
+        .tab-content {
+            display: none;
+            padding: 30px;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .entries-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .card {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            transition: all 250ms;
+        }
+
+        .card:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transform: translateY(-2px);
+        }
+
+        .card h3 {
+            margin-bottom: 12px;
+            color: #333;
+            font-size: 16px;
+        }
+
+        .card-meta {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 12px;
+        }
+
+        .card-actions {
+            display: flex;
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .user-card {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .user-info {
+            flex: 1;
+        }
+
+        .user-name {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .user-type {
+            font-size: 12px;
+            color: #666;
+        }
+
+        .user-role {
+            display: inline-block;
+            background: #f0f4ff;
+            color: #667eea;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            margin-top: 8px;
+            font-weight: 500;
+        }
+
+        .user-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        .modal-header {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .modal-footer {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .modal-footer button {
+            flex: 1;
+        }
+
+        .role-badge {
+            display: inline-block;
+            background: #e0f2fe;
+            color: #0369a1;
+            padding: 6px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-left: 10px;
+        }
+
+        .form-select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 14px;
+            background: white;
+            cursor: pointer;
+            transition: border-color 250ms;
+        }
+
+        .form-select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+            justify-content: center;
+        }
+
+        .header-user-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 15px;
+            font-size: 14px;
+        }
+
+        .error {
+            color: #dc2626;
+            background: #fee2e2;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        .success {
+            color: #047857;
+            background: #d1fae5;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: #666;
+        }
+
+        .empty-state-icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                border-radius: 0;
+            }
+
+            .header {
+                padding: 20px;
+            }
+
+            .header h1 {
+                font-size: 20px;
+            }
+
+            .tabs {
+                flex-wrap: wrap;
+            }
+
+            .tab-btn {
+                flex: 0 1 auto;
+                padding: 15px;
+            }
+
+            .entries-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Login Screen -->
+        <div id="loginScreen" class="login-screen">
+            <div class="header">
+                <h1>🎵 Band Entry System</h1>
+                <p style="margin-top: 10px; font-size: 14px;">Select user to continue</p>
+            </div>
+
+            <div id="userSelection" class="role-selector">
+                <!-- Users will be loaded here -->
+            </div>
+
+            <div id="loginForm" class="login-form">
+                <div class="form-group">
+                    <label>Username</label>
+                    <input type="text" id="loginUsername" placeholder="Enter username">
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="loginPassword" placeholder="Enter password">
+                </div>
+                <button class="btn btn-primary" onclick="login()">Login</button>
+                <button class="btn btn-secondary" onclick="backToUserSelection()">Back</button>
+            </div>
+        </div>
+
+        <!-- Main App Screen -->
+        <div id="mainScreen" style="display:none;">
+            <!-- Header -->
+            <div class="header">
+                <h1>🎵 Band Entry System</h1>
+                <div class="header-user-info">
+                    <div>
+                        <div style="font-size: 14px;">Logged in as: <strong id="currentUsername">User</strong></div>
+                        <div id="currentRoleDisplay" style="margin-top: 8px; font-size: 13px; opacity: 0.9;">Role: <strong>User</strong></div>
+                    </div>
+                    <button class="btn btn-secondary btn-sm" onclick="logout()">Logout</button>
+                </div>
+            </div>
+
+            <!-- Tabs -->
+            <div class="tabs">
+                <button class="tab-btn active" onclick="showTab('entries')">📋 Entries</button>
+                <button class="tab-btn" onclick="showTab('settings')" id="settingsTab" style="display:none;">⚙️ Settings</button>
+            </div>
+
+            <!-- Entries Tab -->
+            <div id="entriesTab" class="tab-content active">
+                <h2>Band Entries</h2>
+                <button class="btn btn-primary" style="max-width: 200px;" onclick="openEntryModal()">+ New Entry</button>
+                <div id="entriesList" class="entries-grid">
+                    <!-- Entries will be loaded here -->
+                </div>
+            </div>
+
+            <!-- Settings Tab -->
+            <div id="settingsTab2" class="tab-content">
+                <h2>Admin Settings</h2>
+                
+                <h3 style="margin-top: 30px; margin-bottom: 20px; font-size: 18px;">User Management</h3>
+                
+                <button class="btn btn-primary" style="max-width: 200px; margin-bottom: 20px;" onclick="openCreateUserModal()">+ Create New User</button>
+                
+                <div id="usersList">
+                    <!-- Users will be loaded here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Create/Edit Entry Modal -->
+    <div id="entryModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">New Entry</div>
+            <div class="form-group">
+                <label>Band Name</label>
+                <input type="text" id="entryBand" placeholder="Enter band name">
+            </div>
+            <div class="form-group">
+                <label>Contact Name</label>
+                <input type="text" id="entryContact" placeholder="Enter contact name">
+            </div>
+            <div class="form-group">
+                <label>Phone</label>
+                <input type="tel" id="entryPhone" placeholder="Enter phone number">
+            </div>
+            <div class="form-group">
+                <label>Notes</label>
+                <textarea id="entryNotes" placeholder="Enter notes" style="width: 100%; padding: 12px; border: 2px solid #e5e7eb; border-radius: 8px; min-height: 100px; font-family: inherit; font-size: 14px;"></textarea>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" onclick="saveEntry()">Save Entry</button>
+                <button class="btn btn-secondary" onclick="closeModal('entryModal')">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Create User Modal -->
+    <div id="createUserModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">Create New User</div>
+            <div class="form-group">
+                <label>Username</label>
+                <input type="text" id="newUsername" placeholder="Enter username">
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" id="newPassword" placeholder="Enter password">
+            </div>
+            <div class="form-group">
+                <label>Role</label>
+                <select id="newUserRole" class="form-select">
+                    <option value="unassigned">Unassigned</option>
+                    <option value="zonal">Zonal Coordinators</option>
+                    <option value="desk">Desk</option>
+                    <option value="church">Church Office</option>
+                </select>
+            </div>
+            <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+                <label style="display: flex; align-items: center; gap: 8px; margin: 0;">
+                    <input type="checkbox" id="newUserIsAdmin">
+                    Admin User
+                </label>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" onclick="createUser()">Create User</button>
+                <button class="btn btn-secondary" onclick="closeModal('createUserModal')">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit User Modal -->
+    <div id="editUserModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">Edit User</div>
+            <div class="form-group">
+                <label>Username</label>
+                <input type="text" id="editUsername" placeholder="Enter username">
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" id="editPassword" placeholder="Leave blank to keep current password">
+            </div>
+            <div class="form-group">
+                <label>Role</label>
+                <select id="editUserRole" class="form-select">
+                    <option value="unassigned">Unassigned</option>
+                    <option value="zonal">Zonal Coordinators</option>
+                    <option value="desk">Desk</option>
+                    <option value="church">Church Office</option>
+                </select>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" onclick="saveEditedUser()">Save Changes</button>
+                <button class="btn btn-secondary" onclick="closeModal('editUserModal')">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // State
+        let currentUser = null;
+        let allUsers = [];
+        let allEntries = [];
+        let editingUserId = null;
+        let editingEntryId = null;
+
+        // Role definitions
+        const ROLES = {
+            'zonal': { name: 'Zonal Coordinators', icon: '📍' },
+            'desk': { name: 'Desk', icon: '🖥️' },
+            'church': { name: 'Church Office', icon: '⛪' },
+            'unassigned': { name: 'Unassigned', icon: '❓' }
+        };
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            loadUsers();
+        });
+
+        async function loadUsers() {
+            try {
+                const response = await fetch('/api/manage-users');
+                const data = await response.json();
+                if (data.success) {
+                    allUsers = data.data || [];
+                    displayUserSelection();
+                }
+            } catch (error) {
+                console.error('Error loading users:', error);
+                allUsers = [];
+                displayUserSelection();
+            }
+        }
+
+        function displayUserSelection() {
+            const container = document.getElementById('userSelection');
+            container.innerHTML = '';
+
+            allUsers.forEach(user => {
+                const role = user.role || 'unassigned';
+                const roleInfo = ROLES[role] || ROLES['unassigned'];
+                
+                const card = document.createElement('div');
+                card.className = 'role-card';
+                card.onclick = () => selectUser(user.username);
+                card.innerHTML = `
+                    <div style="font-size: 32px; margin-bottom: 10px;">👤</div>
+                    <div class="role-name">${user.username}</div>
+                    <div class="role-desc">${user.isAdmin ? 'Administrator' : 'User'}</div>
+                    <div class="user-role" style="margin-top: 8px;">
+                        ${roleInfo.icon} ${roleInfo.name}
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function selectUser(username) {
+            document.querySelector('.role-selector').style.display = 'none';
+            document.getElementById('loginForm').classList.add('active');
+            document.getElementById('loginUsername').value = username;
+            document.getElementById('loginPassword').focus();
+        }
+
+        function backToUserSelection() {
+            document.querySelector('.role-selector').style.display = 'grid';
+            document.getElementById('loginForm').classList.remove('active');
+            document.getElementById('loginUsername').value = '';
+            document.getElementById('loginPassword').value = '';
+        }
+
+        async function login() {
+            const username = document.getElementById('loginUsername').value;
+            const password = document.getElementById('loginPassword').value;
+
+            if (!username || !password) {
+                alert('Please enter username and password');
+                return;
+            }
+
+            const user = allUsers.find(u => u.username === username);
+            if (!user || user.password !== password) {
+                alert('Invalid username or password');
+                return;
+            }
+
+            currentUser = user;
+            showMainScreen();
+            loadEntries();
+        }
+
+        function showMainScreen() {
+            document.getElementById('loginScreen').style.display = 'none';
+            document.getElementById('mainScreen').style.display = 'block';
+            
+            // Show settings tab only for admin
+            document.getElementById('settingsTab').style.display = currentUser.isAdmin ? 'block' : 'none';
+            
+            // Update header
+            document.getElementById('currentUsername').textContent = currentUser.username;
+            const role = currentUser.role || 'unassigned';
+            const roleInfo = ROLES[role] || ROLES['unassigned'];
+            document.getElementById('currentRoleDisplay').innerHTML = `Role: <strong>${roleInfo.icon} ${roleInfo.name}</strong>`;
+        }
+
+        async function loadEntries() {
+            try {
+                const response = await fetch(`/api/get-entries?userId=${currentUser.username}`);
+                const data = await response.json();
+                if (data.success) {
+                    allEntries = data.data || [];
+                    displayEntries();
+                }
+            } catch (error) {
+                console.error('Error loading entries:', error);
+                allEntries = [];
+                displayEntries();
+            }
+        }
+
+        function displayEntries() {
+            const container = document.getElementById('entriesList');
+            
+            if (allEntries.length === 0) {
+                container.innerHTML = `
+                    <div style="grid-column: 1/-1; text-align: center; padding: 40px 20px; color: #999;">
+                        <div style="font-size: 48px; margin-bottom: 10px;">📭</div>
+                        <p>No entries yet. Create your first entry!</p>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = allEntries.map(entry => `
+                <div class="card">
+                    <h3>${entry.bandName}</h3>
+                    <div class="card-meta">
+                        <div>Contact: ${entry.contactName}</div>
+                        <div>Phone: ${entry.phone}</div>
+                        <div style="margin-top: 5px; font-size: 11px; color: #999;">${new Date(entry.createdAt).toLocaleDateString()}</div>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn btn-sm btn-primary" onclick="editEntry('${entry.id}')">Edit</button>
+                        <button class="btn btn-sm btn-danger" onclick="deleteEntry('${entry.id}')">Delete</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function openEntryModal() {
+            editingEntryId = null;
+            document.getElementById('entryBand').value = '';
+            document.getElementById('entryContact').value = '';
+            document.getElementById('entryPhone').value = '';
+            document.getElementById('entryNotes').value = '';
+            document.querySelector('#entryModal .modal-header').textContent = 'New Entry';
+            openModal('entryModal');
+        }
+
+        async function saveEntry() {
+            const bandName = document.getElementById('entryBand').value;
+            const contactName = document.getElementById('entryContact').value;
+            const phone = document.getElementById('entryPhone').value;
+            const notes = document.getElementById('entryNotes').value;
+
+            if (!bandName || !contactName || !phone) {
+                alert('Please fill in all fields');
+                return;
+            }
+
+            const entry = {
+                bandName,
+                contactName,
+                phone,
+                notes,
+                userId: currentUser.username
+            };
+
+            try {
+                const response = await fetch('/api/save-entry', {
+                    method: 'POST',
+                    body: JSON.stringify(entry)
+                });
+                const data = await response.json();
+                if (data.success) {
+                    closeModal('entryModal');
+                    loadEntries();
+                } else {
+                    alert('Error saving entry: ' + data.error);
+                }
+            } catch (error) {
+                alert('Error: ' + error.message);
+            }
+        }
+
+        async function deleteEntry(id) {
+            if (confirm('Are you sure you want to delete this entry?')) {
+                try {
+                    const response = await fetch(`/api/delete-entry?id=${id}`, {
+                        method: 'DELETE'
+                    });
+                    const data = await response.json();
+                    if (data.success) {
+                        loadEntries();
+                    } else {
+                        alert('Error deleting entry: ' + data.error);
+                    }
+                } catch (error) {
+                    alert('Error: ' + error.message);
+                }
+            }
+        }
+
+        function editEntry(id) {
+            // TODO: Implement edit functionality
+            alert('Edit functionality coming soon');
+        }
+
+        async function loadUsersForAdmin() {
+            const container = document.getElementById('usersList');
+            container.innerHTML = '';
+
+            allUsers.forEach(user => {
+                const role = user.role || 'unassigned';
+                const roleInfo = ROLES[role] || ROLES['unassigned'];
+                
+                const userCard = document.createElement('div');
+                userCard.className = 'user-card';
+                userCard.innerHTML = `
+                    <div class="user-info">
+                        <div class="user-name">${user.username}</div>
+                        <div class="user-type">${user.isAdmin ? 'Administrator' : 'Regular User'}</div>
+                        <div class="user-role">${roleInfo.icon} ${roleInfo.name}</div>
+                    </div>
+                    <div class="user-actions">
+                        <button class="btn btn-sm btn-primary" onclick="openEditUserModal('${user._id}', '${user.username}', '${role}')">Edit</button>
+                        <button class="btn btn-sm btn-danger" onclick="deleteUser('${user._id}')">Delete</button>
+                    </div>
+                `;
+                container.appendChild(userCard);
+            });
+        }
+
+        function openCreateUserModal() {
+            document.getElementById('newUsername').value = '';
+            document.getElementById('newPassword').value = '';
+            document.getElementById('newUserRole').value = 'unassigned';
+            document.getElementById('newUserIsAdmin').checked = false;
+            openModal('createUserModal');
+        }
+
+        async function createUser() {
+            const username = document.getElementById('newUsername').value;
+            const password = document.getElementById('newPassword').value;
+            const role = document.getElementById('newUserRole').value;
+            const isAdmin = document.getElementById('newUserIsAdmin').checked;
+
+            if (!username || !password) {
+                alert('Please fill in all fields');
+                return;
+            }
+
+            try {
+                const response = await fetch('/api/manage-users', {
+                    method: 'POST',
+                    body: JSON.stringify({ username, password, isAdmin, role })
+                });
+                const data = await response.json();
+                if (data.success) {
+                    closeModal('createUserModal');
+                    loadUsers();
+                    loadUsersForAdmin();
+                } else {
+                    alert('Error: ' + data.error);
+                }
+            } catch (error) {
+                alert('Error: ' + error.message);
+            }
+        }
+
+        function openEditUserModal(userId, username, role) {
+            editingUserId = userId;
+            document.getElementById('editUsername').value = username;
+            document.getElementById('editPassword').value = '';
+            document.getElementById('editUserRole').value = role;
+            openModal('editUserModal');
+        }
+
+        async function saveEditedUser() {
+            const username = document.getElementById('editUsername').value;
+            const password = document.getElementById('editPassword').value;
+            const role = document.getElementById('editUserRole').value;
+
+            if (!username) {
+                alert('Username cannot be empty');
+                return;
+            }
+
+            try {
+                const response = await fetch('/api/manage-users', {
+                    method: 'PUT',
+                    body: JSON.stringify({ userId: editingUserId, username, password, role })
+                });
+                const data = await response.json();
+                if (data.success) {
+                    closeModal('editUserModal');
+                    loadUsers();
+                    loadUsersForAdmin();
+                } else {
+                    alert('Error: ' + data.error);
+                }
+            } catch (error) {
+                alert('Error: ' + error.message);
+            }
+        }
+
+        async function deleteUser(userId) {
+            if (confirm('Are you sure you want to delete this user and all their data?')) {
+                try {
+                    const response = await fetch('/api/manage-users', {
+                        method: 'DELETE',
+                        body: JSON.stringify({ userId })
+                    });
+                    const data = await response.json();
+                    if (data.success) {
+                        loadUsers();
+                        loadUsersForAdmin();
+                    } else {
+                        alert('Error: ' + data.error);
+                    }
+                } catch (error) {
+                    alert('Error: ' + error.message);
+                }
+            }
+        }
+
+        function showTab(tabName) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            // Show selected tab
+            if (tabName === 'entries') {
+                document.getElementById('entriesTab').classList.add('active');
+                document.querySelectorAll('.tab-btn')[0].classList.add('active');
+            } else if (tabName === 'settings') {
+                document.getElementById('settingsTab2').classList.add('active');
+                document.querySelectorAll('.tab-btn')[1].classList.add('active');
+                loadUsersForAdmin();
+            }
+        }
+
+        function openModal(modalId) {
+            document.getElementById(modalId).classList.add('active');
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove('active');
+        }
+
+        function logout() {
+            currentUser = null;
+            document.getElementById('mainScreen').style.display = 'none';
+            document.getElementById('loginScreen').style.display = 'block';
+            document.querySelector('.role-selector').style.display = 'grid';
+            document.getElementById('loginForm').classList.remove('active');
+            document.getElementById('loginUsername').value = '';
+            document.getElementById('loginPassword').value = '';
+        }
+    </script>
+</body>
+</html>

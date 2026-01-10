@@ -1,0 +1,11 @@
+{
+  "name": "band-entry-management",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "echo \"No front-end build step\""
+  },
+  "dependencies": {
+    "mongodb": "^6.3.0"
+  }
+}
