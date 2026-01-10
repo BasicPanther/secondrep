@@ -90,413 +90,93 @@
             --ease-standard: cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        * {
-            box-sizing: border-box;
-        }
+        * { box-sizing: border-box; }
+        html, body { margin: 0; padding: 0; font-family: var(--font-family-base); background-color: var(--color-background); color: var(--color-text); }
+        body { min-height: 100vh; }
 
-        html, body {
-            margin: 0;
-            padding: 0;
-            font-family: var(--font-family-base);
-            background-color: var(--color-background);
-            color: var(--color-text);
-        }
+        /* Header & Navigation */
+        .header { background: white; border-bottom: 1px solid var(--color-border); padding: var(--space-16); display: flex; justify-content: space-between; align-items: center; }
+        .header-title { font-size: var(--font-size-2xl); font-weight: var(--font-weight-bold); margin: 0; }
+        .header-right { display: flex; gap: var(--space-12); align-items: center; }
+        .user-switch { background: var(--color-secondary); border: none; padding: var(--space-8) var(--space-16); border-radius: var(--radius-base); cursor: pointer; font-size: var(--font-size-base); font-weight: var(--font-weight-medium); transition: all var(--duration-fast); }
+        .user-switch:hover { background: var(--color-secondary-hover); }
+        .user-indicator { font-size: var(--font-size-sm); color: var(--color-text-secondary); }
 
-        body {
-            min-height: 100vh;
-        }
+        .container { max-width: 1200px; margin: 0 auto; padding: var(--space-16); }
 
-        .header {
-            background: white;
-            border-bottom: 1px solid var(--color-border);
-            padding: var(--space-16);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+        /* Profile Selection */
+        .user-selection { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--space-16); padding: var(--space-32); }
+        .user-card { background: white; border: 2px solid var(--color-border); border-radius: var(--radius-lg); padding: var(--space-20); cursor: pointer; transition: all var(--duration-normal); text-align: center; }
+        .user-card:hover { border-color: var(--color-primary); box-shadow: var(--shadow-md); transform: translateY(-2px); }
+        .user-card-icon { font-size: 2.5rem; margin-bottom: var(--space-12); }
+        .user-card-name { font-size: var(--font-size-lg); font-weight: var(--font-weight-semibold); margin: 0; }
 
-        .header-title {
-            font-size: var(--font-size-2xl);
-            font-weight: var(--font-weight-bold);
-            margin: 0;
-        }
+        /* Tabs & Pages */
+        .tabs { display: flex; gap: var(--space-2); border-bottom: 2px solid var(--color-border); background: white; padding: 0 var(--space-16); }
+        .tab { background: none; border: none; padding: var(--space-12) var(--space-16); cursor: pointer; font-size: var(--font-size-base); color: var(--color-text-secondary); border-bottom: 3px solid transparent; transition: all var(--duration-fast); margin-bottom: -2px; }
+        .tab.active { color: var(--color-primary); border-bottom-color: var(--color-primary); }
+        .page { display: none; animation: fadeIn var(--duration-normal); }
+        .page.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-        .header-right {
-            display: flex;
-            gap: var(--space-12);
-            align-items: center;
-        }
+        /* Forms */
+        .form-section { background: white; border-radius: var(--radius-lg); padding: var(--space-24); margin-bottom: var(--space-20); border: 1px solid var(--color-card-border); }
+        .form-title { font-size: var(--font-size-2xl); font-weight: var(--font-weight-bold); margin: 0 0 var(--space-20) 0; color: var(--color-primary); }
+        .form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: var(--space-16); margin-bottom: var(--space-20); }
+        .form-group { display: flex; flex-direction: column; }
+        .form-label { font-size: var(--font-size-sm); font-weight: var(--font-weight-medium); margin-bottom: var(--space-6); color: var(--color-text); }
+        .form-label.required::after { content: ' *'; color: var(--color-error); }
+        .form-control { padding: var(--space-8) var(--space-12); font-size: var(--font-size-base); border: 1px solid var(--color-border); border-radius: var(--radius-base); background: var(--color-surface); color: var(--color-text); font-family: var(--font-family-base); transition: all var(--duration-fast); }
+        .form-control:focus { outline: none; border-color: var(--color-primary); box-shadow: 0 0 0 3px var(--color-focus-ring); }
+        select.form-control { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23134252' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right var(--space-12) center; background-size: 16px; padding-right: var(--space-32); }
 
-        .user-switch {
-            background: var(--color-secondary);
-            border: none;
-            padding: var(--space-8) var(--space-16);
-            border-radius: var(--radius-base);
-            cursor: pointer;
-            font-size: var(--font-size-base);
-            font-weight: var(--font-weight-medium);
-            transition: all var(--duration-fast);
-        }
+        /* Buttons */
+        .btn { padding: var(--space-12) var(--space-24); border: none; border-radius: var(--radius-base); font-size: var(--font-size-base); font-weight: var(--font-weight-medium); cursor: pointer; transition: all var(--duration-normal); font-family: var(--font-family-base); white-space: nowrap; display: inline-flex; align-items: center; justify-content: center; gap: var(--space-8); min-width: fit-content; }
+        .btn-primary { background: var(--color-primary); color: var(--color-btn-primary-text); }
+        .btn-primary:hover { background: var(--color-primary-hover); }
+        .btn-secondary { background: var(--color-secondary); color: var(--color-text); }
+        .btn-danger { background: var(--color-error); color: white; }
+        .btn-group { display: flex; gap: var(--space-12); flex-wrap: wrap; margin-top: var(--space-20); }
+        .btn-sm { padding: var(--space-4) var(--space-8); font-size: var(--font-size-xs); }
 
-        .user-switch:hover {
-            background: var(--color-secondary-hover);
-        }
+        /* Tables & Analytics */
+        .table-container { background: white; border-radius: var(--radius-lg); border: 1px solid var(--color-card-border); overflow: hidden; overflow-x: auto; }
+        table { width: 100%; border-collapse: collapse; font-size: var(--font-size-sm); }
+        thead { background: var(--color-gray-200); border-bottom: 2px solid var(--color-border); }
+        th { padding: var(--space-12); text-align: left; font-weight: var(--font-weight-semibold); color: var(--color-text); }
+        td { padding: var(--space-12); border-bottom: 1px solid var(--color-card-border); }
+        .summary-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--space-16); margin-bottom: var(--space-20); }
+        .summary-card { background: white; padding: var(--space-20); border-radius: var(--radius-lg); border: 1px solid var(--color-card-border); text-align: center; }
+        .summary-card-value { font-size: var(--font-size-3xl); font-weight: var(--font-weight-bold); color: var(--color-primary); margin: 0 0 var(--space-8) 0; }
 
-        .user-indicator {
-            font-size: var(--font-size-sm);
-            color: var(--color-text-secondary);
-        }
+        /* Modals */
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); z-index: 1000; align-items: center; justify-content: center; }
+        .modal.active { display: flex; }
+        .modal-content { background: white; border-radius: var(--radius-lg); padding: var(--space-24); max-width: 450px; width: 90%; }
+        .edit-modal-content { background: white; border-radius: var(--radius-lg); padding: var(--space-24); max-width: 550px; width: 95%; }
+        .modal-title { font-size: var(--font-size-xl); font-weight: var(--font-weight-bold); margin: 0 0 var(--space-16) 0; }
+        .modal-buttons { display: flex; gap: var(--space-12); margin-top: var(--space-20); }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: var(--space-16);
-        }
+        /* Admin Management */
+        .admin-section { background: var(--color-secondary); padding: var(--space-20); border-radius: var(--radius-lg); margin-bottom: var(--space-20); }
+        .settings-item { background: white; padding: var(--space-16); border-radius: var(--radius-base); display: flex; justify-content: space-between; align-items: center; border: 1px solid var(--color-card-border); margin-bottom: var(--space-8); }
+        .badge { display: inline-block; padding: var(--space-4) var(--space-8); background: var(--color-secondary); border-radius: var(--radius-full); font-size: var(--font-size-xs); font-weight: var(--font-weight-medium); }
 
-        .user-selection {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: var(--space-16);
-            padding: var(--space-32);
-        }
+        /* Band Grid */
+        .bands-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: var(--space-12); margin: var(--space-16) 0; }
+        .band-block { background: white; border: 2px solid var(--color-primary); border-radius: var(--radius-md); padding: var(--space-12); text-align: center; min-height: 100px; display: flex; flex-direction: column; justify-content: center; }
+        .band-input { font-size: var(--font-size-2xl); font-weight: var(--font-weight-bold); color: var(--color-primary); border: none; border-bottom: 2px solid var(--color-primary); background: transparent; text-align: center; width: 100%; }
 
-        .user-card {
-            background: white;
-            border: 2px solid var(--color-border);
-            border-radius: var(--radius-lg);
-            padding: var(--space-20);
-            cursor: pointer;
-            transition: all var(--duration-normal);
-            text-align: center;
-        }
+        /* Toasts */
+        .toast { position: fixed; bottom: 20px; right: 20px; background: var(--color-success); color: white; padding: var(--space-16) var(--space-24); border-radius: var(--radius-lg); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); z-index: 2000; animation: slideIn 0.3s ease-out; }
+        @keyframes slideIn { from { transform: translateX(400px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
 
-        .user-card:hover {
-            border-color: var(--color-primary);
-            box-shadow: var(--shadow-md);
-            transform: translateY(-2px);
-        }
+        /* Filters */
+        .filter-section { background: white; border-radius: var(--radius-lg); padding: var(--space-20); margin-bottom: var(--space-20); border: 1px solid var(--color-card-border); }
+        .filter-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--space-12); }
+        .action-btns { display: flex; gap: var(--space-8); }
 
-        .user-card-icon {
-            font-size: 2.5rem;
-            margin-bottom: var(--space-12);
-        }
-
-        .user-card-name {
-            font-size: var(--font-size-lg);
-            font-weight: var(--font-weight-semibold);
-            margin: 0;
-        }
-
-        .tabs {
-            display: flex;
-            gap: var(--space-2);
-            border-bottom: 2px solid var(--color-border);
-            background: white;
-            padding: 0 var(--space-16);
-        }
-
-        .tab {
-            background: none;
-            border: none;
-            padding: var(--space-12) var(--space-16);
-            cursor: pointer;
-            font-size: var(--font-size-base);
-            color: var(--color-text-secondary);
-            border-bottom: 3px solid transparent;
-            transition: all var(--duration-fast);
-            margin-bottom: -2px;
-        }
-
-        .tab.active {
-            color: var(--color-primary);
-            border-bottom-color: var(--color-primary);
-        }
-
-        .page {
-            display: none;
-            animation: fadeIn var(--duration-normal);
-        }
-
-        .page.active {
-            display: block;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        .form-section {
-            background: white;
-            border-radius: var(--radius-lg);
-            padding: var(--space-24);
-            margin-bottom: var(--space-20);
-            border: 1px solid var(--color-card-border);
-        }
-
-        .form-title {
-            font-size: var(--font-size-2xl);
-            font-weight: var(--font-weight-bold);
-            margin: 0 0 var(--space-20) 0;
-            color: var(--color-primary);
-        }
-
-        .form-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: var(--space-16);
-            margin-bottom: var(--space-20);
-        }
-
-        .form-group {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .form-label {
-            font-size: var(--font-size-sm);
-            font-weight: var(--font-weight-medium);
-            margin-bottom: var(--space-6);
-            color: var(--color-text);
-        }
-
-        .form-label.required::after {
-            content: ' *';
-            color: var(--color-error);
-        }
-
-        .form-control {
-            padding: var(--space-8) var(--space-12);
-            font-size: var(--font-size-base);
-            border: 1px solid var(--color-border);
-            border-radius: var(--radius-base);
-            background: var(--color-surface);
-            color: var(--color-text);
-            font-family: var(--font-family-base);
-            transition: all var(--duration-fast);
-        }
-
-        .form-control:focus {
-            outline: none;
-            border-color: var(--color-primary);
-            box-shadow: 0 0 0 3px var(--color-focus-ring);
-        }
-
-        select.form-control {
-            appearance: none;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23134252' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-            background-position: right var(--space-12) center;
-            background-size: 16px;
-            padding-right: var(--space-32);
-        }
-
-        .btn {
-            padding: var(--space-12) var(--space-24);
-            border: none;
-            border-radius: var(--radius-base);
-            font-size: var(--font-size-base);
-            font-weight: var(--font-weight-medium);
-            cursor: pointer;
-            transition: all var(--duration-normal);
-            font-family: var(--font-family-base);
-            white-space: nowrap;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: var(--space-8);
-            min-width: fit-content;
-        }
-
-        .btn-primary {
-            background: var(--color-primary);
-            color: var(--color-btn-primary-text);
-        }
-
-        .btn-primary:hover {
-            background: var(--color-primary-hover);
-        }
-
-        .btn-secondary {
-            background: var(--color-secondary);
-            color: var(--color-text);
-        }
-
-        .btn-danger {
-            background: var(--color-error);
-            color: white;
-        }
-
-        .btn-group {
-            display: flex;
-            gap: var(--space-12);
-            flex-wrap: wrap;
-            margin-top: var(--space-20);
-        }
-
-        .table-container {
-            background: white;
-            border-radius: var(--radius-lg);
-            border: 1px solid var(--color-card-border);
-            overflow: hidden;
-            overflow-x: auto;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: var(--font-size-sm);
-        }
-
-        thead {
-            background: var(--color-gray-200);
-            border-bottom: 2px solid var(--color-border);
-        }
-
-        th {
-            padding: var(--space-12);
-            text-align: left;
-            font-weight: var(--font-weight-semibold);
-            color: var(--color-text);
-        }
-
-        td {
-            padding: var(--space-12);
-            border-bottom: 1px solid var(--color-card-border);
-        }
-
-        .summary-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: var(--space-16);
-            margin-bottom: var(--space-20);
-        }
-
-        .summary-card {
-            background: white;
-            padding: var(--space-20);
-            border-radius: var(--radius-lg);
-            border: 1px solid var(--color-card-border);
-            text-align: center;
-        }
-
-        .summary-card-value {
-            font-size: var(--font-size-3xl);
-            font-weight: var(--font-weight-bold);
-            color: var(--color-primary);
-            margin: 0 0 var(--space-8) 0;
-        }
-
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 1000;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .modal.active {
-            display: flex;
-        }
-
-        .modal-content {
-            background: white;
-            border-radius: var(--radius-lg);
-            padding: var(--space-24);
-            max-width: 450px;
-            width: 90%;
-        }
-
-        .settings-item {
-            background: white;
-            padding: var(--space-16);
-            border-radius: var(--radius-base);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border: 1px solid var(--color-card-border);
-            margin-bottom: var(--space-8);
-        }
-
-        .badge {
-            display: inline-block;
-            padding: var(--space-4) var(--space-8);
-            background: var(--color-secondary);
-            border-radius: var(--radius-full);
-            font-size: var(--font-size-xs);
-            font-weight: var(--font-weight-medium);
-        }
-
-        .bands-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-            gap: var(--space-12);
-            margin: var(--space-16) 0;
-        }
-
-        .band-block {
-            background: white;
-            border: 2px solid var(--color-primary);
-            border-radius: var(--radius-md);
-            padding: var(--space-12);
-            text-align: center;
-            min-height: 100px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .band-input {
-            font-size: var(--font-size-2xl);
-            font-weight: var(--font-weight-bold);
-            color: var(--color-primary);
-            border: none;
-            border-bottom: 2px solid var(--color-primary);
-            background: transparent;
-            text-align: center;
-            width: 100%;
-        }
-
-        .toast {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: var(--color-success);
-            color: white;
-            padding: var(--space-16) var(--space-24);
-            border-radius: var(--radius-lg);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-            z-index: 2000;
-            animation: slideIn 0.3s ease-out;
-        }
-
-        @keyframes slideIn {
-            from { transform: translateX(400px); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
-        }
-
-        .filter-section {
-            background: white;
-            border-radius: var(--radius-lg);
-            padding: var(--space-20);
-            margin-bottom: var(--space-20);
-            border: 1px solid var(--color-card-border);
-        }
-
-        .filter-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: var(--space-12);
-        }
-
-        @media (max-width: 768px) {
-            .form-grid, .user-selection { grid-template-columns: 1fr; }
-        }
+        @media (max-width: 768px) { .form-grid, .user-selection { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
@@ -519,7 +199,7 @@
                 <div class="tabs">
                     <button class="tab active" onclick="switchTab('entry')">📝 Entry Form</button>
                     <button class="tab" onclick="switchTab('viewData')">📊 View Data</button>
-                    <button class="tab" onclick="switchTab('settings')" id="adminTab" style="display: none;">⚙️ Settings</button>
+                    <button class="tab" id="adminTab" style="display: none;" onclick="switchTab('settings')">⚙️ Settings</button>
                 </div>
             </div>
 
@@ -536,12 +216,12 @@
                             <div class="form-grid">
                                 <div class="form-group">
                                     <label class="form-label required">Name</label>
-                                    <input type="text" id="name" class="form-control" required>
+                                    <input type="text" id="name" class="form-control" placeholder="Enter name" required>
                                 </div>
                                 <div class="form-group">
                                     <label class="form-label required">Zone</label>
                                     <select id="zone" class="form-control" required onchange="updateCommunities()">
-                                        <option value="">Select zone</option>
+                                        <option value="">Select a zone</option>
                                         <option value="1">Zone 1</option><option value="2">Zone 2</option>
                                         <option value="3A">Zone 3A</option><option value="3B">Zone 3B</option>
                                         <option value="4A">Zone 4A</option><option value="4B">Zone 4B</option>
@@ -572,24 +252,22 @@
 
                 <div id="viewDataPage" class="page">
                     <div class="summary-cards">
-                        <div class="summary-card">
-                            <p class="summary-card-value" id="totalEntriesDisplay">0</p>
-                            <p>Total Entries</p>
-                        </div>
-                        <div class="summary-card">
-                            <p class="summary-card-value">₹<span id="totalRevenueDisplay">0</span></p>
-                            <p>Total Revenue</p>
-                        </div>
+                        <div class="summary-card"><p class="summary-card-value" id="totalEntriesDisplay">0</p><p>Total Entries</p></div>
+                        <div class="summary-card"><p class="summary-card-value">₹<span id="totalRevenueDisplay">0</span></p><p>Total Revenue</p></div>
                     </div>
                     <div class="filter-section">
+                        <h3 style="font-size: 14px; margin-bottom: 12px;">🔍 Filters</h3>
                         <div class="filter-grid">
+                            <div class="form-group"><label class="form-label">Search Name</label><input type="text" id="searchName" class="form-control" onkeyup="applyFilters()"></div>
+                            <div class="form-group"><label class="form-label">Filter Date</label><input type="date" id="filterDate" class="form-control" onchange="applyFilters()"></div>
                             <div class="form-group">
-                                <label class="form-label">Search Name</label>
-                                <input type="text" id="searchName" class="form-control" onkeyup="applyFilters()">
-                            </div>
-                            <div class="form-group">
-                                <label class="form-label">Filter Date</label>
-                                <input type="date" id="filterDate" class="form-control" onchange="applyFilters()">
+                                <label class="form-label">Sort By</label>
+                                <select id="sortBy" class="form-control" onchange="applyFilters()">
+                                    <option value="band-asc">Band # (Low to High)</option>
+                                    <option value="band-desc">Band # (High to Low)</option>
+                                    <option value="date-newest">Newest First</option>
+                                    <option value="name-asc">Name (A-Z)</option>
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -599,18 +277,7 @@
                     </div>
                     <div class="table-container">
                         <table>
-                            <thead>
-                                <tr>
-                                    <th>Band #</th>
-                                    <th>Name</th>
-                                    <th>Zone</th>
-                                    <th>Community</th>
-                                    <th>Amount</th>
-                                    <th>Date</th>
-                                    <th id="userHeader" style="display:none">User</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
+                            <thead><tr><th>Band #</th><th>Name</th><th>Zone</th><th>Community</th><th>Amount</th><th>Date</th><th id="userHeader" style="display:none">User</th><th>Action</th></tr></thead>
                             <tbody id="dataTableBody"></tbody>
                         </table>
                     </div>
@@ -618,10 +285,10 @@
 
                 <div id="settingsPage" class="page">
                     <div class="form-section">
-                        <h2 class="form-title">Admin Management</h2>
+                        <h2 class="form-title">Admin Controls</h2>
                         <div class="admin-section">
-                            <button class="btn btn-primary" onclick="showCreateUserModal()">+ Create New User</button>
-                            <button class="btn btn-secondary" onclick="showManageUsersModal()" style="margin-left: 10px;">Manage Existing Users</button>
+                            <button class="btn btn-primary" onclick="showCreateUserModal()">+ Create User</button>
+                            <button class="btn btn-secondary" onclick="showManageUsersModal()" style="margin-left: 10px;">Manage Profiles</button>
                         </div>
                     </div>
                 </div>
@@ -631,10 +298,10 @@
 
     <div id="createUserModal" class="modal">
         <div class="modal-content">
-            <h2>Create New Profile</h2>
+            <h2 class="modal-title">Create User Profile</h2>
             <input type="text" id="newUsername" class="form-control" placeholder="Username" style="margin-bottom:12px">
             <input type="password" id="newPassword" class="form-control" placeholder="Password" style="margin-bottom:12px">
-            <label class="form-label">Assign Category</label>
+            <label class="form-label">Role/Category</label>
             <select id="newUserRole" class="form-control" style="margin-bottom:20px">
                 <option value="Zonal Coordinator">Zonal Coordinator</option>
                 <option value="Desk">Desk</option>
@@ -649,7 +316,7 @@
 
     <div id="editUserModal" class="modal">
         <div class="modal-content">
-            <h2>Edit User Profile</h2>
+            <h2 class="modal-title">Update Profile</h2>
             <input type="hidden" id="editUserId">
             <label class="form-label">Username</label>
             <input type="text" id="editUsernameField" class="form-control" style="margin-bottom:12px">
@@ -662,7 +329,7 @@
                 <option value="Church Office">Church Office</option>
             </select>
             <div class="modal-buttons">
-                <button class="btn btn-primary" onclick="saveEditedUser()">Save Changes</button>
+                <button class="btn btn-primary" onclick="saveEditedUser()">Save</button>
                 <button class="btn btn-secondary" onclick="closeModal('editUserModal')">Cancel</button>
             </div>
         </div>
@@ -670,7 +337,7 @@
 
     <div id="userPasswordModal" class="modal">
         <div class="modal-content">
-            <h2>Login</h2>
+            <h2 class="modal-title">Login</h2>
             <p id="userPasswordPrompt" style="margin-bottom: 12px; color: var(--color-slate-500)"></p>
             <input type="password" id="userPassword" class="form-control" placeholder="Password" style="margin-bottom:20px">
             <div class="modal-buttons">
@@ -682,7 +349,7 @@
 
     <div id="adminPasswordModal" class="modal">
         <div class="modal-content">
-            <h2>Admin Login</h2>
+            <h2 class="modal-title">Admin Access</h2>
             <input type="password" id="adminPassword" class="form-control" placeholder="Admin Password" style="margin-bottom:20px">
             <div class="modal-buttons">
                 <button class="btn btn-primary" onclick="verifyAdminPassword()">Verify</button>
@@ -693,9 +360,34 @@
 
     <div id="manageUsersModal" class="modal">
         <div class="modal-content" style="max-width: 550px">
-            <h2>Manage Users</h2>
-            <div id="usersList" style="max-height: 350px; overflow-y: auto; margin-bottom: 20px"></div>
+            <h2 class="modal-title">User Management</h2>
+            <div id="usersList" style="max-height: 400px; overflow-y: auto; margin-bottom: 20px"></div>
             <button class="btn btn-secondary" onclick="closeModal('manageUsersModal')">Close</button>
+        </div>
+    </div>
+
+    <div id="editEntryModal" class="modal">
+        <div class="edit-modal-content">
+            <h2 class="modal-title">Edit Entry Record</h2>
+            <div class="form-grid">
+                <div class="form-group"><label class="form-label">Band No.</label><input type="number" id="editBandNo" class="form-control"></div>
+                <div class="form-group"><label class="form-label">Name</label><input type="text" id="editName" class="form-control"></div>
+                <div class="form-group">
+                    <label class="form-label">Zone</label>
+                    <select id="editZone" class="form-control" onchange="updateEditCommunities()">
+                        <option value="1">Zone 1</option><option value="2">Zone 2</option>
+                        <option value="3A">Zone 3A</option><option value="3B">Zone 3B</option>
+                        <option value="4A">Zone 4A</option><option value="4B">Zone 4B</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group"><label class="form-label">Community</label><select id="editCommunity" class="form-control"></select></div>
+                <div class="form-group"><label class="form-label">Amount (₹)</label><input type="number" id="editAmount" class="form-control"></div>
+            </div>
+            <div class="modal-buttons">
+                <button class="btn btn-primary" onclick="saveEditedEntry()">Update Record</button>
+                <button class="btn btn-secondary" onclick="closeModal('editEntryModal')">Cancel</button>
+            </div>
         </div>
     </div>
 
@@ -711,8 +403,11 @@
             'Other': ['Other', 'Unknown']
         };
 
-        let currentUser = null, isAdmin = false, selectedCategory = null, users = {}, allEntries = [], filteredEntries = [];
+        // Application State
+        let currentUser = null, isAdmin = false, selectedCategory = null;
+        let users = {}, allEntries = [], filteredEntries = [], currentEditingEntryId = null;
 
+        // Initialization
         async function initApp() {
             await loadUsers();
             if (!currentUser) {
@@ -723,6 +418,7 @@
                 document.getElementById('userSelectionScreen').style.display = 'none';
                 document.getElementById('mainApp').style.display = 'block';
                 updateUI();
+                loadEntries();
             }
         }
 
@@ -731,41 +427,51 @@
                 const res = await fetch(`${API_BASE}/manage-users`);
                 const r = await res.json();
                 users = {};
-                r.data.forEach(u => { users[u.username] = u; }); // Legacy role || 'Desk' is handled in backend GET
-            } catch (e) { console.error("User load error", e); }
+                r.data.forEach(u => { users[u.username] = u; });
+            } catch (e) { console.error("Load users failed", e); }
         }
 
+        // Category & Profile UI
         function displayCategorySelection() {
             const grid = document.getElementById('userSelectionGrid'); grid.innerHTML = '';
             document.querySelector('#userSelectionScreen h1').textContent = 'Select Category';
-            const cats = [{id:'Zonal Coordinator', icon:'📍'}, {id:'Desk', icon:'🖥️'}, {id:'Church Office', icon:'⛪'}];
-            cats.forEach(c => {
+            const categories = [
+                { id: 'Zonal Coordinator', icon: '📍' },
+                { id: 'Desk', icon: '🖥️' },
+                { id: 'Church Office', icon: '⛪' }
+            ];
+            categories.forEach(cat => {
                 const card = document.createElement('div'); card.className = 'user-card';
-                card.onclick = () => { selectedCategory = c.id; displayUserSelection(); };
-                card.innerHTML = `<div class="user-card-icon">${c.icon}</div><p>${c.id}</p>`;
+                card.onclick = () => { selectedCategory = cat.id; displayUserSelection(); };
+                card.innerHTML = `<div class="user-card-icon">${cat.icon}</div><p class="user-card-name">${cat.id}</p>`;
                 grid.appendChild(card);
             });
-            const admin = document.createElement('div'); admin.style.gridColumn = '1/-1'; admin.style.textAlign='center';
-            admin.innerHTML = `<button class="btn btn-secondary" onclick="selectUser('admin')">👨‍💼 Admin Login</button>`;
-            grid.appendChild(admin);
+            const adminLogin = document.createElement('div');
+            adminLogin.style.gridColumn = '1 / -1'; adminLogin.style.textAlign = 'center';
+            adminLogin.innerHTML = `<button class="btn btn-secondary" onclick="selectUser('admin')">👨‍💼 Admin Login</button>`;
+            grid.appendChild(adminLogin);
         }
 
         function displayUserSelection() {
             const grid = document.getElementById('userSelectionGrid'); grid.innerHTML = '';
             document.querySelector('#userSelectionScreen h1').textContent = `Category: ${selectedCategory}`;
-            const back = document.createElement('div'); back.style.gridColumn = '1/-1';
-            back.innerHTML = `<button class="btn btn-sm btn-secondary" onclick="selectedCategory=null; displayCategorySelection();">← Back to Categories</button>`;
-            grid.appendChild(back);
-            Object.keys(users).forEach(u => {
-                const role = users[u].role || 'Desk'; // Safeguard
-                if (role === selectedCategory && !users[u].isAdmin) {
-                    const card = document.createElement('div'); card.className = 'user-card'; card.onclick = () => selectUser(u);
-                    card.innerHTML = `<div class="user-card-icon">👤</div><p>${u}</p>`;
+            
+            const backBtn = document.createElement('div'); backBtn.style.gridColumn = '1 / -1';
+            backBtn.innerHTML = `<button class="btn btn-sm btn-secondary" onclick="selectedCategory=null; displayCategorySelection();">← Back to Categories</button>`;
+            grid.appendChild(backBtn);
+
+            Object.keys(users).forEach(username => {
+                const userRole = users[username].role || 'Desk';
+                if (userRole === selectedCategory && !users[username].isAdmin) {
+                    const card = document.createElement('div'); card.className = 'user-card';
+                    card.onclick = () => selectUser(username);
+                    card.innerHTML = `<div class="user-card-icon">👤</div><p class="user-card-name">${username}</p>`;
                     grid.appendChild(card);
                 }
             });
         }
 
+        // Authentication Logic
         function selectUser(u) {
             if (u === 'admin') { document.getElementById('adminPasswordModal').classList.add('active'); }
             else { 
@@ -778,95 +484,139 @@
         async function verifyUserPassword() {
             const u = document.getElementById('userPassword').dataset.user;
             if (users[u].password === document.getElementById('userPassword').value) {
-                currentUser = u; isAdmin = false; closeUserPasswordModal(); initApp(); loadEntries();
+                currentUser = u; isAdmin = false; closeUserPasswordModal(); initApp();
             } else { alert('Incorrect password'); }
         }
 
         async function verifyAdminPassword() {
             if (document.getElementById('adminPassword').value === 'admin123') {
-                currentUser = 'admin'; isAdmin = true; closeAdminModal(); initApp(); loadEntries();
+                currentUser = 'admin'; isAdmin = true; closeAdminModal(); initApp();
             } else { alert('Incorrect password'); }
         }
 
+        // Data Management (GET)
         async function loadEntries() {
-            const u = isAdmin ? 'all' : currentUser;
+            const userIdParam = isAdmin ? 'all' : currentUser;
             try {
-                const res = await fetch(`${API_BASE}/get-entries?userId=${u}`); 
+                const res = await fetch(`${API_BASE}/get-entries?userId=${userIdParam}`);
                 const r = await res.json();
-                allEntries = r.data || []; 
+                allEntries = r.data || [];
                 applyFilters();
             } catch (e) { console.error("Load entries error", e); }
         }
 
         function applyFilters() {
-            const s = document.getElementById('searchName').value.toLowerCase();
-            const d = document.getElementById('filterDate').value;
+            const search = document.getElementById('searchName').value.toLowerCase();
+            const date = document.getElementById('filterDate').value;
+            const sort = document.getElementById('sortBy').value;
+
             filteredEntries = allEntries.filter(e => {
-                if (s && !e.name.toLowerCase().includes(s)) return false;
-                if (d && new Date(e.createdAt).toLocaleDateString('en-CA') !== d) return false;
+                if (search && !e.name.toLowerCase().includes(search)) return false;
+                if (date && new Date(e.createdAt).toLocaleDateString('en-CA') !== date) return false;
                 return true;
             });
-            updateDataTable(filteredEntries);
+
+            if (sort === 'band-asc') filteredEntries.sort((a,b) => a.bandNo - b.bandNo);
+            else if (sort === 'band-desc') filteredEntries.sort((a,b) => b.bandNo - a.bandNo);
+            else if (sort === 'date-newest') filteredEntries.sort((a,b) => new Date(b.createdAt) - new Date(a.createdAt));
+            else if (sort === 'name-asc') filteredEntries.sort((a,b) => a.name.localeCompare(b.name));
+
+            renderTable(filteredEntries);
         }
 
-        function updateDataTable(data) {
-            const tb = document.getElementById('dataTableBody');
+        function renderTable(data) {
+            const tbody = document.getElementById('dataTableBody');
             document.getElementById('userHeader').style.display = isAdmin ? 'table-cell' : 'none';
             if (data.length === 0) {
-                tb.innerHTML = '<tr><td colspan="9" style="text-align:center">No records found.</td></tr>';
+                tbody.innerHTML = '<tr><td colspan="9" style="text-align:center">No records available.</td></tr>';
             } else {
-                tb.innerHTML = data.map(e => `
+                tbody.innerHTML = data.map(e => `
                     <tr>
                         <td>#${e.bandNo}</td><td>${e.name}</td><td>${e.zone}</td><td>${e.community}</td><td>₹${e.amount}</td>
                         <td>${new Date(e.createdAt).toLocaleDateString('en-IN')}</td>
                         ${isAdmin ? `<td>${e.userId}</td>` : ''}
-                        <td><button class="btn btn-sm btn-danger" onclick="deleteEntry('${e._id}')">Delete</button></td>
+                        <td>
+                            <div class="action-btns">
+                                <button class="btn btn-sm btn-secondary" onclick="openEditEntryModal('${e._id}','${e.bandNo}','${e.name}','${e.zone}','${e.community}','${e.amount}')">Edit</button>
+                                <button class="btn btn-sm btn-danger" onclick="deleteEntryMongo('${e._id}')">Delete</button>
+                            </div>
+                        </td>
                     </tr>`).join('');
             }
-            updateSummary(data); // Ensures counts are accurate for the current profile view
+            updateSummary(data);
         }
 
         function updateSummary(data) {
             document.getElementById('totalEntriesDisplay').textContent = data.length;
-            document.getElementById('totalRevenueDisplay').textContent = data.reduce((a, b) => a + (b.amount || 0), 0);
+            document.getElementById('totalRevenueDisplay').textContent = data.reduce((sum, e) => sum + (e.amount || 0), 0);
         }
 
-        // --- EXPORT FIXES ---
+        // Export Functionality
         async function downloadUserData(format) {
-            const entriesToExport = filteredEntries.length > 0 ? filteredEntries : allEntries;
-            if (entriesToExport.length === 0) { alert('No data available to export'); return; }
-            const filename = `${currentUser}_bands_data.${format}`;
-            downloadCSV(entriesToExport, filename, isAdmin);
-        }
-
-        function downloadCSV(data, filename, includeUser = false) {
-            let csv = 'Band No.,Name,Zone,Community,Amount,Date' + (includeUser ? ',User\n' : '\n');
-            data.forEach(e => {
+            const entries = filteredEntries.length > 0 ? filteredEntries : allEntries;
+            if (entries.length === 0) return alert('No data to export');
+            
+            let csv = 'Band No.,Name,Zone,Community,Amount,Date' + (isAdmin ? ',User\n' : '\n');
+            entries.forEach(e => {
                 const date = new Date(e.createdAt).toLocaleDateString('en-IN');
-                const escapedName = e.name.replace(/"/g, '""');
-                const escapedComm = e.community.replace(/"/g, '""');
-                csv += `${e.bandNo},"${escapedName}",${e.zone},"${escapedComm}",${e.amount},${date}` + (includeUser ? `,${e.userId}\n` : '\n');
+                const cleanName = e.name.replace(/"/g, '""');
+                const cleanComm = e.community.replace(/"/g, '""');
+                csv += `${e.bandNo},"${cleanName}",${e.zone},"${cleanComm}",${e.amount},${date}` + (isAdmin ? `,${e.userId}\n` : '\n');
             });
-            const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+
             const link = document.createElement('a');
-            link.href = URL.createObjectURL(blob);
-            link.setAttribute('download', filename);
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
+            link.href = URL.createObjectURL(new Blob([csv], { type: 'text/csv' }));
+            link.setAttribute('download', `${currentUser}_report.${format}`);
+            document.body.appendChild(link); link.click(); document.body.removeChild(link);
         }
 
-        // --- USER MGMT FIXES ---
+        // Entry Editing (Restored Full Logic)
+        function openEditEntryModal(id, bandNo, name, zone, community, amount) {
+            currentEditingEntryId = id;
+            document.getElementById('editBandNo').value = bandNo;
+            document.getElementById('editName').value = name;
+            document.getElementById('editZone').value = zone;
+            updateEditCommunities();
+            setTimeout(() => { document.getElementById('editCommunity').value = community; }, 100);
+            document.getElementById('editAmount').value = amount;
+            document.getElementById('editEntryModal').classList.add('active');
+        }
+
+        async function saveEditedEntry() {
+            const body = {
+                id: currentEditingEntryId,
+                newBandNo: parseInt(document.getElementById('editBandNo').value),
+                name: document.getElementById('editName').value.trim(),
+                zone: document.getElementById('editZone').value,
+                community: document.getElementById('editCommunity').value,
+                amount: parseInt(document.getElementById('editAmount').value)
+            };
+            const res = await fetch(`${API_BASE}/update-entry`, { 
+                method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) 
+            });
+            if (res.ok) { closeModal('editEntryModal'); showToast('Entry updated successfully'); loadEntries(); }
+            else { const r = await res.json(); alert(r.error || "Update failed"); }
+        }
+
+        async function deleteEntryMongo(id) {
+            if (confirm('Delete this entry permanently?')) {
+                await fetch(`${API_BASE}/delete-entry?id=${id}`, { method: 'DELETE' });
+                loadEntries();
+            }
+        }
+
+        // Admin Profile Management
         async function createUser() {
             const body = {
                 username: document.getElementById('newUsername').value.trim(),
                 password: document.getElementById('newPassword').value.trim(),
                 role: document.getElementById('newUserRole').value
             };
-            if (!body.username || !body.password) return alert('Username/Password required');
-            const res = await fetch(`${API_BASE}/manage-users`, { method: 'POST', body: JSON.stringify(body) });
-            if (res.ok) { closeModal('createUserModal'); showToast(`Created user: ${body.username}`); await loadUsers(); }
-            else alert('Failed to create user');
+            if (!body.username || !body.password) return alert('Fill all fields');
+            const res = await fetch(`${API_BASE}/manage-users`, { 
+                method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) 
+            });
+            if (res.ok) { closeModal('createUserModal'); showToast('User profile created'); loadUsers(); }
         }
 
         function openEditUserModal(username) {
@@ -885,9 +635,10 @@
                 password: document.getElementById('editPasswordField').value.trim(),
                 role: document.getElementById('editUserRole').value
             };
-            const res = await fetch(`${API_BASE}/manage-users`, { method: 'PUT', body: JSON.stringify(body) });
-            if (res.ok) { closeModal('editUserModal'); showToast('User updated'); await loadUsers(); showManageUsersModal(); }
-            else alert('Update failed');
+            const res = await fetch(`${API_BASE}/manage-users`, { 
+                method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) 
+            });
+            if (res.ok) { closeModal('editUserModal'); await loadUsers(); showManageUsersModal(); }
         }
 
         function showManageUsersModal() {
@@ -896,10 +647,7 @@
                 if (!users[u].isAdmin) {
                     const item = document.createElement('div'); item.className = 'settings-item';
                     item.innerHTML = `
-                        <div style="flex:1">
-                            <div class="settings-item-title">${u} <span class="badge">${users[u].role || 'Desk'}</span></div>
-                            <div class="settings-item-desc">Pass: ${users[u].password}</div>
-                        </div>
+                        <div style="flex:1"><strong>${u}</strong> <span class="badge">${users[u].role || 'Desk'}</span></div>
                         <div class="action-btns">
                             <button class="btn btn-sm btn-secondary" onclick="openEditUserModal('${u}')">Edit</button>
                             <button class="btn btn-sm btn-danger" onclick="deleteUser('${u}')">Delete</button>
@@ -911,13 +659,13 @@
         }
 
         async function deleteUser(u) {
-            if (confirm(`Delete user ${u}?`)) {
+            if (confirm(`Delete user ${u} and all associated data?`)) {
                 await fetch(`${API_BASE}/manage-users?username=${u}`, { method: 'DELETE' });
                 await loadUsers(); showManageUsersModal();
             }
         }
 
-        // --- UI HELPERS ---
+        // Helper & UI Sync
         function updateUI() {
             document.getElementById('currentUserDisplay').textContent = currentUser;
             document.getElementById('adminTab').style.display = isAdmin ? 'block' : 'none';
@@ -926,7 +674,7 @@
             const t = document.createElement('div'); t.className = 'toast'; t.textContent = m;
             document.body.appendChild(t); setTimeout(() => t.remove(), 3000);
         }
-        function switchUser() { currentUser = null; isAdmin = false; initApp(); }
+        function switchUser() { currentUser = null; isAdmin = false; selectedCategory = null; initApp(); }
         function closeModal(id) { document.getElementById(id).classList.remove('active'); }
         function closeAdminModal() { closeModal('adminPasswordModal'); }
         function closeUserPasswordModal() { closeModal('userPasswordModal'); }
@@ -937,32 +685,41 @@
             event.target.classList.add('active');
             if (t === 'viewData') loadEntries();
         }
+
         function updateCommunities() {
             const z = document.getElementById('zone').value; const c = document.getElementById('community');
-            c.innerHTML = '<option value="">Select community</option>';
-            if(communities[z]) communities[z].forEach(co => { const o = document.createElement('option'); o.value=`Zone ${z} - ${co}`; o.textContent=`Zone ${z} - ${co}`; c.appendChild(o); });
+            c.innerHTML = '';
+            if(communities[z]) communities[z].forEach(co => { const o = document.createElement('option'); o.value=co; o.textContent=co; c.appendChild(o); });
         }
+        function updateEditCommunities() {
+            const z = document.getElementById('editZone').value; const c = document.getElementById('editCommunity');
+            c.innerHTML = '';
+            if(communities[z]) communities[z].forEach(co => { const o = document.createElement('option'); o.value=co; o.textContent=co; c.appendChild(o); });
+        }
+
         function calculateCost() { 
-            const n = document.getElementById('numBands').value; 
+            const n = parseInt(document.getElementById('numBands').value) || 0; 
             document.getElementById('totalAmount').textContent = n * 50; 
-            document.getElementById('paymentBreakdown').textContent = `${n} bands × ₹50/band = ₹${n * 50}`;
-            displayBandBlocks(parseInt(n));
-        }
-        function displayBandBlocks(count) {
+            document.getElementById('paymentBreakdown').textContent = `${n} bands × ₹50 = ₹${n * 50}`;
+            
             const start = parseInt(document.getElementById('currentBandNo').value) || 0;
             const grid = document.getElementById('bandsGrid'); grid.innerHTML = '';
             const nums = [];
-            for (let i = 0; i < count; i++) {
+            for (let i = 0; i < n; i++) {
                 nums.push(start + i);
                 const b = document.createElement('div'); b.className = 'band-block';
-                b.innerHTML = `<input type="number" class="band-input" value="${start + i}"><p style="font-size:10px">Band #</p>`;
+                b.innerHTML = `<input type="number" class="band-input" value="${start + i}"><p style="font-size:10px; margin-top:5px;">Band #</p>`;
                 grid.appendChild(b);
             }
             document.getElementById('pendingBandNumbers').value = JSON.stringify(nums);
         }
 
-        async function addEntry(e) {
+        // Form Submission
+        document.getElementById('entryForm').addEventListener('submit', async (e) => {
             e.preventDefault();
+            const submitBtn = e.target.querySelector('button[type="submit"]');
+            submitBtn.disabled = true;
+
             const body = {
                 userId: currentUser,
                 name: document.getElementById('name').value.trim(),
@@ -971,26 +728,32 @@
                 bands: JSON.parse(document.getElementById('pendingBandNumbers').value),
                 amountPerBand: 50
             };
-            const res = await fetch(`${API_BASE}/save-entry`, { method: 'POST', body: JSON.stringify(body) });
-            const r = await res.json();
-            if (r.success) {
-                showToast(`Success: Saved ${body.bands.length} bands`);
-                document.getElementById('entryForm').reset();
-                document.getElementById('bandsGrid').innerHTML = '';
-                document.getElementById('currentBandNo').value = Math.max(...body.bands) + 1;
-            } else alert(r.error);
-        }
 
-        async function deleteEntry(id) {
-            if (confirm('Delete entry?')) {
-                await fetch(`${API_BASE}/delete-entry?id=${id}`, { method: 'DELETE' });
-                loadEntries();
-            }
-        }
+            try {
+                const res = await fetch(`${API_BASE}/save-entry`, { 
+                    method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(body) 
+                });
+                const r = await res.json();
+                if (r.success) {
+                    showToast(`Successfully saved ${body.bands.length} bands`);
+                    document.getElementById('entryForm').reset();
+                    document.getElementById('bandsGrid').innerHTML = '';
+                    document.getElementById('currentBandNo').value = Math.max(...body.bands) + 1;
+                    loadEntries();
+                } else alert(r.error);
+            } catch (err) { alert("Server error: " + err.message); }
+            finally { submitBtn.disabled = false; }
+        });
+
+        // Event Listeners for clear button
+        document.getElementById('clearFormBtn').addEventListener('click', () => {
+            document.getElementById('bandsGrid').innerHTML = '';
+            document.getElementById('totalAmount').textContent = '0';
+        });
 
         function showCreateUserModal() { document.getElementById('createUserModal').classList.add('active'); }
-        
-        document.getElementById('entryForm').addEventListener('submit', addEntry);
+        function showManageUsersModal() { showManageUsersModal(); }
+
         initApp();
     </script>
 </body>
