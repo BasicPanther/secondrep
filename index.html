@@ -187,12 +187,6 @@
             margin: 0;
         }
 
-        .user-card-label {
-            font-size: var(--font-size-sm);
-            color: var(--color-text-secondary);
-            margin-top: var(--space-4);
-        }
-
         .tabs {
             display: flex;
             gap: var(--space-2);
@@ -216,10 +210,6 @@
         .tab.active {
             color: var(--color-primary);
             border-bottom-color: var(--color-primary);
-        }
-
-        .tab:hover {
-            color: var(--color-text);
         }
 
         .page {
@@ -327,31 +317,14 @@
             background: var(--color-primary-hover);
         }
 
-        .btn-primary:active {
-            background: var(--color-primary-active);
-        }
-
-        .btn-primary:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-        }
-
         .btn-secondary {
             background: var(--color-secondary);
             color: var(--color-text);
         }
 
-        .btn-secondary:hover {
-            background: var(--color-secondary-hover);
-        }
-
         .btn-danger {
             background: var(--color-error);
             color: white;
-        }
-
-        .btn-danger:hover {
-            opacity: 0.9;
         }
 
         .btn-group {
@@ -392,31 +365,6 @@
             border-bottom: 1px solid var(--color-card-border);
         }
 
-        tbody tr:hover {
-            background: var(--color-gray-200);
-        }
-
-        .action-btns {
-            display: flex;
-            gap: var(--space-8);
-        }
-
-        .btn-sm {
-            padding: var(--space-4) var(--space-8);
-            font-size: var(--font-size-xs);
-        }
-
-        .empty-state {
-            text-align: center;
-            padding: var(--space-32);
-            color: var(--color-text-secondary);
-        }
-
-        .empty-state-icon {
-            font-size: 2.5rem;
-            margin-bottom: var(--space-12);
-        }
-
         .summary-cards {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -437,12 +385,6 @@
             font-weight: var(--font-weight-bold);
             color: var(--color-primary);
             margin: 0 0 var(--space-8) 0;
-        }
-
-        .summary-card-label {
-            font-size: var(--font-size-sm);
-            color: var(--color-text-secondary);
-            margin: 0;
         }
 
         .modal {
@@ -466,85 +408,8 @@
             background: white;
             border-radius: var(--radius-lg);
             padding: var(--space-24);
-            max-width: 400px;
+            max-width: 450px;
             width: 90%;
-        }
-
-        .edit-modal-content {
-            background: white;
-            border-radius: var(--radius-lg);
-            padding: var(--space-24);
-            max-width: 500px;
-            width: 90%;
-        }
-
-        .modal-title {
-            font-size: var(--font-size-xl);
-            font-weight: var(--font-weight-bold);
-            margin: 0 0 var(--space-16) 0;
-        }
-
-        .modal-buttons {
-            display: flex;
-            gap: var(--space-12);
-            margin-top: var(--space-20);
-        }
-
-        .modal-form-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: var(--space-16);
-            margin-bottom: var(--space-20);
-        }
-
-        .modal-form-group {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .modal-form-label {
-            font-size: var(--font-size-sm);
-            font-weight: var(--font-weight-medium);
-            margin-bottom: var(--space-6);
-            color: var(--color-text);
-        }
-
-        .modal-form-control {
-            padding: var(--space-8) var(--space-12);
-            font-size: var(--font-size-base);
-            border: 1px solid var(--color-border);
-            border-radius: var(--radius-base);
-            background: var(--color-surface);
-            color: var(--color-text);
-            font-family: var(--font-family-base);
-            transition: all var(--duration-fast);
-        }
-
-        .modal-form-control:focus {
-            outline: none;
-            border-color: var(--color-primary);
-            box-shadow: 0 0 0 3px var(--color-focus-ring);
-        }
-
-        select.modal-form-control {
-            appearance: none;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23134252' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-            background-position: right var(--space-12) center;
-            background-size: 16px;
-            padding-right: var(--space-32);
-        }
-
-        .admin-section {
-            background: var(--color-secondary);
-            padding: var(--space-20);
-            border-radius: var(--radius-lg);
-            margin-bottom: var(--space-20);
-        }
-
-        .settings-grid {
-            display: grid;
-            gap: var(--space-16);
         }
 
         .settings-item {
@@ -555,16 +420,7 @@
             justify-content: space-between;
             align-items: center;
             border: 1px solid var(--color-card-border);
-        }
-
-        .settings-item-title {
-            font-weight: var(--font-weight-medium);
-        }
-
-        .settings-item-desc {
-            font-size: var(--font-size-sm);
-            color: var(--color-text-secondary);
-            margin-top: var(--space-4);
+            margin-bottom: var(--space-8);
         }
 
         .badge {
@@ -574,11 +430,6 @@
             border-radius: var(--radius-full);
             font-size: var(--font-size-xs);
             font-weight: var(--font-weight-medium);
-        }
-
-        .badge-admin {
-            background: var(--color-primary);
-            color: var(--color-btn-primary-text);
         }
 
         .bands-grid {
@@ -594,23 +445,13 @@
             border-radius: var(--radius-md);
             padding: var(--space-12);
             text-align: center;
-            transition: all var(--duration-normal);
-            position: relative;
             min-height: 100px;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            align-items: center;
-        }
-
-        .band-block:hover {
-            box-shadow: var(--shadow-md);
-            transform: translateY(-2px);
-            border-color: var(--color-primary-hover);
         }
 
         .band-input {
-            padding: var(--space-8) var(--space-12);
             font-size: var(--font-size-2xl);
             font-weight: var(--font-weight-bold);
             color: var(--color-primary);
@@ -619,19 +460,6 @@
             background: transparent;
             text-align: center;
             width: 100%;
-            font-family: var(--font-family-base);
-            transition: all var(--duration-fast);
-        }
-
-        .band-input:focus {
-            outline: none;
-            border-bottom-color: var(--color-primary-hover);
-        }
-
-        .band-block-label {
-            font-size: var(--font-size-xs);
-            color: var(--color-text-secondary);
-            margin: var(--space-8) 0 0 0;
         }
 
         .toast {
@@ -645,34 +473,11 @@
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
             z-index: 2000;
             animation: slideIn 0.3s ease-out;
-            max-width: 400px;
-            font-weight: var(--font-weight-semibold);
         }
 
         @keyframes slideIn {
-            from {
-                transform: translateX(400px);
-                opacity: 0;
-            }
-            to {
-                transform: translateX(0);
-                opacity: 1;
-            }
-        }
-
-        @keyframes slideOut {
-            from {
-                transform: translateX(0);
-                opacity: 1;
-            }
-            to {
-                transform: translateX(400px);
-                opacity: 0;
-            }
-        }
-
-        .toast.hide {
-            animation: slideOut 0.3s ease-out;
+            from { transform: translateX(400px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
         }
 
         .filter-section {
@@ -683,107 +488,21 @@
             border: 1px solid var(--color-card-border);
         }
 
-        .filter-title {
-            font-size: var(--font-size-lg);
-            font-weight: var(--font-weight-semibold);
-            margin: 0 0 var(--space-16) 0;
-            color: var(--color-primary);
-        }
-
         .filter-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: var(--space-12);
-            margin-bottom: var(--space-16);
-        }
-
-        .filter-group {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .filter-label {
-            font-size: var(--font-size-sm);
-            font-weight: var(--font-weight-medium);
-            margin-bottom: var(--space-6);
-            color: var(--color-text);
-        }
-
-        .filter-control {
-            padding: var(--space-8) var(--space-12);
-            font-size: var(--font-size-sm);
-            border: 1px solid var(--color-border);
-            border-radius: var(--radius-base);
-            background: var(--color-surface);
-            color: var(--color-text);
-            font-family: var(--font-family-base);
-            transition: all var(--duration-fast);
-        }
-
-        .filter-control:focus {
-            outline: none;
-            border-color: var(--color-primary);
-            box-shadow: 0 0 0 3px var(--color-focus-ring);
-        }
-
-        .filter-buttons {
-            display: flex;
-            gap: var(--space-12);
-        }
-
-        .results-info {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: var(--space-16);
-            background: var(--color-secondary);
-            border-radius: var(--radius-base);
-            margin-bottom: var(--space-16);
-        }
-
-        .results-count {
-            font-weight: var(--font-weight-semibold);
-            color: var(--color-text);
-        }
-
-        .results-summary {
-            font-size: var(--font-size-sm);
-            color: var(--color-text-secondary);
         }
 
         @media (max-width: 768px) {
-            .form-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .user-selection {
-                grid-template-columns: 1fr;
-            }
-            
-            .action-btns {
-                flex-direction: column;
-            }
-
-            .bands-grid {
-                grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-            }
-
-            .filter-buttons {
-                flex-direction: column;
-            }
-
-            .results-info {
-                flex-direction: column;
-                gap: var(--space-12);
-                text-align: center;
-            }
+            .form-grid, .user-selection { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
     <div id="app">
         <div id="userSelectionScreen" class="container" style="padding-top: var(--space-32);">
-            <h1 style="text-align: center; font-size: var(--font-size-3xl); margin-bottom: var(--space-32);">Select User Profile</h1>
+            <h1 style="text-align: center; font-size: var(--font-size-3xl); margin-bottom: var(--space-32);">Select Category</h1>
             <div class="user-selection" id="userSelectionGrid"></div>
         </div>
 
@@ -808,60 +527,41 @@
                 <div id="entryPage" class="page active">
                     <div class="form-section">
                         <h2 class="form-title">Record New Entry</h2>
-                        
                         <div class="form-group" style="margin-bottom: var(--space-20);">
                             <label class="form-label required">Current Band No.</label>
                             <input type="number" id="currentBandNo" class="form-control" placeholder="e.g., 101">
                         </div>
-
                         <form id="entryForm">
                             <input type="hidden" id="pendingBandNumbers" value="[]">
-                            
                             <div class="form-grid">
                                 <div class="form-group">
                                     <label class="form-label required">Name</label>
-                                    <input type="text" id="name" class="form-control" placeholder="Enter name" required>
+                                    <input type="text" id="name" class="form-control" required>
                                 </div>
-
                                 <div class="form-group">
                                     <label class="form-label required">Zone</label>
                                     <select id="zone" class="form-control" required onchange="updateCommunities()">
-                                        <option value="">Select a zone</option>
-                                        <option value="1">Zone 1</option>
-                                        <option value="2">Zone 2</option>
-                                        <option value="3A">Zone 3 A</option>
-                                        <option value="3B">Zone 3 B</option>
-                                        <option value="4A">Zone 4 A</option>
-                                        <option value="4B">Zone 4 B</option>
+                                        <option value="">Select zone</option>
+                                        <option value="1">Zone 1</option><option value="2">Zone 2</option>
+                                        <option value="3A">Zone 3A</option><option value="3B">Zone 3B</option>
+                                        <option value="4A">Zone 4A</option><option value="4B">Zone 4B</option>
                                         <option value="Other">Other</option>
                                     </select>
                                 </div>
-
                                 <div class="form-group">
                                     <label class="form-label required">Community</label>
-                                    <select id="community" class="form-control" required>
-                                        <option value="">Select community</option>
-                                    </select>
+                                    <select id="community" class="form-control" required><option value="">Select community</option></select>
                                 </div>
-
                                 <div class="form-group">
                                     <label class="form-label required">Number of Bands</label>
-                                    <input type="number" id="numBands" class="form-control" placeholder="e.g., 4" min="1" required onchange="calculateCost()">
+                                    <input type="number" id="numBands" class="form-control" min="1" required onchange="calculateCost()">
                                 </div>
                             </div>
-
-                            <div>
-                                <p class="bands-display-title" style="margin-bottom: var(--space-12); font-weight: var(--font-weight-semibold);">Bands to be allocated (click to edit)</p>
-                                <div class="bands-grid" id="bandsGrid"></div>
-                                <p id="bandRangeText" style="font-size: var(--font-size-sm); color: var(--color-text-secondary); margin: var(--space-12) 0 0 0; text-align: center;"></p>
-                            </div>
-
+                            <div class="bands-grid" id="bandsGrid"></div>
                             <div class="payment-section" style="background: var(--color-secondary); padding: var(--space-16); border-radius: var(--radius-base); margin: var(--space-20) 0;">
-                                <p class="payment-title" style="font-size: var(--font-size-base); font-weight: var(--font-weight-semibold); margin: 0 0 var(--space-12) 0; display: flex; align-items: center; gap: var(--space-8);">💰 Payment Details</p>
-                                <p class="payment-amount" style="font-size: var(--font-size-3xl); font-weight: var(--font-weight-bold); color: var(--color-primary); margin: 0;">₹<span id="totalAmount">0</span></p>
-                                <p class="payment-breakdown" id="paymentBreakdown" style="font-size: var(--font-size-sm); color: var(--color-text-secondary); margin-top: var(--space-8);">0 bands × ₹50/band = ₹0</p>
+                                <p style="font-size: var(--font-size-3xl); font-weight: var(--font-weight-bold); color: var(--color-primary); margin: 0;">₹<span id="totalAmount">0</span></p>
+                                <p id="paymentBreakdown" style="font-size: var(--font-size-sm); color: var(--color-text-secondary); margin-top: var(--space-8);">0 bands × ₹50/band = ₹0</p>
                             </div>
-
                             <div class="btn-group">
                                 <button type="submit" class="btn btn-primary">Submit Entry</button>
                                 <button type="reset" class="btn btn-secondary" id="clearFormBtn">Clear Form</button>
@@ -874,157 +574,54 @@
                     <div class="summary-cards">
                         <div class="summary-card">
                             <p class="summary-card-value" id="totalEntriesDisplay">0</p>
-                            <p class="summary-card-label">Total Entries</p>
-                        </div>
-                        <div class="summary-card">
-                            <p class="summary-card-value" id="totalBandsSoldDisplay">0</p>
-                            <p class="summary-card-label">Total Bands Sold</p>
+                            <p>Total Entries</p>
                         </div>
                         <div class="summary-card">
                             <p class="summary-card-value">₹<span id="totalRevenueDisplay">0</span></p>
-                            <p class="summary-card-label">Total Revenue</p>
+                            <p>Total Revenue</p>
                         </div>
                     </div>
-
                     <div class="filter-section">
-                        <h3 class="filter-title">🔍 Filter & Search</h3>
                         <div class="filter-grid">
-                            <div class="filter-group">
-                                <label class="filter-label">Search by Name</label>
-                                <input type="text" id="searchName" class="filter-control" placeholder="Enter name..." onkeyup="applyFilters()">
+                            <div class="form-group">
+                                <label class="form-label">Search Name</label>
+                                <input type="text" id="searchName" class="form-control" onkeyup="applyFilters()">
                             </div>
-
-                            <div class="filter-group">
-                                <label class="filter-label">Filter by Date</label>
-                                <input type="date" id="filterDate" class="filter-control" onchange="applyFilters()">
+                            <div class="form-group">
+                                <label class="form-label">Filter Date</label>
+                                <input type="date" id="filterDate" class="form-control" onchange="applyFilters()">
                             </div>
-
-                            <div class="filter-group">
-                                <label class="filter-label">Start Time</label>
-                                <input type="time" id="filterTimeStart" class="filter-control" onchange="applyFilters()">
-                            </div>
-
-                            <div class="filter-group">
-                                <label class="filter-label">End Time</label>
-                                <input type="time" id="filterTimeEnd" class="filter-control" onchange="applyFilters()">
-                            </div>
-
-                            <div class="filter-group">
-                                <label class="filter-label">Sort By</label>
-                                <select id="sortBy" class="filter-control" onchange="applyFilters()">
-                                    <option value="band-asc">Band # (Low to High)</option>
-                                    <option value="band-desc">Band # (High to Low)</option>
-                                    <option value="date-newest">Date (Newest First)</option>
-                                    <option value="date-oldest">Date (Oldest First)</option>
-                                    <option value="name-asc">Name (A to Z)</option>
-                                    <option value="name-desc">Name (Z to A)</option>
-                                    <option value="amount-high">Amount (High to Low)</option>
-                                    <option value="amount-low">Amount (Low to High)</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="filter-buttons">
-                            <button class="btn btn-primary" onclick="applyFilters()">🔄 Apply Filters</button>
-                            <button class="btn btn-secondary" onclick="resetFilters()">✕ Clear Filters</button>
                         </div>
                     </div>
-
-                    <div class="results-info">
-                        <div>
-                            <div class="results-count">Showing <span id="filteredCount">0</span> of <span id="totalCount">0</span> entries</div>
-                            <div class="results-summary" id="filterSummary"></div>
-                        </div>
-                    </div>
-
                     <div style="margin-bottom: var(--space-20);">
-                        <button class="btn btn-primary" id="downloadXLSXBtn" onclick="downloadData(isAdmin ? 'all' : 'user')">📥 Download My Data (XLSX)</button>
-                        <button class="btn btn-secondary" id="downloadCSVBtn" onclick="downloadData(isAdmin ? 'all' : 'user', 'csv')" style="margin-left: var(--space-12);">📥 Download CSV</button>
+                        <button class="btn btn-primary" onclick="downloadUserData('xlsx')">📥 Download Data (XLSX)</button>
+                        <button class="btn btn-secondary" onclick="downloadUserData('csv')" style="margin-left: var(--space-12);">📥 Download CSV</button>
                     </div>
-
                     <div class="table-container">
-                        <table id="dataTable">
+                        <table>
                             <thead>
                                 <tr>
-                                    <th>Band No.</th>
+                                    <th>Band #</th>
                                     <th>Name</th>
                                     <th>Zone</th>
                                     <th>Community</th>
-                                    <th>Amount (₹)</th>
+                                    <th>Amount</th>
                                     <th>Date</th>
-                                    <th>Time</th>
-                                    <th id="userHeader" style="display: none;">User</th>
+                                    <th id="userHeader" style="display:none">User</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
-                            <tbody id="dataTableBody">
-                                <tr class="empty-state">
-                                    <td colspan="9">
-                                        <div class="empty-state-icon">📋</div>
-                                        <p>No data yet. Add entries from the Entry Form tab to see them here.</p>
-                                    </td>
-                                </tr>
-                            </tbody>
+                            <tbody id="dataTableBody"></tbody>
                         </table>
                     </div>
                 </div>
 
                 <div id="settingsPage" class="page">
                     <div class="form-section">
-                        <h2 class="form-title">Admin Settings</h2>
-                        
+                        <h2 class="form-title">Admin Management</h2>
                         <div class="admin-section">
-                            <h3 style="margin-top: 0;">User Management</h3>
-                            <div class="settings-grid">
-                                <div class="settings-item">
-                                    <div>
-                                        <div class="settings-item-title">Create New User</div>
-                                        <div class="settings-item-desc">Add a new user profile to the system</div>
-                                    </div>
-                                    <button class="btn btn-primary" onclick="showCreateUserModal()">+ Add User</button>
-                                </div>
-
-                                <div class="settings-item">
-                                    <div>
-                                        <div class="settings-item-title">Manage Users</div>
-                                        <div class="settings-item-desc">View and delete existing users</div>
-                                    </div>
-                                    <button class="btn btn-secondary" onclick="showManageUsersModal()">Manage</button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="admin-section" style="margin-top: var(--space-20);">
-                            <h3 style="margin-top: 0;">Export Data</h3>
-                            <div class="settings-grid">
-                                <div class="settings-item">
-                                    <div>
-                                        <div class="settings-item-title">Download All Data</div>
-                                        <div class="settings-item-desc">Export all users' data with user names</div>
-                                    </div>
-                                    <button class="btn btn-primary" onclick="downloadAllData('xlsx')">📥 Export XLSX</button>
-                                </div>
-
-                                <div class="settings-item">
-                                    <div>
-                                        <div class="settings-item-title">Download CSV</div>
-                                        <div class="settings-item-desc">Export all data as CSV format</div>
-                                    </div>
-                                    <button class="btn btn-primary" onclick="downloadAllData('csv')">📥 Export CSV</button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="admin-section" style="margin-top: var(--space-20);">
-                            <h3 style="margin-top: 0;">Database</h3>
-                            <div class="settings-grid">
-                                <div class="settings-item">
-                                    <div>
-                                        <div class="settings-item-title">Clear All Data</div>
-                                        <div class="settings-item-desc">Permanently delete all entries and users (cannot be undone)</div>
-                                    </div>
-                                    <button class="btn btn-danger" onclick="clearAllData()">⚠️ Clear All</button>
-                                </div>
-                            </div>
+                            <button class="btn btn-primary" onclick="showCreateUserModal()">+ Create New User</button>
+                            <button class="btn btn-secondary" onclick="showManageUsersModal()" style="margin-left: 10px;">Manage Existing Users</button>
                         </div>
                     </div>
                 </div>
@@ -1034,25 +631,15 @@
 
     <div id="createUserModal" class="modal">
         <div class="modal-content">
-            <h2 class="modal-title">Create New User</h2>
-            <div class="modal-form-grid">
-                <div class="modal-form-group">
-                    <label class="modal-form-label">Username</label>
-                    <input type="text" id="newUsername" class="modal-form-control" placeholder="Enter username">
-                </div>
-                <div class="modal-form-group">
-                    <label class="modal-form-label">Password</label>
-                    <input type="password" id="newPassword" class="modal-form-control" placeholder="Enter password">
-                </div>
-                <div class="modal-form-group">
-                    <label class="modal-form-label">Assign Category/Role</label>
-                    <select id="newUserRole" class="modal-form-control">
-                        <option value="Zonal Coordinator">Zonal Coordinator</option>
-                        <option value="Desk">Desk</option>
-                        <option value="Church Office">Church Office</option>
-                    </select>
-                </div>
-            </div>
+            <h2>Create New Profile</h2>
+            <input type="text" id="newUsername" class="form-control" placeholder="Username" style="margin-bottom:12px">
+            <input type="password" id="newPassword" class="form-control" placeholder="Password" style="margin-bottom:12px">
+            <label class="form-label">Assign Category</label>
+            <select id="newUserRole" class="form-control" style="margin-bottom:20px">
+                <option value="Zonal Coordinator">Zonal Coordinator</option>
+                <option value="Desk">Desk</option>
+                <option value="Church Office">Church Office</option>
+            </select>
             <div class="modal-buttons">
                 <button class="btn btn-primary" onclick="createUser()">Create</button>
                 <button class="btn btn-secondary" onclick="closeModal('createUserModal')">Cancel</button>
@@ -1062,66 +649,30 @@
 
     <div id="editUserModal" class="modal">
         <div class="modal-content">
-            <h2 class="modal-title">Edit User Details</h2>
-            <div class="modal-form-grid">
-                <input type="hidden" id="editUserId">
-                <div class="modal-form-group">
-                    <label class="modal-form-label">Username</label>
-                    <input type="text" id="editUsernameField" class="modal-form-control" placeholder="Update username">
-                </div>
-                <div class="modal-form-group">
-                    <label class="modal-form-label">Password</label>
-                    <input type="text" id="editPasswordField" class="modal-form-control" placeholder="Update password">
-                </div>
-                <div class="modal-form-group">
-                    <label class="modal-form-label">Category / Role</label>
-                    <select id="editUserRole" class="modal-form-control">
-                        <option value="Zonal Coordinator">Zonal Coordinator</option>
-                        <option value="Desk">Desk</option>
-                        <option value="Church Office">Church Office</option>
-                    </select>
-                </div>
-            </div>
+            <h2>Edit User Profile</h2>
+            <input type="hidden" id="editUserId">
+            <label class="form-label">Username</label>
+            <input type="text" id="editUsernameField" class="form-control" style="margin-bottom:12px">
+            <label class="form-label">Password</label>
+            <input type="text" id="editPasswordField" class="form-control" style="margin-bottom:12px">
+            <label class="form-label">Category</label>
+            <select id="editUserRole" class="form-control" style="margin-bottom:20px">
+                <option value="Zonal Coordinator">Zonal Coordinator</option>
+                <option value="Desk">Desk</option>
+                <option value="Church Office">Church Office</option>
+            </select>
             <div class="modal-buttons">
-                <button class="btn btn-primary" onclick="saveEditedUser()">Update User</button>
+                <button class="btn btn-primary" onclick="saveEditedUser()">Save Changes</button>
                 <button class="btn btn-secondary" onclick="closeModal('editUserModal')">Cancel</button>
-            </div>
-        </div>
-    </div>
-
-    <div id="manageUsersModal" class="modal">
-        <div class="modal-content">
-            <h2 class="modal-title">Manage Users</h2>
-            <div id="usersList" style="max-height: 300px; overflow-y: auto; margin-bottom: var(--space-16);"></div>
-            <div class="modal-buttons">
-                <button class="btn btn-secondary" onclick="closeModal('manageUsersModal')">Close</button>
-            </div>
-        </div>
-    </div>
-
-    <div id="adminPasswordModal" class="modal">
-        <div class="modal-content">
-            <h2 class="modal-title">Admin Access Required</h2>
-            <p style="margin-bottom: var(--space-16); color: var(--color-text-secondary);">Enter admin password to continue.</p>
-            <div class="modal-form-group">
-                <label class="modal-form-label">Password</label>
-                <input type="password" id="adminPassword" class="modal-form-control" placeholder="Enter password" autocomplete="off">
-            </div>
-            <div class="modal-buttons">
-                <button class="btn btn-primary" onclick="verifyAdminPassword()">Verify</button>
-                <button class="btn btn-secondary" onclick="closeAdminModal()">Cancel</button>
             </div>
         </div>
     </div>
 
     <div id="userPasswordModal" class="modal">
         <div class="modal-content">
-            <h2 class="modal-title">Enter Password</h2>
-            <p style="margin-bottom: var(--space-16); color: var(--color-text-secondary);" id="userPasswordPrompt"></p>
-            <div class="modal-form-group">
-                <label class="modal-form-label">Password</label>
-                <input type="password" id="userPassword" class="modal-form-control" placeholder="Enter password" autocomplete="off">
-            </div>
+            <h2>Login</h2>
+            <p id="userPasswordPrompt" style="margin-bottom: 12px; color: var(--color-slate-500)"></p>
+            <input type="password" id="userPassword" class="form-control" placeholder="Password" style="margin-bottom:20px">
             <div class="modal-buttons">
                 <button class="btn btn-primary" onclick="verifyUserPassword()">Login</button>
                 <button class="btn btn-secondary" onclick="closeUserPasswordModal()">Cancel</button>
@@ -1129,58 +680,27 @@
         </div>
     </div>
 
-    <div id="editEntryModal" class="modal">
-        <div class="edit-modal-content">
-            <h2 class="modal-title">Edit Entry</h2>
-            
-            <div class="modal-form-grid">
-                <div class="modal-form-group">
-                    <label class="modal-form-label">Band No.</label>
-                    <input type="number" id="editBandNo" class="modal-form-control" placeholder="e.g., 101">
-                </div>
-
-                <div class="modal-form-group">
-                    <label class="modal-form-label">Name</label>
-                    <input type="text" id="editName" class="modal-form-control" placeholder="Enter name">
-                </div>
-
-                <div class="modal-form-group">
-                    <label class="modal-form-label">Zone</label>
-                    <select id="editZone" class="modal-form-control" onchange="updateEditCommunities()">
-                        <option value="">Select a zone</option>
-                        <option value="1">Zone 1</option>
-                        <option value="2">Zone 2</option>
-                        <option value="3A">Zone 3 A</option>
-                        <option value="3B">Zone 3 B</option>
-                        <option value="4A">Zone 4 A</option>
-                        <option value="4B">Zone 4 B</option>
-                        <option value="Other">Other</option>
-                    </select>
-                </div>
-
-                <div class="modal-form-group">
-                    <label class="modal-form-label">Community</label>
-                    <select id="editCommunity" class="modal-form-control">
-                        <option value="">Select community</option>
-                    </select>
-                </div>
-
-                <div class="modal-form-group">
-                    <label class="modal-form-label">Amount (₹)</label>
-                    <input type="number" id="editAmount" class="modal-form-control" placeholder="e.g., 50">
-                </div>
-            </div>
-
+    <div id="adminPasswordModal" class="modal">
+        <div class="modal-content">
+            <h2>Admin Login</h2>
+            <input type="password" id="adminPassword" class="form-control" placeholder="Admin Password" style="margin-bottom:20px">
             <div class="modal-buttons">
-                <button class="btn btn-primary" onclick="saveEditedEntry()">Save Changes</button>
-                <button class="btn btn-secondary" onclick="closeModal('editEntryModal')">Cancel</button>
+                <button class="btn btn-primary" onclick="verifyAdminPassword()">Verify</button>
+                <button class="btn btn-secondary" onclick="closeAdminModal()">Cancel</button>
             </div>
+        </div>
+    </div>
+
+    <div id="manageUsersModal" class="modal">
+        <div class="modal-content" style="max-width: 550px">
+            <h2>Manage Users</h2>
+            <div id="usersList" style="max-height: 350px; overflow-y: auto; margin-bottom: 20px"></div>
+            <button class="btn btn-secondary" onclick="closeModal('manageUsersModal')">Close</button>
         </div>
     </div>
 
     <script>
         const API_BASE = '/api';
-
         const communities = {
             '1': ['Morning Star', 'St. Andrew', 'Holy Trinity', 'St. Ann & St. Michael', 'Divya Jyothi', 'Unknown'],
             '2': ['Our Lady of Velankani', 'St. Anne', 'St. John', 'Holy Cross', 'St. Sebastian', 'Immaculate Conception', 'Unknown'],
@@ -1191,447 +711,170 @@
             'Other': ['Other', 'Unknown']
         };
 
-        const ADMIN_PASSWORD = 'admin123';
-        const ADMIN_USERNAME = 'admin';
+        let currentUser = null, isAdmin = false, selectedCategory = null, users = {}, allEntries = [], filteredEntries = [];
 
-        let currentUser = null;
-        let isAdmin = false;
-        let selectedCategory = null; // New state for role/category selection
-        let users = {};
-        let allEntries = [];
-        let filteredEntries = [];
-        let currentEditingEntryId = null;
-        let pendingUserLogin = { username: null, password: null };
-
-        function showToast(message, duration = 3000) {
-            const toast = document.createElement('div');
-            toast.className = 'toast';
-            toast.textContent = message;
-            document.body.appendChild(toast);
-            setTimeout(() => {
-                toast.classList.add('hide');
-                setTimeout(() => toast.remove(), 300);
-            }, duration);
-        }
-
-        function formatDateIST(date) {
-            const d = new Date(date);
-            return {
-                date: d.toLocaleDateString('en-IN', { day: '2-digit', month: '2-digit', year: 'numeric' }),
-                time: d.toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false })
-            };
-        }
-
-        function saveLastBandNumber(bandNo) {
-            localStorage.setItem(`lastBandNo_${currentUser}`, bandNo.toString());
-        }
-
-        function loadLastBandNumber() {
-            if (!currentUser) return '';
-            const saved = localStorage.getItem(`lastBandNo_${currentUser}`);
-            return saved || '';
+        async function initApp() {
+            await loadUsers();
+            if (!currentUser) {
+                document.getElementById('userSelectionScreen').style.display = 'block';
+                document.getElementById('mainApp').style.display = 'none';
+                displayCategorySelection();
+            } else {
+                document.getElementById('userSelectionScreen').style.display = 'none';
+                document.getElementById('mainApp').style.display = 'block';
+                updateUI();
+            }
         }
 
         async function loadUsers() {
             try {
                 const res = await fetch(`${API_BASE}/manage-users`);
-                const result = await res.json();
-                if (!res.ok || !result.success) throw new Error(result.error);
+                const r = await res.json();
                 users = {};
-                result.data.forEach(u => {
-                    users[u.username] = { isAdmin: u.isAdmin, password: u.password, role: u.role || 'Desk', _id: u._id }; // Default legacy to 'Desk'
-                });
-                if (!users['admin']) {
-                    users['admin'] = { isAdmin: true, password: ADMIN_PASSWORD };
-                }
-            } catch (err) {
-                console.error('Error loading users:', err);
-            }
+                r.data.forEach(u => { users[u.username] = u; }); // Legacy role || 'Desk' is handled in backend GET
+            } catch (e) { console.error("User load error", e); }
         }
 
-        async function initApp() {
-            await loadUsers();
-            const userSelectionScreen = document.getElementById('userSelectionScreen');
-            const mainApp = document.getElementById('mainApp');
-            if (!currentUser) {
-                userSelectionScreen.style.display = 'block';
-                mainApp.style.display = 'none';
-                displayCategorySelection(); // First screen: Select Category
-            } else {
-                userSelectionScreen.style.display = 'none';
-                mainApp.style.display = 'block';
-                document.getElementById('currentBandNo').value = loadLastBandNumber();
-                updateUI();
-            }
-        }
-
-        // New function to display the 3 main categories
         function displayCategorySelection() {
-            const grid = document.getElementById('userSelectionGrid');
-            grid.innerHTML = '';
+            const grid = document.getElementById('userSelectionGrid'); grid.innerHTML = '';
             document.querySelector('#userSelectionScreen h1').textContent = 'Select Category';
-            const categories = [
-                { name: 'Zonal Coordinators', icon: '📍', id: 'Zonal Coordinator' },
-                { name: 'Desk', icon: '🖥️', id: 'Desk' },
-                { name: 'Church Office', icon: '⛪', id: 'Church Office' }
-            ];
-            categories.forEach(cat => {
-                const card = document.createElement('div');
-                card.className = 'user-card';
-                card.onclick = () => {
-                    selectedCategory = cat.id;
-                    displayUserSelection();
-                };
-                card.innerHTML = `
-                    <div class="user-card-icon">${cat.icon}</div>
-                    <p class="user-card-name">${cat.name}</p>
-                `;
+            const cats = [{id:'Zonal Coordinator', icon:'📍'}, {id:'Desk', icon:'🖥️'}, {id:'Church Office', icon:'⛪'}];
+            cats.forEach(c => {
+                const card = document.createElement('div'); card.className = 'user-card';
+                card.onclick = () => { selectedCategory = c.id; displayUserSelection(); };
+                card.innerHTML = `<div class="user-card-icon">${c.icon}</div><p>${c.id}</p>`;
                 grid.appendChild(card);
             });
-            // Admin button at bottom
-            const adminDiv = document.createElement('div');
-            adminDiv.style.textAlign = 'center';
-            adminDiv.style.gridColumn = '1 / -1';
-            adminDiv.innerHTML = `<button class="btn btn-secondary" onclick="selectUser('admin')">👨‍💼 Admin Login</button>`;
-            grid.appendChild(adminDiv);
+            const admin = document.createElement('div'); admin.style.gridColumn = '1/-1'; admin.style.textAlign='center';
+            admin.innerHTML = `<button class="btn btn-secondary" onclick="selectUser('admin')">👨‍💼 Admin Login</button>`;
+            grid.appendChild(admin);
         }
 
         function displayUserSelection() {
-            const grid = document.getElementById('userSelectionGrid');
-            grid.innerHTML = '';
-            document.querySelector('#userSelectionScreen h1').textContent = `Select Profile: ${selectedCategory}`;
-            
-            const backBtn = document.createElement('div');
-            backBtn.style.gridColumn = '1 / -1';
-            backBtn.innerHTML = `<button class="btn btn-sm btn-secondary" onclick="selectedCategory=null; displayCategorySelection();">← Back to Categories</button>`;
-            grid.appendChild(backBtn);
-
-            Object.keys(users).forEach(username => {
-                const user = users[username];
-                if (user.role === selectedCategory && !user.isAdmin) { // Filter by selected role
-                    const card = document.createElement('div');
-                    card.className = 'user-card';
-                    card.onclick = () => selectUser(username);
-                    card.innerHTML = `
-                        <div class="user-card-icon">👤</div>
-                        <p class="user-card-name">${username}</p>
-                    `;
+            const grid = document.getElementById('userSelectionGrid'); grid.innerHTML = '';
+            document.querySelector('#userSelectionScreen h1').textContent = `Category: ${selectedCategory}`;
+            const back = document.createElement('div'); back.style.gridColumn = '1/-1';
+            back.innerHTML = `<button class="btn btn-sm btn-secondary" onclick="selectedCategory=null; displayCategorySelection();">← Back to Categories</button>`;
+            grid.appendChild(back);
+            Object.keys(users).forEach(u => {
+                const role = users[u].role || 'Desk'; // Safeguard
+                if (role === selectedCategory && !users[u].isAdmin) {
+                    const card = document.createElement('div'); card.className = 'user-card'; card.onclick = () => selectUser(u);
+                    card.innerHTML = `<div class="user-card-icon">👤</div><p>${u}</p>`;
                     grid.appendChild(card);
                 }
             });
         }
 
-        function selectUser(username) {
-            if (username === ADMIN_USERNAME) {
-                document.getElementById('adminPasswordModal').classList.add('active');
-                document.getElementById('adminPassword').focus();
-            } else {
-                pendingUserLogin.username = username;
-                document.getElementById('userPasswordPrompt').textContent = `Enter password for "${username}"`;
-                document.getElementById('userPassword').value = '';
-                document.getElementById('userPasswordModal').classList.add('active');
-                document.getElementById('userPassword').focus();
+        function selectUser(u) {
+            if (u === 'admin') { document.getElementById('adminPasswordModal').classList.add('active'); }
+            else { 
+                document.getElementById('userPasswordPrompt').textContent = `Logging in as: ${u}`; 
+                document.getElementById('userPasswordModal').classList.add('active'); 
+                document.getElementById('userPassword').dataset.user = u; 
             }
         }
 
-        function verifyAdminPassword() {
-            const password = document.getElementById('adminPassword').value;
-            if (password === ADMIN_PASSWORD) {
-                currentUser = ADMIN_USERNAME;
-                isAdmin = true;
-                document.getElementById('adminPassword').value = '';
-                closeAdminModal();
-                initApp();
-                loadEntries();
-            } else {
-                alert('Incorrect password.');
-            }
+        async function verifyUserPassword() {
+            const u = document.getElementById('userPassword').dataset.user;
+            if (users[u].password === document.getElementById('userPassword').value) {
+                currentUser = u; isAdmin = false; closeUserPasswordModal(); initApp(); loadEntries();
+            } else { alert('Incorrect password'); }
         }
 
-        function verifyUserPassword() {
-            const password = document.getElementById('userPassword').value;
-            const username = pendingUserLogin.username;
-            if (users[username] && users[username].password === password) {
-                currentUser = username;
-                isAdmin = false;
-                document.getElementById('userPassword').value = '';
-                closeUserPasswordModal();
-                initApp();
-                loadEntries();
-            } else {
-                alert('Incorrect password.');
-            }
-        }
-
-        function closeAdminModal() {
-            document.getElementById('adminPasswordModal').classList.remove('active');
-        }
-
-        function closeUserPasswordModal() {
-            document.getElementById('userPasswordModal').classList.remove('active');
-        }
-
-        function switchUser() {
-            currentUser = null;
-            isAdmin = false;
-            selectedCategory = null;
-            initApp();
-        }
-
-        function switchTab(tabName) {
-            document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
-            event.target.classList.add('active');
-            document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
-            document.getElementById(tabName + 'Page').classList.add('active');
-            if (tabName === 'viewData') loadEntries();
-        }
-
-        function updateUI() {
-            document.getElementById('currentUserDisplay').textContent = currentUser;
-            if (isAdmin) {
-                document.getElementById('adminTab').style.display = 'block';
-                document.getElementById('entryForm').style.display = 'none';
-                const eTab = document.querySelector('[onclick="switchTab(\'entry\')"]');
-                if (eTab) eTab.style.display = 'none';
-            } else {
-                document.getElementById('adminTab').style.display = 'none';
-                document.getElementById('entryForm').style.display = 'block';
-                const eTab = document.querySelector('[onclick="switchTab(\'entry\')"]');
-                if (eTab) eTab.style.display = 'inline-block';
-            }
-        }
-
-        function updateCommunities() {
-            const zone = document.getElementById('zone').value;
-            const cSelect = document.getElementById('community');
-            cSelect.innerHTML = '<option value="">Select community</option>';
-            if (zone && communities[zone]) {
-                communities[zone].forEach(c => {
-                    const o = document.createElement('option');
-                    o.value = `Zone ${zone} - ${c}`;
-                    o.textContent = `Zone ${zone} - ${c}`;
-                    cSelect.appendChild(o);
-                });
-            }
-        }
-
-        function updateEditCommunities() {
-            const zone = document.getElementById('editZone').value;
-            const cSelect = document.getElementById('editCommunity');
-            cSelect.innerHTML = '<option value="">Select community</option>';
-            if (zone && communities[zone]) {
-                communities[zone].forEach(c => {
-                    const o = document.createElement('option');
-                    o.value = `Zone ${zone} - ${c}`;
-                    o.textContent = `Zone ${zone} - ${c}`;
-                    cSelect.appendChild(o);
-                });
-            }
-        }
-
-        function calculateCost() {
-            const numBands = parseInt(document.getElementById('numBands').value) || 0;
-            const totalCost = numBands * 50;
-            document.getElementById('totalAmount').textContent = totalCost;
-            document.getElementById('paymentBreakdown').textContent = `${numBands} bands × ₹50/band = ₹${totalCost}`;
-            displayBandBlocks(numBands);
-            document.getElementById('bandRangeText').textContent = numBands ? `${numBands} band${numBands > 1 ? 's' : ''} allocated` : '';
-        }
-
-        function displayBandBlocks(count) {
-            const currentBandNo = parseInt(document.getElementById('currentBandNo').value) || 0;
-            const bandsGrid = document.getElementById('bandsGrid');
-            bandsGrid.innerHTML = '';
-            for (let i = 0; i < count; i++) {
-                const bandNum = currentBandNo + i;
-                const block = document.createElement('div');
-                block.className = 'band-block';
-                block.innerHTML = `
-                    <input type="number" class="band-input" value="${bandNum}" data-index="${i}" onchange="updateBandNumber(this)">
-                    <p class="band-block-label">Band #</p>
-                `;
-                bandsGrid.appendChild(block);
-            }
-            updatePendingBands();
-        }
-
-        function updateBandNumber(input) {
-            const newValue = parseInt(input.value);
-            const allInputs = document.querySelectorAll('.band-input');
-            const values = Array.from(allInputs).map(i => parseInt(i.value));
-            if (values.filter(v => v === newValue).length > 1) {
-                alert('Duplicate band number in this group.');
-                return;
-            }
-            updatePendingBands();
-        }
-
-        function updatePendingBands() {
-            const bandInputs = document.querySelectorAll('.band-input');
-            const bandNumbers = Array.from(bandInputs).map(b => parseInt(b.value));
-            document.getElementById('pendingBandNumbers').value = JSON.stringify(bandNumbers);
-        }
-
-        async function addEntry(event) {
-            event.preventDefault();
-            const submitBtn = event.target.querySelector('button[type="submit"]');
-            submitBtn.disabled = true;
-            const name = document.getElementById('name').value.trim();
-            const zone = document.getElementById('zone').value;
-            const community = document.getElementById('community').value;
-            const numBands = parseInt(document.getElementById('numBands').value);
-            let bandNumbers = JSON.parse(document.getElementById('pendingBandNumbers').value || '[]');
-            try {
-                const res = await fetch(`${API_BASE}/save-entry`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ userId: currentUser, bands: bandNumbers, name, zone, community, amountPerBand: 50 })
-                });
-                const result = await res.json();
-                if (res.status === 409) {
-                    showToast(`Duplicate band found: ${result.duplicateBands.map(d => d.bandNo).join(', ')}`, 5000);
-                    return;
-                }
-                if (!res.ok || !result.success) throw new Error(result.error);
-                saveLastBandNumber(Math.max(...bandNumbers) + 1);
-                document.getElementById('currentBandNo').value = Math.max(...bandNumbers) + 1;
-                document.getElementById('entryForm').reset();
-                document.getElementById('bandsGrid').innerHTML = '';
-                showToast(`Added ${bandNumbers.length} band(s)`);
-            } catch (err) {
-                showToast('Error: ' + err.message);
-            } finally {
-                submitBtn.disabled = false;
-            }
+        async function verifyAdminPassword() {
+            if (document.getElementById('adminPassword').value === 'admin123') {
+                currentUser = 'admin'; isAdmin = true; closeAdminModal(); initApp(); loadEntries();
+            } else { alert('Incorrect password'); }
         }
 
         async function loadEntries() {
-            const uParam = isAdmin ? 'all' : currentUser;
+            const u = isAdmin ? 'all' : currentUser;
             try {
-                const res = await fetch(`${API_BASE}/get-entries?userId=${encodeURIComponent(uParam)}`);
-                const result = await res.json();
-                allEntries = result.data || [];
+                const res = await fetch(`${API_BASE}/get-entries?userId=${u}`); 
+                const r = await res.json();
+                allEntries = r.data || []; 
                 applyFilters();
-            } catch (err) {
-                showToast('Error loading entries.');
-            }
+            } catch (e) { console.error("Load entries error", e); }
         }
 
         function applyFilters() {
-            const sName = document.getElementById('searchName').value.toLowerCase();
-            const fDate = document.getElementById('filterDate').value;
-            const fStart = document.getElementById('filterTimeStart').value;
-            const fEnd = document.getElementById('filterTimeEnd').value;
-            const sBy = document.getElementById('sortBy').value;
-
+            const s = document.getElementById('searchName').value.toLowerCase();
+            const d = document.getElementById('filterDate').value;
             filteredEntries = allEntries.filter(e => {
-                if (sName && !e.name.toLowerCase().includes(sName)) return false;
-                if (fDate && new Date(e.createdAt).toLocaleDateString('en-CA') !== fDate) return false;
-                if (fStart || fEnd) {
-                    const eTime = new Date(e.createdAt).toLocaleTimeString('en-GB', { hour12: false }).slice(0, 5);
-                    if (fStart && eTime < fStart) return false;
-                    if (fEnd && eTime > fEnd) return false;
-                }
+                if (s && !e.name.toLowerCase().includes(s)) return false;
+                if (d && new Date(e.createdAt).toLocaleDateString('en-CA') !== d) return false;
                 return true;
             });
-
-            if (sBy === 'band-asc') filteredEntries.sort((a,b) => a.bandNo - b.bandNo);
-            if (sBy === 'band-desc') filteredEntries.sort((a,b) => b.bandNo - a.bandNo);
-            if (sBy === 'date-newest') filteredEntries.sort((a,b) => new Date(b.createdAt) - new Date(a.createdAt));
-            if (sBy === 'name-asc') filteredEntries.sort((a,b) => a.name.localeCompare(b.name));
-
             updateDataTable(filteredEntries);
         }
 
-        function updateDataTable(entries) {
-            const tbody = document.getElementById('dataTableBody');
+        function updateDataTable(data) {
+            const tb = document.getElementById('dataTableBody');
             document.getElementById('userHeader').style.display = isAdmin ? 'table-cell' : 'none';
-            if (entries.length === 0) {
-                tbody.innerHTML = '<tr><td colspan="9" style="text-align:center">No data found.</td></tr>';
-                return;
+            if (data.length === 0) {
+                tb.innerHTML = '<tr><td colspan="9" style="text-align:center">No records found.</td></tr>';
+            } else {
+                tb.innerHTML = data.map(e => `
+                    <tr>
+                        <td>#${e.bandNo}</td><td>${e.name}</td><td>${e.zone}</td><td>${e.community}</td><td>₹${e.amount}</td>
+                        <td>${new Date(e.createdAt).toLocaleDateString('en-IN')}</td>
+                        ${isAdmin ? `<td>${e.userId}</td>` : ''}
+                        <td><button class="btn btn-sm btn-danger" onclick="deleteEntry('${e._id}')">Delete</button></td>
+                    </tr>`).join('');
             }
-            tbody.innerHTML = entries.map(e => {
-                const f = formatDateIST(e.createdAt);
-                return `<tr>
-                    <td>#${e.bandNo}</td><td>${e.name}</td><td>${e.zone}</td><td>${e.community}</td><td>₹${e.amount}</td>
-                    <td>${f.date}</td><td>${f.time}</td>${isAdmin ? `<td>${e.userId}</td>` : ''}
-                    <td><div class="action-btns">
-                        <button class="btn btn-sm btn-secondary" onclick="editEntry('${e._id}','${e.bandNo}','${e.name}','${e.zone}','${e.community}','${e.amount}')">Edit</button>
-                        <button class="btn btn-sm btn-danger" onclick="deleteEntryMongo('${e._id}')">Delete</button>
-                    </div></td>
-                </tr>`;
-            }).join('');
-            updateSummary(allEntries);
+            updateSummary(data); // Ensures counts are accurate for the current profile view
         }
 
-        function updateSummary(entries) {
-            document.getElementById('totalEntriesDisplay').textContent = entries.length;
-            document.getElementById('totalBandsSoldDisplay').textContent = entries.length;
-            document.getElementById('totalRevenueDisplay').textContent = entries.reduce((s, e) => s + (e.amount || 0), 0);
+        function updateSummary(data) {
+            document.getElementById('totalEntriesDisplay').textContent = data.length;
+            document.getElementById('totalRevenueDisplay').textContent = data.reduce((a, b) => a + (b.amount || 0), 0);
         }
 
-        function editEntry(id, bandNo, name, zone, community, amount) {
-            currentEditingEntryId = id;
-            document.getElementById('editBandNo').value = bandNo;
-            document.getElementById('editName').value = name;
-            document.getElementById('editZone').value = zone.split(' - ')[0];
-            document.getElementById('editAmount').value = amount;
-            updateEditCommunities();
-            setTimeout(() => { document.getElementById('editCommunity').value = community; }, 100);
-            document.getElementById('editEntryModal').classList.add('active');
+        // --- EXPORT FIXES ---
+        async function downloadUserData(format) {
+            const entriesToExport = filteredEntries.length > 0 ? filteredEntries : allEntries;
+            if (entriesToExport.length === 0) { alert('No data available to export'); return; }
+            const filename = `${currentUser}_bands_data.${format}`;
+            downloadCSV(entriesToExport, filename, isAdmin);
         }
 
-        async function saveEditedEntry() {
-            const body = { 
-                id: currentEditingEntryId, 
-                newBandNo: parseInt(document.getElementById('editBandNo').value),
-                name: document.getElementById('editName').value.trim(),
-                zone: document.getElementById('editZone').value,
-                community: document.getElementById('editCommunity').value,
-                amount: parseInt(document.getElementById('editAmount').value)
-            };
-            try {
-                const res = await fetch(`${API_BASE}/update-entry`, { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
-                if (res.status === 409) return alert('Band number already exists.');
-                closeModal('editEntryModal');
-                loadEntries();
-            } catch (err) { showToast('Update failed.'); }
+        function downloadCSV(data, filename, includeUser = false) {
+            let csv = 'Band No.,Name,Zone,Community,Amount,Date' + (includeUser ? ',User\n' : '\n');
+            data.forEach(e => {
+                const date = new Date(e.createdAt).toLocaleDateString('en-IN');
+                const escapedName = e.name.replace(/"/g, '""');
+                const escapedComm = e.community.replace(/"/g, '""');
+                csv += `${e.bandNo},"${escapedName}",${e.zone},"${escapedComm}",${e.amount},${date}` + (includeUser ? `,${e.userId}\n` : '\n');
+            });
+            const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.setAttribute('download', filename);
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
         }
 
-        async function deleteEntryMongo(id) {
-            if (!confirm('Delete this entry?')) return;
-            try {
-                await fetch(`${API_BASE}/delete-entry?id=${encodeURIComponent(id)}`, { method: 'DELETE' });
-                loadEntries();
-            } catch (err) { showToast('Delete failed.'); }
-        }
-
+        // --- USER MGMT FIXES ---
         async function createUser() {
-            const username = document.getElementById('newUsername').value.trim();
-            const password = document.getElementById('newPassword').value.trim();
-            const role = document.getElementById('newUserRole').value; // Get role from select
-            if (!username || !password) return alert('Username and password required.');
-            try {
-                const res = await fetch(`${API_BASE}/manage-users`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ username, password, role }), // Include role in creation
-                });
-                const result = await res.json();
-                if (!res.ok) throw new Error(result.error);
-                closeModal('createUserModal');
-                showToast(`User created as ${role}`);
-                await loadUsers();
-            } catch (err) { showToast('Creation failed: ' + err.message); }
+            const body = {
+                username: document.getElementById('newUsername').value.trim(),
+                password: document.getElementById('newPassword').value.trim(),
+                role: document.getElementById('newUserRole').value
+            };
+            if (!body.username || !body.password) return alert('Username/Password required');
+            const res = await fetch(`${API_BASE}/manage-users`, { method: 'POST', body: JSON.stringify(body) });
+            if (res.ok) { closeModal('createUserModal'); showToast(`Created user: ${body.username}`); await loadUsers(); }
+            else alert('Failed to create user');
         }
 
-        // --- User Edit logic ---
         function openEditUserModal(username) {
-            const user = users[username];
-            document.getElementById('editUserId').value = user._id;
+            const u = users[username];
+            document.getElementById('editUserId').value = u._id;
             document.getElementById('editUsernameField').value = username;
-            document.getElementById('editPasswordField').value = user.password;
-            document.getElementById('editUserRole').value = user.role || 'Desk';
+            document.getElementById('editPasswordField').value = u.password;
+            document.getElementById('editUserRole').value = u.role || 'Desk';
             document.getElementById('editUserModal').classList.add('active');
         }
 
@@ -1642,62 +885,113 @@
                 password: document.getElementById('editPasswordField').value.trim(),
                 role: document.getElementById('editUserRole').value
             };
-            try {
-                const res = await fetch(`${API_BASE}/manage-users`, {
-                    method: 'PUT',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(body)
-                });
-                const result = await res.json();
-                if (result.success) {
-                    showToast('User profile updated.');
-                    closeModal('editUserModal');
-                    await loadUsers();
-                    showManageUsersModal();
-                }
-            } catch (err) { alert('Update failed.'); }
+            const res = await fetch(`${API_BASE}/manage-users`, { method: 'PUT', body: JSON.stringify(body) });
+            if (res.ok) { closeModal('editUserModal'); showToast('User updated'); await loadUsers(); showManageUsersModal(); }
+            else alert('Update failed');
         }
 
         function showManageUsersModal() {
-            const usersList = document.getElementById('usersList');
-            usersList.innerHTML = '';
-            Object.keys(users).forEach(username => {
-                const user = users[username];
-                if (!user.isAdmin) {
-                    const item = document.createElement('div');
-                    item.className = 'settings-item';
+            const list = document.getElementById('usersList'); list.innerHTML = '';
+            Object.keys(users).forEach(u => {
+                if (!users[u].isAdmin) {
+                    const item = document.createElement('div'); item.className = 'settings-item';
                     item.innerHTML = `
                         <div style="flex:1">
-                            <div class="settings-item-title">${username} <span class="badge">${user.role || 'Desk'}</span></div>
-                            <div class="settings-item-desc">Pass: ${user.password}</div>
+                            <div class="settings-item-title">${u} <span class="badge">${users[u].role || 'Desk'}</span></div>
+                            <div class="settings-item-desc">Pass: ${users[u].password}</div>
                         </div>
                         <div class="action-btns">
-                            <button class="btn btn-sm btn-secondary" onclick="openEditUserModal('${username}')">Edit</button>
-                            <button class="btn btn-sm btn-danger" onclick="deleteUser('${username}')">Delete</button>
+                            <button class="btn btn-sm btn-secondary" onclick="openEditUserModal('${u}')">Edit</button>
+                            <button class="btn btn-sm btn-danger" onclick="deleteUser('${u}')">Delete</button>
                         </div>`;
-                    usersList.appendChild(item);
+                    list.appendChild(item);
                 }
             });
             document.getElementById('manageUsersModal').classList.add('active');
         }
 
-        async function deleteUser(username) {
-            if (!confirm(`Delete user '${username}'?`)) return;
-            await fetch(`${API_BASE}/manage-users?username=${encodeURIComponent(username)}`, { method: 'DELETE' });
-            await loadUsers();
-            showManageUsersModal();
+        async function deleteUser(u) {
+            if (confirm(`Delete user ${u}?`)) {
+                await fetch(`${API_BASE}/manage-users?username=${u}`, { method: 'DELETE' });
+                await loadUsers(); showManageUsersModal();
+            }
         }
 
-        function showCreateUserModal() {
-            document.getElementById('createUserModal').classList.add('active');
-            document.getElementById('newUsername').value = '';
-            document.getElementById('newPassword').value = '';
+        // --- UI HELPERS ---
+        function updateUI() {
+            document.getElementById('currentUserDisplay').textContent = currentUser;
+            document.getElementById('adminTab').style.display = isAdmin ? 'block' : 'none';
         }
-
+        function showToast(m) {
+            const t = document.createElement('div'); t.className = 'toast'; t.textContent = m;
+            document.body.appendChild(t); setTimeout(() => t.remove(), 3000);
+        }
+        function switchUser() { currentUser = null; isAdmin = false; initApp(); }
         function closeModal(id) { document.getElementById(id).classList.remove('active'); }
+        function closeAdminModal() { closeModal('adminPasswordModal'); }
+        function closeUserPasswordModal() { closeModal('userPasswordModal'); }
+        function switchTab(t) { 
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active')); 
+            document.getElementById(t + 'Page').classList.add('active'); 
+            document.querySelectorAll('.tab').forEach(ta => ta.classList.remove('active')); 
+            event.target.classList.add('active');
+            if (t === 'viewData') loadEntries();
+        }
+        function updateCommunities() {
+            const z = document.getElementById('zone').value; const c = document.getElementById('community');
+            c.innerHTML = '<option value="">Select community</option>';
+            if(communities[z]) communities[z].forEach(co => { const o = document.createElement('option'); o.value=`Zone ${z} - ${co}`; o.textContent=`Zone ${z} - ${co}`; c.appendChild(o); });
+        }
+        function calculateCost() { 
+            const n = document.getElementById('numBands').value; 
+            document.getElementById('totalAmount').textContent = n * 50; 
+            document.getElementById('paymentBreakdown').textContent = `${n} bands × ₹50/band = ₹${n * 50}`;
+            displayBandBlocks(parseInt(n));
+        }
+        function displayBandBlocks(count) {
+            const start = parseInt(document.getElementById('currentBandNo').value) || 0;
+            const grid = document.getElementById('bandsGrid'); grid.innerHTML = '';
+            const nums = [];
+            for (let i = 0; i < count; i++) {
+                nums.push(start + i);
+                const b = document.createElement('div'); b.className = 'band-block';
+                b.innerHTML = `<input type="number" class="band-input" value="${start + i}"><p style="font-size:10px">Band #</p>`;
+                grid.appendChild(b);
+            }
+            document.getElementById('pendingBandNumbers').value = JSON.stringify(nums);
+        }
 
-        window.onload = () => initApp();
+        async function addEntry(e) {
+            e.preventDefault();
+            const body = {
+                userId: currentUser,
+                name: document.getElementById('name').value.trim(),
+                zone: document.getElementById('zone').value,
+                community: document.getElementById('community').value,
+                bands: JSON.parse(document.getElementById('pendingBandNumbers').value),
+                amountPerBand: 50
+            };
+            const res = await fetch(`${API_BASE}/save-entry`, { method: 'POST', body: JSON.stringify(body) });
+            const r = await res.json();
+            if (r.success) {
+                showToast(`Success: Saved ${body.bands.length} bands`);
+                document.getElementById('entryForm').reset();
+                document.getElementById('bandsGrid').innerHTML = '';
+                document.getElementById('currentBandNo').value = Math.max(...body.bands) + 1;
+            } else alert(r.error);
+        }
+
+        async function deleteEntry(id) {
+            if (confirm('Delete entry?')) {
+                await fetch(`${API_BASE}/delete-entry?id=${id}`, { method: 'DELETE' });
+                loadEntries();
+            }
+        }
+
+        function showCreateUserModal() { document.getElementById('createUserModal').classList.add('active'); }
+        
         document.getElementById('entryForm').addEventListener('submit', addEntry);
+        initApp();
     </script>
 </body>
 </html>
