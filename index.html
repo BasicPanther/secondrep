@@ -15,20 +15,17 @@
         * { box-sizing: border-box; }
         body { margin: 0; font-family: -apple-system, Helvetica, Arial, sans-serif; background: #fcfcf9; color: #13343b; }
         
-        /* Header */
         .header { background: white; border-bottom: 1px solid var(--color-border); padding: 15px; display: flex; justify-content: space-between; align-items: center; }
         .header-title { font-size: 20px; font-weight: bold; color: var(--color-teal); margin: 0; }
         
         .container { max-width: 1200px; margin: 0 auto; padding: 15px; }
 
-        /* Legacy Grid Fallback using Flexbox */
         .user-selection { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; padding: 30px 0; }
         .user-card { background: white; border: 2px solid #ddd; border-radius: 12px; padding: 25px; cursor: pointer; text-align: center; width: 200px; margin-bottom: 10px; }
         .user-card:hover { border-color: var(--color-teal); }
         .user-card-icon { font-size: 40px; margin-bottom: 10px; }
         .user-card-name { font-weight: 600; }
 
-        /* Tabs */
         .tabs { display: flex; background: white; border-bottom: 1px solid #ddd; overflow-x: auto; }
         .tab { padding: 15px 20px; cursor: pointer; border: none; background: none; font-weight: 600; color: #666; white-space: nowrap; }
         .tab.active { color: var(--color-teal); border-bottom: 3px solid var(--color-teal); }
@@ -36,42 +33,37 @@
         .page { display: none; padding: 20px 0; }
         .page.active { display: block; }
 
-        /* Cards */
         .card { background: white; border-radius: 12px; padding: 20px; border: 1px solid #eee; margin-bottom: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
         .form-grid { display: flex; flex-wrap: wrap; gap: 15px; }
         .form-group { flex: 1; min-width: 250px; display: flex; flex-direction: column; margin-bottom: 15px; }
-        .form-label { font-size: 12px; font-weight: bold; margin-bottom: 5px; color: #555; }
-        .form-control { padding: 12px; border: 1px solid #ccc; border-radius: 8px; font-size: 16px; -webkit-appearance: none; }
+        .form-label { font-size: 12px; font-weight: bold; margin-bottom: 5px; color: #555; text-transform: uppercase; }
+        .form-control { padding: 12px; border: 1px solid #ccc; border-radius: 8px; font-size: 16px; background: white; }
 
-        /* Buttons */
         .btn { padding: 12px 20px; border-radius: 8px; border: none; font-weight: bold; cursor: pointer; font-size: 14px; text-align: center; display: inline-block; }
         .btn-primary { background: var(--color-teal); color: white; }
         .btn-secondary { background: #eee; color: #333; }
         .btn-danger { background: var(--color-red); color: white; }
-        .btn-sm { padding: 6px 12px; font-size: 12px; }
+        .btn-sm { padding: 6px 12px; font-size: 11px; }
 
-        /* Table Responsive */
         .table-container { background: white; border-radius: 12px; overflow-x: auto; border: 1px solid #ddd; }
-        table { width: 100%; border-collapse: collapse; min-width: 800px; }
-        th { background: #f4f4f4; padding: 12px; font-size: 12px; text-align: left; }
-        td { padding: 12px; border-bottom: 1px solid #eee; font-size: 14px; }
+        table { width: 100%; border-collapse: collapse; min-width: 900px; }
+        th { background: #f4f4f4; padding: 12px; font-size: 11px; text-align: left; text-transform: uppercase; }
+        td { padding: 12px; border-bottom: 1px solid #eee; font-size: 13px; }
 
-        /* Band Blocks */
         .bands-grid { display: flex; flex-wrap: wrap; gap: 10px; margin: 20px 0; }
-        .band-block { border: 2px solid var(--color-teal); border-radius: 8px; padding: 10px; text-align: center; width: 100px; }
+        .band-block { border: 2px solid var(--color-teal); border-radius: 8px; padding: 10px; text-align: center; width: 100px; background: white; }
         .band-num { font-size: 18px; font-weight: bold; color: var(--color-teal); }
 
-        /* Modals */
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 1000; align-items: center; justify-content: center; }
         .modal.active { display: flex; }
         .modal-content { background: white; border-radius: 12px; padding: 25px; width: 90%; max-width: 500px; }
 
-        /* Toast Popup */
-        .toast { position: fixed; bottom: 20px; right: 20px; padding: 15px 25px; border-radius: 10px; z-index: 2000; color: white; display: none; font-weight: bold; box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
+        .toast { position: fixed; bottom: 30px; right: 30px; padding: 15px 25px; border-radius: 10px; z-index: 2000; color: white; display: none; font-weight: bold; box-shadow: 0 5px 15px rgba(0,0,0,0.3); min-width: 250px; }
         .toast.error { background: var(--color-red); }
         .toast.success { background: var(--color-teal); }
 
-        .stat-card { flex: 1; min-width: 200px; background: white; padding: 20px; border-radius: 12px; text-align: center; border-top: 4px solid var(--color-teal); border: 1px solid #ddd; margin-bottom: 20px; }
+        .summary-cards { display: flex; flex-wrap: wrap; gap: 15px; margin-bottom: 20px; }
+        .stat-card { flex: 1; min-width: 200px; background: white; padding: 20px; border-radius: 12px; text-align: center; border-top: 4px solid var(--color-teal); border: 1px solid #ddd; }
         .stat-value { font-size: 28px; font-weight: 800; color: var(--color-teal); }
     </style>
 </head>
@@ -87,24 +79,24 @@
         <div class="header">
             <h1 class="header-title">MFN 2026</h1>
             <div style="display: flex; align-items: center;">
-                <span id="currentUserDisplay" style="margin-right:15px; font-weight:bold;"></span>
+                <span id="currentUserDisplay" style="margin-right:15px; font-weight:bold; font-size: 14px;"></span>
                 <button class="btn btn-secondary btn-sm" onclick="logout()">Logout</button>
             </div>
         </div>
 
         <div class="tabs">
             <div class="tab active" id="tab-entry" onclick="showPage('entryPage')">Entry Form</div>
-            <div class="tab" id="tab-data" onclick="showPage('dataPage')">Explorer</div>
+            <div class="tab" id="tab-data" onclick="showPage('dataPage')">Data Explorer</div>
             <div class="tab" id="adminTab" style="display: none;" onclick="showPage('adminPage')">Settings</div>
         </div>
 
         <div class="container">
             <div id="entryPage" class="page active">
                 <div class="card">
-                    <h2>Record New Entry</h2>
+                    <h2 style="margin-top:0">Record New Entry</h2>
                     <div class="form-group">
                         <label class="form-label">Start Band #</label>
-                        <input type="number" id="startBand" class="form-control" oninput="updateBandPreview()">
+                        <input type="number" id="startBand" class="form-control" placeholder="e.g. 1001" oninput="updateBandPreview()">
                     </div>
                     <form id="entryForm">
                         <div class="form-grid">
@@ -132,34 +124,45 @@
                             </div>
                         </div>
                         <div id="bandsPreview" class="bands-grid"></div>
-                        <div style="background: #13343b; color: white; padding: 20px; border-radius: 12px; display: flex; justify-content: space-between; margin: 20px 0;">
-                            <span>Total Due:</span>
-                            <span style="font-size: 24px; font-weight: bold;">₹<span id="calcTotal">0</span></span>
+                        <div style="background: #13343b; color: white; padding: 20px; border-radius: 12px; display: flex; justify-content: space-between; margin: 20px 0; align-items: center;">
+                            <div>
+                                <div style="font-size: 10px; opacity: 0.7; font-weight: bold;">TOTAL DUE</div>
+                                <div id="qtySummary" style="font-size: 14px;">0 bands</div>
+                            </div>
+                            <div style="font-size: 28px; font-weight: bold; color: #4db6ac;">₹<span id="calcTotal">0</span></div>
                         </div>
-                        <button type="submit" class="btn btn-primary" style="width: 100%">Save Entry</button>
+                        <button type="submit" id="saveEntryBtn" class="btn btn-primary" style="width: 100%">Save Entry</button>
                     </form>
                 </div>
             </div>
 
             <div id="dataPage" class="page">
-                <div style="display: flex; flex-wrap: wrap; gap: 15px;">
-                    <div class="stat-card"><div class="stat-value" id="totalEntriesDisplay">0</div><div>Entries</div></div>
-                    <div class="stat-card"><div class="stat-value">₹<span id="totalRevenueDisplay">0</span></div><div>Revenue</div></div>
+                <div class="summary-cards">
+                    <div class="stat-card"><div class="stat-value" id="totalEntriesDisplay">0</div><div style="font-size:11px; font-weight:bold;">TOTAL ENTRIES</div></div>
+                    <div class="stat-card"><div class="stat-value">₹<span id="totalRevenueDisplay">0</span></div><div style="font-size:11px; font-weight:bold;">TOTAL REVENUE</div></div>
                 </div>
                 <div class="card">
                     <div class="form-grid">
-                        <div class="form-group"><label class="form-label">Search</label><input type="text" id="search" class="form-control" onkeyup="filterTable()"></div>
-                        <div class="form-group"><label class="form-label">Date</label><input type="date" id="dateFilter" class="form-control" onchange="filterTable()"></div>
+                        <div class="form-group"><label class="form-label">Search Name/Band</label><input type="text" id="search" class="form-control" onkeyup="filterTable()"></div>
+                        <div class="form-group"><label class="form-label">Filter Date</label><input type="date" id="dateFilter" class="form-control" onchange="filterTable()"></div>
+                        <div class="form-group">
+                            <label class="form-label">Sort</label>
+                            <select id="sortBy" class="form-control" onchange="filterTable()">
+                                <option value="date-desc">Newest First</option>
+                                <option value="band-asc">Band # (Low to High)</option>
+                                <option value="name-asc">Name (A-Z)</option>
+                            </select>
+                        </div>
                     </div>
                     <div id="adminFilters" style="display:none; border-top: 1px solid #eee; padding-top:15px; margin-top:10px;">
                         <div class="form-grid">
-                            <div class="form-group"><label class="form-label">Category</label><select id="fCat" class="form-control" onchange="filterTable()"><option value="all">All</option><option value="Zone">Zone</option><option value="Desk">Desk</option><option value="Church Office">Office</option></select></div>
-                            <div class="form-group"><label class="form-label">Operator</label><select id="fOper" class="form-control" onchange="filterTable()"></select></div>
+                            <div class="form-group"><label class="form-label">Operator Category</label><select id="fCat" class="form-control" onchange="filterTable()"><option value="all">All</option><option value="Zone">Zone</option><option value="Desk">Desk</option><option value="Church Office">Office</option></select></div>
+                            <div class="form-group"><label class="form-label">Specific Operator</label><select id="fOper" class="form-control" onchange="filterTable()"><option value="all">All</option></select></div>
                         </div>
                     </div>
                     <div style="margin-top: 15px; display: flex; gap: 10px;">
                         <button class="btn btn-secondary btn-sm" onclick="exportCSV()">Export CSV</button>
-                        <button class="btn btn-secondary btn-sm" onclick="loadEntries()">Refresh</button>
+                        <button class="btn btn-secondary btn-sm" onclick="loadEntries()">Refresh Data</button>
                     </div>
                     <div class="table-container" style="margin-top: 20px;">
                         <table>
@@ -172,32 +175,44 @@
 
             <div id="adminPage" class="page">
                 <div class="card">
-                    <h3>User Management</h3>
+                    <h3>User Profile Management</h3>
                     <div style="display: flex; gap: 10px; margin-bottom: 20px;">
-                        <button class="btn btn-primary" onclick="openModal('addUserModal')">+ Add User</button>
-                        <button class="btn btn-secondary" onclick="renderUserList()">Manage Users</button>
+                        <button class="btn btn-primary" onclick="openModal('addUserModal')">+ Create New ID</button>
+                        <button class="btn btn-secondary" onclick="renderUserList()">Manage Existing IDs</button>
                     </div>
-                    <hr>
-                    <button class="btn btn-danger" onclick="clearDatabase()">Wipe All Records</button>
+                    <hr style="opacity:0.1">
+                    <h3 style="color: var(--color-red)">System Wipe</h3>
+                    <button class="btn btn-danger" onclick="clearDatabase()">Clear All Records</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <div id="passwordModal" class="modal"><div class="modal-content"><h2 id="loginTitle">Login</h2><div class="form-group"><label class="form-label">Password</label><input type="password" id="loginPass" class="form-control"></div><div style="margin-top: 20px; display: flex; gap: 10px;"><button class="btn btn-primary" onclick="processLogin()">Login</button><button class="btn btn-secondary" onclick="closeModal('passwordModal')">Cancel</button></div></div></div>
+    <div id="passwordModal" class="modal"><div class="modal-content"><h2 id="loginTitle" style="margin-top:0">Login</h2><div class="form-group"><label class="form-label">Password</label><input type="password" id="loginPass" class="form-control"></div><div style="margin-top: 20px; display: flex; gap: 10px;"><button class="btn btn-primary" onclick="processLogin()" style="flex:1">Login</button><button class="btn btn-secondary" onclick="closeModal('passwordModal')" style="flex:1">Cancel</button></div></div></div>
 
-    <div id="addUserModal" class="modal"><div class="modal-content"><h2>New User</h2><div class="form-group"><label class="form-label">Role</label><select id="newRole" class="form-control" onchange="handleRoleChange(this.value)"><option value="Desk">Desk</option><option value="Church Office">Office</option><option value="Zone">Zone</option></select></div><div id="zoneSubField" class="form-group" style="display:none"><label class="form-label">Select Zone</label><select id="newUserZone" class="form-control" onchange="populateCommunityUsernames(this.value)"></select></div><div class="form-group" id="unameContainer"><label class="form-label">Username</label><input type="text" id="newUnameInput" class="form-control"></div><div class="form-group" id="passContainer"><label class="form-label">Password</label><input type="text" id="newPassInput" class="form-control"></div><button class="btn btn-primary" style="width:100%; margin-top:20px;" onclick="submitUser()">Save User</button></div></div>
+    <div id="addUserModal" class="modal">
+        <div class="modal-content">
+            <h2 style="margin-top:0">Create Profile</h2>
+            <div class="form-group"><label class="form-label">Category</label><select id="newRole" class="form-control" onchange="handleRoleChange(this.value)"><option value="Desk">Desk</option><option value="Church Office">Office</option><option value="Zone">Zone</option></select></div>
+            <div id="zoneSubField" class="form-group" style="display:none"><label class="form-label">Zone</label><select id="newUserZone" class="form-control" onchange="populateCommunityUsernames(this.value)"></select></div>
+            <div class="form-group" id="unameContainer"></div>
+            <div class="form-group" id="passContainer"></div>
+            <button class="btn btn-primary" style="width:100%; margin-top:20px;" onclick="submitUser()">Save Profile</button>
+        </div>
+    </div>
 
-    <div id="editEntryModal" class="modal"><div class="modal-content"><h2>Edit Record</h2><input type="hidden" id="editEntryId"><div class="form-group"><label class="form-label">Band #</label><input type="number" id="eBand" class="form-control"></div><div class="form-group"><label class="form-label">Name</label><input type="text" id="eName" class="form-control"></div><div class="modal-buttons" style="display:flex; gap:10px;"><button class="btn btn-primary" onclick="submitEntryUpdate()">Update</button><button class="btn btn-secondary" onclick="closeModal('editEntryModal')">Cancel</button></div></div></div>
+    <div id="userManageModal" class="modal"><div class="modal-content" style="max-width: 600px;"><h2>System Users</h2><div id="userListBody" style="max-height: 300px; overflow-y: auto; border:1px solid #eee;"></div><button class="btn btn-secondary" style="margin-top:20px; width:100%" onclick="closeModal('userManageModal')">Close</button></div></div>
 
-    <div id="forcePassModal" class="modal"><div class="modal-content"><h2>Update Password</h2><p>Please change your default password.</p><input type="password" id="newSecurePass" class="form-control" placeholder="New Password"><button class="btn btn-primary" style="width:100%; margin-top:20px;" onclick="applyForceChange()">Update</button></div></div>
+    <div id="editProfileModal" class="modal"><div class="modal-content"><h2>Edit User</h2><input type="hidden" id="editUserId"><div class="form-group"><label class="form-label">Username</label><input type="text" id="editProfileName" class="form-control"></div><div class="form-group" style="margin-top:10px"><label class="form-label">Password</label><input type="text" id="editProfilePass" class="form-control"></div><button class="btn btn-primary" style="width:100%; margin-top:20px" onclick="saveUserProfile()">Update</button></div></div>
 
-    <div id="userManageModal" class="modal"><div class="modal-content"><h2>System Users</h2><div id="userListBody" style="max-height: 300px; overflow-y: auto;"></div><button class="btn btn-secondary" style="margin-top:20px; width:100%" onclick="closeModal('userManageModal')">Close</button></div></div>
+    <div id="editEntryModal" class="modal"><div class="modal-content"><h2>Edit Allocation</h2><input type="hidden" id="editEntryId"><div class="form-group"><label class="form-label">Band #</label><input type="number" id="eBand" class="form-control"></div><div class="form-group"><label class="form-label">Recipient Name</label><input type="text" id="eName" class="form-control"></div><div style="display:flex; gap:10px; margin-top:20px;"><button class="btn btn-primary" onclick="submitEntryUpdate()" style="flex:1">Update</button><button class="btn btn-secondary" onclick="closeModal('editEntryModal')" style="flex:1">Cancel</button></div></div></div>
+
+    <div id="forcePassModal" class="modal"><div class="modal-content"><h2>Security Update</h2><p>Please update your password from the default.</p><input type="password" id="newSecurePass" class="form-control" placeholder="New Password"><button class="btn btn-primary" style="width:100%; margin-top:20px;" onclick="applyForceChange()">Save Password</button></div></div>
 
     <div id="toast" class="toast"></div>
 
     <script>
-        // Use traditional function declarations and var/let for compatibility
+        // LEGACY COMPATIBLE JAVASCRIPT (ES5 style)
         var API_URL = '/api';
         var communitiesMap = {
             '1': ['Morning Star', 'St. Andrew', 'Holy Trinity', 'St. Ann & St. Michael', 'Divya Jyothi'],
@@ -209,16 +224,20 @@
             'Other': ['External', 'Other']
         };
 
-        var appState = { user: null, isAdmin: false, users: {}, entries: [], loginCat: null, loginZone: null };
+        var appState = { user: null, isAdmin: false, users: {}, entries: [], loginCat: null, loginZone: null, filtered: [] };
 
         function init() {
             fetch(API_URL + '/manage-users')
                 .then(function(res) { return res.json(); })
-                .then(function(data) {
+                .then(function(result) {
                     appState.users = {};
-                    data.data.forEach(function(u) { appState.users[u.username] = u; });
+                    if (result.data) {
+                        result.data.forEach(function(u) { appState.users[u.username] = u; });
+                    }
                     renderSelection();
-                });
+                    handleRoleChange('Desk'); // Initial state for add user
+                })
+                .catch(function(e) { console.log(e); });
         }
 
         function renderSelection() {
@@ -227,7 +246,7 @@
             grid.innerHTML = '';
 
             if (!appState.loginCat) {
-                path.innerText = "Select Category";
+                path.innerText = "Step 1: Select Your Category";
                 var root = [{id:'Zone', icon:'📍'}, {id:'Desk', icon:'🖥️'}, {id:'Church Office', icon:'⛪'}, {id:'Admin', icon:'🔐'}];
                 root.forEach(function(c) {
                     var card = document.createElement('div');
@@ -237,7 +256,7 @@
                     grid.appendChild(card);
                 });
             } else if (appState.loginCat === 'Zone' && !appState.loginZone) {
-                path.innerText = "Select Zone Group";
+                path.innerText = "Step 2: Select Your Zone Group";
                 ['1','2','3A','3B','4A','4B'].forEach(function(z) {
                     var card = document.createElement('div');
                     card.className = 'user-card';
@@ -247,10 +266,16 @@
                 });
                 addBack();
             } else {
-                path.innerText = "Select ID";
-                Object.keys(appState.users).forEach(function(uname) {
+                path.innerText = "Step 3: Select Your ID Profile";
+                var usernames = Object.keys(appState.users);
+                usernames.forEach(function(uname) {
                     var u = appState.users[uname];
-                    var match = appState.loginCat === 'Zone' ? (u.role === 'Zone' && u.userZone === appState.loginZone) : (u.role === appState.loginCat);
+                    var match = false;
+                    if (appState.loginCat === 'Zone') {
+                        match = (u.role === 'Zone' && u.userZone === appState.loginZone);
+                    } else {
+                        match = (u.role === appState.loginCat);
+                    }
                     if (match && !u.isAdmin) {
                         var card = document.createElement('div');
                         card.className = 'user-card';
@@ -266,7 +291,7 @@
         function addBack() {
             var btn = document.createElement('button');
             btn.className = 'btn btn-secondary';
-            btn.style.width = '100%';
+            btn.style.width = '200px';
             btn.innerText = '← Back';
             btn.onclick = function() { if(appState.loginZone) appState.loginZone = null; else appState.loginCat = null; renderSelection(); };
             document.getElementById('userSelectionGrid').appendChild(btn);
@@ -302,36 +327,43 @@
             document.getElementById('currentUserDisplay').innerText = appState.user;
             document.getElementById('adminTab').style.display = appState.isAdmin ? 'block' : 'none';
             document.getElementById('adminFilters').style.display = appState.isAdmin ? 'block' : 'none';
-            if (appState.isAdmin) showPage('dataPage'); else showPage('entryPage');
+            if (appState.isAdmin) {
+                showPage('dataPage');
+                populateOperatorFilter();
+            } else {
+                showPage('entryPage');
+            }
             loadEntries();
         }
-
-        function logout() { window.location.reload(); }
 
         function loadEntries() {
             var scope = appState.isAdmin ? 'all' : appState.user;
             fetch(API_URL + '/get-entries?userId=' + scope)
                 .then(function(res) { return res.json(); })
-                .then(function(data) {
-                    appState.entries = data.data || [];
+                .then(function(result) {
+                    appState.entries = result.data || [];
                     filterTable();
-                });
+                })
+                .catch(function(e) { showToast("Fetch failed", true); });
         }
 
         function filterTable() {
             var s = document.getElementById('search').value.toLowerCase();
             var d = document.getElementById('dateFilter').value;
             var filtered = appState.entries.filter(function(e) {
-                var nameMatch = e.name.toLowerCase().indexOf(s) > -1 || e.bandNo.toString().indexOf(s) > -1;
-                var dateMatch = !d || new Date(e.createdAt).toLocaleDateString('en-CA') === d;
+                var searchMatch = e.name.toLowerCase().indexOf(s) > -1 || e.bandNo.toString().indexOf(s) > -1;
+                var dateMatch = !d || e.createdAt.indexOf(d) === 0;
                 
                 if (appState.isAdmin) {
                     var cat = document.getElementById('fCat').value;
+                    var oper = document.getElementById('fOper').value;
                     var uObj = appState.users[e.userId] || {};
                     if (cat !== 'all' && uObj.role !== cat) return false;
+                    if (oper !== 'all' && e.userId !== oper) return false;
                 }
-                return nameMatch && dateMatch;
+                return searchMatch && dateMatch;
             });
+            appState.filtered = filtered;
             renderTable(filtered);
         }
 
@@ -346,14 +378,15 @@
 
             var html = '';
             data.forEach(function(e) {
-                var dt = new Date(e.createdAt);
-                var op = appState.isAdmin ? '<td>'+e.userId+'</td>' : '';
-                html += '<tr><td>#'+e.bandNo+'</td><td>'+e.name+'</td><td>'+e.zone+'</td><td>'+e.community+'</td><td>₹'+e.amount+'</td><td>'+dt.toLocaleDateString()+'</td>'+op+'<td><button class="btn btn-sm btn-secondary" onclick="openEdit(\''+e._id+'\','+e.bandNo+',\''+e.name+'\')">Edit</button></td></tr>';
+                var opCell = appState.isAdmin ? '<td>' + e.userId + '</td>' : '';
+                html += '<tr><td><strong>#' + e.bandNo + '</strong></td><td>' + e.name + '</td><td>' + e.zone + '</td><td>' + e.community + '</td><td>₹' + e.amount + '</td><td>' + e.createdAt.substr(0,10) + '</td>' + opCell + '<td><div style="display:flex; gap:5px;"><button class="btn btn-sm btn-secondary" onclick="openEdit(\''+e._id+'\','+e.bandNo+',\''+e.name+'\')">Edit</button><button class="btn btn-sm btn-danger" onclick="deleteEntry(\''+e._id+'\')">Del</button></div></td></tr>';
             });
-            tb.innerHTML = html;
+            tb.innerHTML = html || '<tr><td colspan="8" style="text-align:center">No data found.</td></tr>';
+            
             document.getElementById('totalEntriesDisplay').innerText = data.length;
-            var rev = 0; data.forEach(function(i){ rev += (i.amount || 0); });
-            document.getElementById('totalRevenueDisplay').innerText = rev.toLocaleString();
+            var total = 0;
+            data.forEach(function(i) { total += (i.amount || 0); });
+            document.getElementById('totalRevenueDisplay').innerText = total.toLocaleString();
         }
 
         function updateBandPreview() {
@@ -365,13 +398,14 @@
                 container.innerHTML += '<div class="band-block"><div class="band-num">'+(start+i)+'</div><div style="font-size:9px">BAND #</div></div>';
             }
             document.getElementById('calcTotal').innerText = (q * 50).toLocaleString();
+            document.getElementById('qtySummary').innerText = q + ' bands × ₹50';
         }
 
         document.getElementById('entryForm').onsubmit = function(e) {
             e.preventDefault();
             var start = parseInt(document.getElementById('startBand').value);
             var q = parseInt(document.getElementById('qty').value);
-            if (!q) { showToast("Enter quantity", true); return; }
+            if (!q) { showToast("Please enter quantity", true); return; }
 
             var bands = []; for(var i=0; i<q; i++) bands.push(start+i);
             var payload = {
@@ -385,11 +419,13 @@
 
             fetch(API_URL + '/save-entry', {
                 method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(payload)
             }).then(function(res) {
-                if (res.status === 409) { showToast("Duplicate Band Number Detected", true); }
-                else {
-                    showToast("Entry Saved");
+                if (res.status === 409) {
+                    showToast("Duplicate Band Number Detected!", true);
+                } else {
+                    showToast("Saved Successfully", false);
                     document.getElementById('entryForm').reset();
                     document.getElementById('startBand').value = start + q;
                     updateBandPreview();
@@ -401,33 +437,128 @@
         function handleRoleChange(r) {
             var sub = document.getElementById('zoneSubField');
             var uCont = document.getElementById('unameContainer');
+            var pCont = document.getElementById('passContainer');
             if (r === 'Zone') {
                 sub.style.display = 'block';
                 document.getElementById('newUserZone').innerHTML = '<option value="">Select Zone</option>' + ['1','2','3A','3B','4A','4B'].map(function(v){return '<option value="'+v+'">'+v+'</option>';}).join('');
-                uCont.innerHTML = '<label class="form-label">Community</label><select id="newUnameSelect" class="form-control"></select>';
+                uCont.innerHTML = '<label class="form-label">ID / Community</label><select id="newUnameSelect" class="form-control"></select>';
+                pCont.innerHTML = '<p style="font-size:11px">Password: <strong>olep@2026</strong></p>';
             } else {
                 sub.style.display = 'none';
                 uCont.innerHTML = '<label class="form-label">Username</label><input type="text" id="newUnameInput" class="form-control">';
+                pCont.innerHTML = '<label class="form-label">Password</label><input type="text" id="newPassInput" class="form-control">';
             }
         }
 
         function populateCommunityUsernames(z) {
             var s = document.getElementById('newUnameSelect');
             if(!s) return;
-            s.innerHTML = '<option value="">Select Community</option>';
-            if(communitiesMap[z]) communitiesMap[z].forEach(function(c){ s.innerHTML += '<option value="'+c+'">'+c+'</option>'; });
+            s.innerHTML = '<option value="">Select Profile</option>';
+            if(communitiesMap[z]) {
+                communitiesMap[z].forEach(function(c){ s.innerHTML += '<option value="'+c+'">'+c+'</option>'; });
+            }
         }
 
         function submitUser() {
             var role = document.getElementById('newRole').value;
             var uname = (role === 'Zone') ? document.getElementById('newUnameSelect').value : document.getElementById('newUnameInput').value;
             var pass = (role === 'Zone') ? 'olep@2026' : document.getElementById('newPassInput').value;
-            
-            var p = { username: uname, role: role, userZone: document.getElementById('newUserZone').value || null, password: pass };
+            var z = document.getElementById('newUserZone').value;
+
+            if(!uname) { showToast("Fill all fields", true); return; }
+
+            var p = { username: uname, role: role, userZone: z || null, password: pass };
             fetch(API_URL + '/manage-users', {
                 method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(p)
-            }).then(function() { showToast("User Created"); closeModal('addUserModal'); init(); });
+            }).then(function() {
+                showToast("User Created", false);
+                closeModal('addUserModal');
+                init();
+            });
+        }
+
+        function renderUserList() {
+            fetch(API_URL + '/manage-users')
+                .then(function(r){ return r.json(); })
+                .then(function(d){
+                    var body = document.getElementById('userListBody');
+                    body.innerHTML = '';
+                    d.data.forEach(function(u) {
+                        if(u.isAdmin) return;
+                        var row = document.createElement('div');
+                        row.style.padding = '10px';
+                        row.style.borderBottom = '1px solid #eee';
+                        row.style.display = 'flex';
+                        row.style.justifyContent = 'space-between';
+                        row.innerHTML = '<div><strong>'+u.username+'</strong> ('+u.role+')</div><div><button class="btn btn-sm btn-secondary" onclick="openProfileEdit(\''+u._id+'\',\''+u.username+'\',\''+u.password+'\')">Edit</button></div>';
+                        body.appendChild(row);
+                    });
+                    openModal('userManageModal');
+                });
+        }
+
+        function openProfileEdit(id, n, p) {
+            document.getElementById('editUserId').value = id;
+            document.getElementById('editProfileName').value = n;
+            document.getElementById('editProfilePass').value = p;
+            openModal('editProfileModal');
+        }
+
+        function saveUserProfile() {
+            var payload = {
+                id: document.getElementById('editUserId').value,
+                username: document.getElementById('editProfileName').value,
+                password: document.getElementById('editProfilePass').value
+            };
+            fetch(API_URL + '/manage-users', {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            }).then(function() {
+                showToast("Profile Updated", false);
+                closeModal('editProfileModal');
+                init();
+            });
+        }
+
+        function populateOperatorFilter() {
+            var s = document.getElementById('fOper');
+            s.innerHTML = '<option value="all">All Operators</option>';
+            Object.keys(appState.users).forEach(function(u) {
+                if(!appState.users[u].isAdmin) s.innerHTML += '<option value="'+u+'">'+u+'</option>';
+            });
+        }
+
+        function applyForceChange() {
+            var np = document.getElementById('newSecurePass').value;
+            if(np.length < 4) { showToast("Too short", true); return; }
+            var payload = { id: appState.users[appState.user]._id, password: np };
+            fetch(API_URL + '/manage-users', {
+                method: 'PUT',
+                headers: {'Content-Type':'application/json'},
+                body: JSON.stringify(payload)
+            }).then(function(){
+                showToast("Password Saved", false);
+                closeModal('forcePassModal');
+                finishLogin();
+            });
+        }
+
+        function exportCSV() {
+            if(appState.filtered.length === 0) return showToast("No data", true);
+            var csv = "\ufeffBand #,Recipient,Zone,Community,Amount,Date,Operator\n";
+            appState.filtered.forEach(function(e) {
+                csv += e.bandNo + ',"' + e.name + '",' + e.zone + ',"' + e.community + '",' + e.amount + ',' + e.createdAt.substr(0,10) + ',' + e.userId + '\n';
+            });
+            var blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+            var link = document.createElement("a");
+            link.href = URL.createObjectURL(blob);
+            link.setAttribute("download", "MFN2026_Report.csv");
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
         }
 
         function openModal(id) { document.getElementById(id).classList.add('active'); }
@@ -448,8 +579,10 @@
         }
         function populateCommunities(id, z) {
             var s = document.getElementById(id);
-            s.innerHTML = '<option value="">Select Community</option>';
-            if(communitiesMap[z]) communitiesMap[z].forEach(function(c){ s.innerHTML += '<option value="'+c+'">'+c+'</option>'; });
+            s.innerHTML = '<option value="">Select Profile</option>';
+            if(communitiesMap[z]) {
+                communitiesMap[z].forEach(function(c){ s.innerHTML += '<option value="'+c+'">'+c+'</option>'; });
+            }
         }
         function openEdit(id, b, n) {
             document.getElementById('editEntryId').value = id;
@@ -458,28 +591,21 @@
             openModal('editEntryModal');
         }
         function submitEntryUpdate() {
-            var p = { 
-                id: document.getElementById('editEntryId').value, 
-                newBandNo: parseInt(document.getElementById('eBand').value), 
-                name: document.getElementById('eName').value,
-                amount: 50
-            };
+            var p = { id: document.getElementById('editEntryId').value, newBandNo: parseInt(document.getElementById('eBand').value), name: document.getElementById('eName').value, amount: 50 };
             fetch(API_URL + '/update-entry', { method: 'PUT', body: JSON.stringify(p), headers: {'Content-Type':'application/json'} })
-                .then(function() { closeModal('editEntryModal'); loadEntries(); showToast("Updated"); });
+                .then(function() { closeModal('editEntryModal'); loadEntries(); showToast("Updated", false); });
         }
-        function exportCSV() {
-            var csv = "\ufeffBand #,Recipient,Zone,Community,Amount,Date,Operator\n";
-            appState.entries.forEach(function(e) {
-                csv += e.bandNo + ',"' + e.name + '",' + e.zone + ',"' + e.community + '",' + e.amount + ',' + new Date(e.createdAt).toLocaleDateString() + ',' + e.userId + '\n';
-            });
-            var blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
-            var link = document.createElement("a");
-            link.href = URL.createObjectURL(blob);
-            link.setAttribute("download", "MFN2026_Report.csv");
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
+        function deleteEntry(id) {
+            if(!confirm("Delete?")) return;
+            fetch(API_URL + '/delete-entry?id=' + id, { method: 'DELETE' })
+                .then(function() { loadEntries(); showToast("Deleted", false); });
         }
+        function clearDatabase() {
+            if(prompt("Enter 'admin123' to wipe:") !== 'admin123') return;
+            fetch(API_URL + '/delete-entry?userId=all', { method: 'DELETE' })
+                .then(function() { loadEntries(); showToast("Database Wiped", false); });
+        }
+        function logout() { window.location.reload(); }
 
         window.onload = init;
     </script>
