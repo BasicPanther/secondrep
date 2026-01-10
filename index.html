@@ -20,7 +20,6 @@
         
         .container { max-width: 1200px; margin: 0 auto; padding: 15px; }
 
-        /* Selection Flexbox */
         .user-selection { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; padding: 30px 0; }
         .user-card { background: white; border: 2px solid #ddd; border-radius: 12px; padding: 25px; cursor: pointer; text-align: center; width: 180px; margin-bottom: 10px; }
         .user-card:hover { border-color: var(--color-teal); }
@@ -48,7 +47,7 @@
 
         .table-container { background: white; border-radius: 12px; overflow-x: auto; border: 1px solid #ddd; }
         table { width: 100%; border-collapse: collapse; min-width: 900px; }
-        th { background: #f4f4f4; padding: 12px; font-size: 11px; text-align: left; text-transform: uppercase; }
+        th { background: #f4f4f4; padding: 16px; font-size: 11px; text-align: left; text-transform: uppercase; }
         td { padding: 12px; border-bottom: 1px solid #eee; font-size: 13px; }
 
         .bands-grid { display: flex; flex-wrap: wrap; gap: 10px; margin: 20px 0; }
@@ -70,6 +69,8 @@
         .manage-row { display: flex; justify-content: space-between; align-items: center; padding: 12px; border-bottom: 1px solid #eee; }
         .manage-info { flex: 1; }
         .manage-btns { display: flex; gap: 5px; }
+
+        .admin-badge { background: #e0f2f1; color: #00796b; padding: 2px 8px; border-radius: 4px; font-size: 10px; font-weight: 700; text-transform: uppercase; display: inline-block; margin-bottom: 4px; }
     </style>
 </head>
 <body>
@@ -91,7 +92,7 @@
 
         <div class="tabs">
             <div class="tab active" id="tab-entry" onclick="showPage('entryPage')">Entry Form</div>
-            <div class="tab" id="tab-data" onclick="showPage('dataPage')">Data Explorer</div>
+            <div class="tab" id="tab-data" onclick="showPage('dataPage')">Explorer</div>
             <div class="tab" id="adminTab" style="display: none;" onclick="showPage('adminPage')">Settings</div>
         </div>
 
@@ -100,7 +101,7 @@
                 <div class="card">
                     <h2 style="margin-top:0">Record New Entry</h2>
                     <div class="form-group">
-                        <label class="form-label">Start Band #</label>
+                        <label class="form-label">Starting Band #</label>
                         <input type="number" id="startBand" class="form-control" placeholder="e.g. 1001" oninput="updateBandPreview()">
                     </div>
                     <form id="entryForm">
@@ -131,7 +132,7 @@
                         <div id="bandsPreview" class="bands-grid"></div>
                         <div style="background: #13343b; color: white; padding: 20px; border-radius: 12px; display: flex; justify-content: space-between; margin: 20px 0; align-items: center;">
                             <div>
-                                <div style="font-size: 10px; opacity: 0.7; font-weight: bold;">TOTAL DUE</div>
+                                <div style="font-size: 10px; opacity: 0.7; font-weight: bold;">COLLECTION TOTAL</div>
                                 <div id="qtySummary" style="font-size: 14px;">0 bands</div>
                             </div>
                             <div style="font-size: 28px; font-weight: bold; color: #4db6ac;">₹<span id="calcTotal">0</span></div>
@@ -143,15 +144,15 @@
 
             <div id="dataPage" class="page">
                 <div class="summary-cards">
-                    <div class="stat-card"><div class="stat-value" id="totalEntriesDisplay">0</div><div style="font-size:11px; font-weight:bold;">TOTAL ENTRIES</div></div>
-                    <div class="stat-card"><div class="stat-value">₹<span id="totalRevenueDisplay">0</span></div><div style="font-size:11px; font-weight:bold;">TOTAL REVENUE</div></div>
+                    <div class="stat-card"><div class="stat-value" id="totalEntriesDisplay">0</div><div style="font-size:11px; font-weight:bold;">ENTRIES</div></div>
+                    <div class="stat-card"><div class="stat-value">₹<span id="totalRevenueDisplay">0</span></div><div style="font-size:11px; font-weight:bold;">REVENUE</div></div>
                 </div>
                 <div class="card">
                     <div class="form-grid">
-                        <div class="form-group"><label class="form-label">Search</label><input type="text" id="search" class="form-control" onkeyup="filterTable()"></div>
+                        <div class="form-group"><label class="form-label">Search Name/Band</label><input type="text" id="search" class="form-control" onkeyup="filterTable()"></div>
                         <div class="form-group"><label class="form-label">Date Filter</label><input type="date" id="dateFilter" class="form-control" onchange="filterTable()"></div>
                         <div class="form-group">
-                            <label class="form-label">Sort By</label>
+                            <label class="form-label">Sorting</label>
                             <select id="sortBy" class="form-control" onchange="filterTable()">
                                 <option value="date-desc">Newest First</option>
                                 <option value="band-asc">Band # (Low to High)</option>
@@ -161,13 +162,13 @@
                     </div>
                     <div id="adminFilters" style="display:none; border-top: 1px solid #eee; padding-top:15px; margin-top:10px;">
                         <div class="form-grid">
-                            <div class="form-group"><label class="form-label">Category</label><select id="fCat" class="form-control" onchange="filterTable()"><option value="all">All</option><option value="Zone">Zone</option><option value="Desk">Desk</option><option value="Church Office">Office</option></select></div>
-                            <div class="form-group"><label class="form-label">Operator</label><select id="fOper" class="form-control" onchange="filterTable()"><option value="all">All</option></select></div>
+                            <div class="form-group"><label class="form-label">Filter Category</label><select id="fCat" class="form-control" onchange="filterTable()"><option value="all">All</option><option value="Zone">Zone</option><option value="Desk">Desk</option><option value="Church Office">Office</option></select></div>
+                            <div class="form-group"><label class="form-label">Operator</label><select id="fOper" class="form-control" onchange="filterTable()"><option value="all">All Operators</option></select></div>
                         </div>
                     </div>
                     <div style="margin-top: 15px; display: flex; gap: 10px;">
                         <button class="btn btn-secondary btn-sm" onclick="exportCSV()">Export CSV</button>
-                        <button class="btn btn-secondary btn-sm" onclick="loadEntries()">Refresh Data</button>
+                        <button class="btn btn-secondary btn-sm" onclick="loadEntries()">Refresh</button>
                     </div>
                     <div class="table-container" style="margin-top: 20px;">
                         <table>
@@ -180,14 +181,14 @@
 
             <div id="adminPage" class="page">
                 <div class="card">
-                    <h3>Account Management</h3>
+                    <h3>User Accounts</h3>
                     <div style="display: flex; gap: 10px; margin-bottom: 20px;">
-                        <button class="btn btn-primary" onclick="openModal('addUserModal')">Create New ID</button>
-                        <button class="btn btn-secondary" onclick="renderUserList()">Manage Profiles</button>
+                        <button class="btn btn-primary" onclick="openModal('addUserModal')">Create New Profile</button>
+                        <button class="btn btn-secondary" onclick="renderUserList()">Manage Users</button>
                     </div>
                     <hr style="opacity:0.1">
-                    <h3 style="color: var(--color-red)">Emergency Actions</h3>
-                    <button class="btn btn-danger" onclick="clearDatabase()">Wipe Entry Database</button>
+                    <h3 style="color: var(--color-red)">System Actions</h3>
+                    <button class="btn btn-danger" onclick="clearDatabase()">Wipe Entries Database</button>
                 </div>
             </div>
         </div>
@@ -197,25 +198,25 @@
 
     <div id="addUserModal" class="modal">
         <div class="modal-content">
-            <h2 style="margin-top:0">Create New ID</h2>
+            <h2 style="margin-top:0">Create User</h2>
             <div class="form-group"><label class="form-label">Category (Tag)</label><select id="newRole" class="form-control" onchange="handleRoleChange(this.value)"><option value="Desk">Desk</option><option value="Church Office">Office</option><option value="Zone">Zone</option></select></div>
             <div id="zoneSubField" class="form-group" style="display:none"><label class="form-label">Select Zone Group</label><select id="newUserZone" class="form-control" onchange="populateCommunityUsernames(this.value)"></select></div>
             <div class="form-group" id="unameContainer"></div>
             <div class="form-group" id="passContainer"></div>
             <div style="display:flex; gap:10px; margin-top:20px;">
-                <button class="btn btn-primary" style="flex:1" onclick="submitUser()">Save User</button>
+                <button class="btn btn-primary" style="flex:1" onclick="submitUser()">Save Profile</button>
                 <button class="btn btn-secondary" style="flex:1" onclick="closeModal('addUserModal')">Cancel</button>
             </div>
         </div>
     </div>
 
-    <div id="userManageModal" class="modal"><div class="modal-content" style="max-width: 600px;"><h2 style="margin-top:0">Manage Profiles</h2><div id="userListBody" style="max-height: 350px; overflow-y: auto; border:1px solid #eee; border-radius:8px;"></div><button class="btn btn-secondary" style="margin-top:20px; width:100%" onclick="closeModal('userManageModal')">Close</button></div></div>
+    <div id="userManageModal" class="modal"><div class="modal-content" style="max-width: 600px;"><h2 style="margin-top:0">System Profiles</h2><div id="userListBody" style="max-height: 350px; overflow-y: auto; border:1px solid #eee; border-radius:8px;"></div><button class="btn btn-secondary" style="margin-top:20px; width:100%" onclick="closeModal('userManageModal')">Close</button></div></div>
 
     <div id="editProfileModal" class="modal">
         <div class="modal-content">
             <h2 style="margin-top:0">Modify User</h2>
             <input type="hidden" id="editUserId">
-            <div class="form-group"><label class="form-label">Tag (Category)</label><select id="editProfileRole" class="form-control"><option value="Desk">Desk</option><option value="Church Office">Office</option><option value="Zone">Zone</option></select></div>
+            <div class="form-group"><label class="form-label">Category (Tag)</label><select id="editProfileRole" class="form-control"><option value="Desk">Desk</option><option value="Church Office">Office</option><option value="Zone">Zone</option></select></div>
             <div class="form-group"><label class="form-label">Username</label><input type="text" id="editProfileName" class="form-control"></div>
             <div class="form-group" style="margin-top:10px"><label class="form-label">Password</label><input type="text" id="editProfilePass" class="form-control"></div>
             <div style="display:flex; gap:10px; margin-top:20px;">
@@ -227,20 +228,20 @@
 
     <div id="editEntryModal" class="modal"><div class="modal-content"><h2>Edit Allocation</h2><input type="hidden" id="editEntryId"><div class="form-group"><label class="form-label">Band #</label><input type="number" id="eBand" class="form-control"></div><div class="form-group"><label class="form-label">Recipient Name</label><input type="text" id="eName" class="form-control"></div><div style="display:flex; gap:10px; margin-top:20px;"><button class="btn btn-primary" onclick="submitEntryUpdate()" style="flex:1">Update</button><button class="btn btn-secondary" onclick="closeModal('editEntryModal')" style="flex:1">Cancel</button></div></div></div>
 
-    <div id="forcePassModal" class="modal"><div class="modal-content"><h2>Update Password</h2><p>Default password detected. Please set a new password.</p><input type="password" id="newSecurePass" class="form-control" placeholder="New Password"><button class="btn btn-primary" style="width:100%; margin-top:20px;" onclick="applyForceChange()">Save Password</button></div></div>
+    <div id="forcePassModal" class="modal"><div class="modal-content"><h2>Security Update</h2><p>Default password detected. Set a new password.</p><input type="password" id="newSecurePass" class="form-control" placeholder="New Password"><button class="btn btn-primary" style="width:100%; margin-top:20px;" onclick="applyForceChange()">Save Password</button></div></div>
 
     <div id="toast" class="toast"></div>
 
     <script>
         var API_URL = '/api';
         var communitiesMap = {
-            '1': ['Morning Star', 'St. Andrew', 'Holy Trinity', 'St. Ann & St. Michael', 'Divya Jyothi'],
-            '2': ['Our Lady of Velankani', 'St. Anne', 'St. John', 'Holy Cross', 'St. Sebastian', 'Immaculate Conception'],
-            '3A': ['Divine Angel', 'Ave Maria'],
-            '3B': ['Our Lady of Rosary', 'Our Lady of Nazareth', 'Mother Theresa', 'St. Thomas', 'St. Francis Xavier', 'St. Anthony', 'Holy Cross'],
-            '4A': ['Gonsalo Gracia', 'Servers', 'St. Luke', 'St. Theresa', 'Don Bosco'],
-            '4B': ['St. Joseph', 'St. Anthony', 'St. Peter', 'Dominic Savio'],
-            'Other': ['External', 'Other']
+            '1': ['Morning Star', 'St. Andrew', 'Holy Trinity', 'St. Ann & St. Michael', 'Divya Jyothi', 'Unknown'],
+            '2': ['Our Lady of Velankani', 'St. Anne', 'St. John', 'Holy Cross', 'St. Sebastian', 'Immaculate Conception', 'Unknown'],
+            '3A': ['Divine Angel', 'Ave Maria', 'Unknown'],
+            '3B': ['Our Lady of Rosary', 'Our Lady of Nazareth', 'Mother Theresa', 'St. Thomas', 'St. Francis Xavier', 'St. Anthony', 'Holy Cross', 'Unknown'],
+            '4A': ['Gonsalo Gracia', 'Servers', 'St. Luke', 'St. Theresa', 'Don Bosco', 'Unknown'],
+            '4B': ['St. Joseph', 'St. Anthony', 'St. Peter', 'Dominic Savio', 'Unknown'],
+            'Other': ['External', 'Other', 'Unknown']
         };
 
         var appState = { user: null, isAdmin: false, users: {}, entries: [], loginCat: null, loginZone: null, filtered: [] };
@@ -262,7 +263,6 @@
             var grid = document.getElementById('userSelectionGrid');
             var path = document.getElementById('selectionPath');
             grid.innerHTML = '';
-
             if (!appState.loginCat) {
                 path.innerText = "Step 1: Select Category";
                 var root = [{id:'Zone', icon:'📍'}, {id:'Desk', icon:'🖥️'}, {id:'Church Office', icon:'⛪'}, {id:'Admin', icon:'🔐'}];
@@ -284,7 +284,7 @@
                 });
                 addBack();
             } else {
-                path.innerText = "Step 3: Select ID";
+                path.innerText = "Step 3: Select ID Profile";
                 var usernames = Object.keys(appState.users);
                 usernames.forEach(function(uname) {
                     var u = appState.users[uname];
@@ -304,7 +304,7 @@
         function addBack() {
             var btn = document.createElement('button');
             btn.className = 'btn btn-secondary';
-            btn.style.width = '100%';
+            btn.style.width = '200px';
             btn.style.marginTop = '20px';
             btn.innerText = '← Back';
             btn.onclick = function() { if(appState.loginZone) appState.loginZone = null; else appState.loginCat = null; renderSelection(); };
@@ -322,7 +322,6 @@
             var target = document.getElementById('loginPass').dataset.target;
             var pass = document.getElementById('loginPass').value;
             var userObj = appState.users[target];
-
             if (target === 'admin' && pass === 'admin123') {
                 appState.user = 'admin'; appState.isAdmin = true; finishLogin();
             } else if (userObj && userObj.password === pass) {
@@ -338,7 +337,7 @@
             closeModal('passwordModal');
             document.getElementById('loginScreen').style.display = 'none';
             document.getElementById('mainApp').style.display = 'block';
-            document.getElementById('currentUserDisplay').innerText = 'Operator: ' + appState.user;
+            document.getElementById('currentUserDisplay').innerText = 'User: ' + appState.user;
             document.getElementById('adminTab').style.display = appState.isAdmin ? 'block' : 'none';
             document.getElementById('adminFilters').style.display = appState.isAdmin ? 'block' : 'none';
             if (appState.isAdmin) { showPage('dataPage'); populateOperatorFilter(); } else { showPage('entryPage'); }
@@ -381,10 +380,9 @@
             if (sort === 'date-desc') data.sort(function(a,b) { return new Date(b.createdAt) - new Date(a.createdAt); });
             if (sort === 'band-asc') data.sort(function(a,b) { return a.bandNo - b.bandNo; });
             if (sort === 'name-asc') data.sort(function(a,b) { return a.name.localeCompare(b.name); });
-
             var html = '';
             data.forEach(function(e) {
-                var opCell = appState.isAdmin ? '<td>' + e.userId + '</td>' : '';
+                var opCell = appState.isAdmin ? '<td><span class="admin-badge">' + (appState.users[e.userId] ? appState.users[e.userId].role : '') + '</span><br>' + e.userId + '</td>' : '';
                 html += '<tr><td><strong>#'+e.bandNo+'</strong></td><td>'+e.name+'</td><td>'+e.zone+'</td><td>'+e.community+'</td><td>₹'+e.amount+'</td><td>'+e.createdAt.substr(0,10)+'</td>'+opCell+'<td><div style="display:flex; gap:5px;"><button class="btn btn-sm btn-secondary" onclick="openEdit(\''+e._id+'\','+e.bandNo+',\''+e.name+'\')">Edit</button><button class="btn btn-sm btn-danger" onclick="deleteEntry(\''+e._id+'\')">Del</button></div></td></tr>';
             });
             tb.innerHTML = html || '<tr><td colspan="8" style="text-align:center">No records.</td></tr>';
@@ -410,15 +408,13 @@
             var start = parseInt(document.getElementById('startBand').value);
             var q = parseInt(document.getElementById('qty').value);
             if (!q) { showToast("Enter quantity", true); return; }
-
             var bands = []; for(var i=0; i<q; i++) bands.push(start+i);
             var payload = { userId: appState.user, name: document.getElementById('recName').value, zone: document.getElementById('recZone').value, community: document.getElementById('recComm').value, bands: bands, amountPerBand: 50 };
-
             fetch(API_URL + '/save-entry', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify(payload) })
                 .then(function(res) {
                     if (res.status === 409) { showToast("Duplicate Band Number!", true); }
                     else {
-                        showToast("Saved", false);
+                        showToast("Saved Successfully", false);
                         document.getElementById('entryForm').reset();
                         document.getElementById('startBand').value = start + q;
                         updateBandPreview();
@@ -434,7 +430,7 @@
             if (r === 'Zone') {
                 sub.style.display = 'block';
                 document.getElementById('newUserZone').innerHTML = '<option value="">Select Zone</option>' + ['1','2','3A','3B','4A','4B'].map(function(v){return '<option value="'+v+'">'+v+'</option>';}).join('');
-                uCont.innerHTML = '<label class="form-label">Select Community</label><select id="newUnameSelect" class="form-control"></select>';
+                uCont.innerHTML = '<label class="form-label">ID / Community</label><select id="newUnameSelect" class="form-control"></select>';
                 pCont.innerHTML = '<p style="font-size:11px; color:#666; margin-top:10px;">Default password: olep@2026</p>';
             } else {
                 sub.style.display = 'none';
@@ -446,7 +442,7 @@
         function populateCommunityUsernames(z) {
             var s = document.getElementById('newUnameSelect');
             if(!s) return;
-            s.innerHTML = '<option value="">Select Community</option>';
+            s.innerHTML = '<option value="">Select Profile</option>';
             if(communitiesMap[z]) communitiesMap[z].forEach(function(c){ s.innerHTML += '<option value="'+c+'">'+c+'</option>'; });
         }
 
@@ -454,8 +450,9 @@
             var role = document.getElementById('newRole').value;
             var uname = (role === 'Zone') ? document.getElementById('newUnameSelect').value : document.getElementById('newUnameInput').value;
             var pass = (role === 'Zone') ? 'olep@2026' : document.getElementById('newPassInput').value;
+            var z = document.getElementById('newUserZone').value;
             if(!uname || !pass) { showToast("All fields required", true); return; }
-            var p = { username: uname, role: role, userZone: document.getElementById('newUserZone').value || null, password: pass };
+            var p = { username: uname, role: role, userZone: z || null, password: pass };
             fetch(API_URL + '/manage-users', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify(p) })
                 .then(function() { showToast("User Created", false); closeModal('addUserModal'); init(); });
         }
@@ -470,7 +467,7 @@
                         if(u.isAdmin) return;
                         var row = document.createElement('div');
                         row.className = 'manage-row';
-                        row.innerHTML = '<div class="manage-info"><strong>' + u.username + '</strong> (' + u.role + ')</div><div class="manage-btns"><button class="btn btn-sm btn-secondary" onclick="openProfileEdit(\''+u._id+'\',\''+u.username+'\',\''+u.password+'\',\''+u.role+'\')">Edit</button><button class="btn btn-sm btn-danger" onclick="deleteUser(\''+u.username+'\')">Remove</button></div>';
+                        row.innerHTML = '<div class="manage-info"><strong>' + u.username + '</strong> (' + u.role + ')</div><div class="manage-btns"><button class="btn btn-sm btn-secondary" onclick="openProfileEdit(\''+u._id+'\',\''+u.username+'\',\''+u.password+'\',\''+u.role+'\')">Edit</button><button class="btn btn-sm btn-danger" onclick="deleteUser(\''+u.username+'\')">Del</button></div>';
                         body.appendChild(row);
                     });
                     openModal('userManageModal');
@@ -480,7 +477,7 @@
         function deleteUser(uname) {
             if(!confirm('Delete '+uname+' and all their records?')) return;
             fetch(API_URL + '/manage-users?username=' + uname, { method: 'DELETE' })
-                .then(function(){ showToast("Deleted", false); renderUserList(); init(); });
+                .then(function(){ showToast("Deleted Profile", false); renderUserList(); init(); });
         }
 
         function openProfileEdit(id, n, p, r) {
