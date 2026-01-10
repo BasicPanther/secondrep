@@ -54,8 +54,11 @@ export default async (request) => {
     if (request.method === 'POST') {
       const body = await request.json();
       const { username, password, role, userZone } = body;
+
+      if (!username) return new Response(JSON.stringify({ success: false, error: 'Username required' }), { status: 400 });
+
       const existingUser = await usersCollection.findOne({ username });
-      if (existingUser) return new Response(JSON.stringify({ success: false, error: 'Username exists' }), { status: 409 });
+      if (existingUser) return new Response(JSON.stringify({ success: false, error: 'Username already exists' }), { status: 409 });
 
       const result = await usersCollection.insertOne({
         username,
@@ -87,7 +90,7 @@ export default async (request) => {
     if (request.method === 'DELETE') {
       const url = new URL(request.url);
       const username = url.searchParams.get('username');
-      if (username === 'admin') return new Response(JSON.stringify({ success: false }), { status: 403 });
+      if (username === 'admin') return new Response(JSON.stringify({ success: false, error: 'Cannot delete admin' }), { status: 403 });
 
       await usersCollection.deleteOne({ username });
       const entriesCollection = db.collection(entriesCollectionName);
